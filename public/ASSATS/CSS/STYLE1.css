@@ -1,0 +1,11 @@
+.bg-light {
+    background-color: #7952b3 !important;
+}
+.NAV {
+    color: white !important;
+    font-size: 18px;
+    font-weight: bold; /* Force white text */
+}
+.NAV1{
+    color: white !important;
+}
