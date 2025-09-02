@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,21 +14,10 @@ class VendorController extends Controller
     }
     function ADDPRODUCT()
     {
-        //  $data = DB::table('products')->insert([
-        //     'product_name' => 'AC',
-        //     'price' => 0,
-        //     'description' => 'Description here',
-        //     'stock_quantity' => 5,
-        //     'vendor_id' => 1,
-        //     'category' => 'AC',
-        //     'image_url' => 'ASSATS/PICTURE/love.png',
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
-        //     'model'=>'Model f'
-        // ]);
+
         return view('VENDORPANEL.ADDPRODUCT');
     }
-    public function STOREPRODUCT(Request $req)
+    public function STOREPRODUCT(Request $req):RedirectResponse
     {
         $req->validate([
             'product_name' => 'required|string|max:255',
