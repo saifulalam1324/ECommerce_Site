@@ -8,6 +8,7 @@ use App\Http\Controllers\VendorController;
 Route::controller(UserController::class)->group(function () {
     Route::get('/', 'HOME')->name('home');
     Route::get('/login', 'LOGINSIGNUP')->name('LoginSignup');
+    Route::get('/product/{id}','SHOWEACHPRODUCT')->name('Each Product');
 });
 
 Route::controller(AdminController::class)->group(function () {
