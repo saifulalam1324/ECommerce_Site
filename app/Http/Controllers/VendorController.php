@@ -29,16 +29,16 @@ class VendorController extends Controller
             'model' => 'required|string|max:100',
         ]);
         $storeProduct = DB::table('products')->insert([
-            'product_name' => $req->input('product_name'),
-            'price' => $req->input('price'),
-            'description' => $req->input('description'),
-            'stock_quantity' => $req->input('stock'),
+            'product_name' => $req->product_name,
+            'price' => $req->price,
+            'description' => $req->description,
+            'stock_quantity' => $req->stock,
             'vendor_id' => 1,
-            'category' => $req->input('category'),
+            'category' => $req->category,
             'image_url' => $req->file('image')->store('image', 'public'),
             'created_at' => now(),
             'updated_at' => now(),
-            'model' => $req->input('model')
+            'model' => $req->model
         ]);
         if ($storeProduct) {
             return redirect()->route('Add product')->with('success', 'Product added successfully!');
