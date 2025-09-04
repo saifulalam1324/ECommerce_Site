@@ -26,7 +26,7 @@ class VendorController extends Controller
             'stock' => 'required|integer|min:0',
             'category' => 'required|string|max:100',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'model' => 'required|string|max:100'
+            'model' => 'required|string|max:100',
         ]);
         $storeProduct = DB::table('products')->insert([
             'product_name' => $req->input('product_name'),

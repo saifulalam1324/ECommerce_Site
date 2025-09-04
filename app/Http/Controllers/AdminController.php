@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    function ADMINHOME()
+    public function ADMINHOME()
     {
         return view('ADMIN.HOME');
     }

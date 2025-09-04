@@ -141,14 +141,8 @@ body {
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-20px);
 }
-
-.product-img {
-    inline-size: 100% inline-size 100% object-fit contain;
-    background: #f8f8f8;
-}
-
 .product-title {
     font-weight: 400;
     font-size: 14px;
@@ -158,4 +152,9 @@ body {
     color: #333;
     font-size: 14px;
     font-weight: 400;
+}
+.product-img {
+    inline-size: 100%;
+    block-size: 200px;
+    object-fit: cover; /* crops but keeps it neat */
 }
