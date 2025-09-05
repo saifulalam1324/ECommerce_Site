@@ -16,6 +16,9 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/allusers', 'READUSERS')->name('All users');
     Route::get('/allvendors', 'READVENDORS')->name('All vendors');
     Route::get('/vendoreach/{id}', 'READVENDORS1')->name('Each vendors');
+    Route::get('/adminloginsignup','ADMINLOGINSIGNUP')->name('Admin LoginSignup');
+    Route::post('/adminregister','ADMINSIGNUP')->name('AdminSignup');
+    Route::post('/adminlogin','ADMINLOGIN')->name('AdminLogin');
 });
 
 Route::controller(VendorController::class)->group(function () {

@@ -7,8 +7,6 @@
                 <h5 class="text-center text-white">Add New Product</h5>
             </div>
             <div class="card-body">
-
-                {{-- Flash Messages --}}
                 @if(session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
@@ -26,7 +24,6 @@
                         </button>
                     </div>
                 @endif
-
                 <form action="{{ route('Store product') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
@@ -45,11 +42,10 @@
                             </span>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea name="description" id="description" rows="3" class="form-control"
-                                  style="block-size: 100px; resize: none;"></textarea>
+                            style="block-size: 100px; resize: none;"></textarea>
                         <span class="text-danger">
                             @error('description') {{ $message }} @enderror
                         </span>
@@ -62,7 +58,6 @@
                             @error('model') {{ $message }} @enderror
                         </span>
                     </div>
-
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="stock">Quantity</label>
@@ -85,7 +80,6 @@
                             </span>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="image">Picture</label>
                         <input type="file" name="image" id="image" class="form-control-file" accept="image/*">
@@ -103,15 +97,4 @@
             </div>
         </div>
     </div>
-
-    {{-- Auto-dismiss alerts after 3 seconds --}}
-    <script>
-        setTimeout(() => {
-            let alerts = document.querySelectorAll('.alert');
-            alerts.forEach(alert => {
-                alert.classList.remove('show');
-                alert.classList.add('fade');
-            });
-        }, 3000);
-    </script>
 @endsection
