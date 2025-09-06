@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class VendorMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-       if (Auth::guard('admin')->check()) {
+        if (Auth::guard('vendor')->check()) {
             return $next($request);
         } else {
-            return redirect()->route('AdminLoginPage');
+            return redirect()->route('VendorLoginPage');
         }
     }
 }

@@ -34,7 +34,10 @@
                                 <li class="nav-item">
                                     <h2 class="text-white">Your Market</h2>
                                 </li>
-                                <li class="nav-item"><a class="nav-link NAV" href="#">Profile</a></li>
+                                <li class="nav-item"><a class="nav-link NAV" href="{{ route('VendorProfile') }}">
+                                        <p><i class="fa-solid fa-user" style="color:white;"></i>
+                                            {{Auth::guard('vendor')->user()->company_name}}</p>
+                                    </a></li>
                             </ul>
                         </div>
                     </div>

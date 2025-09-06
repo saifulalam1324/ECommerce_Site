@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('company_name', 60);
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->boolean('approve_status')->default(false);
             $table->timestamps();
         });
     }

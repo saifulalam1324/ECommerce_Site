@@ -15,6 +15,12 @@ class AdminController extends Controller
     {
         return view('ADMIN.HOME');
     }
+    public function ADMINLOGINPAGE(){
+        return view('ADMIN.ADMINLOGIN');
+    }
+    public function ADMINSIGNUPPAGE(){
+        return view('ADMIN.ADMINSIGNUP');
+    }
     public function READUSERS()
     {
         $data = DB::table('customers')->orderBy('customer_id')->cursorPaginate(8);
@@ -79,11 +85,17 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('AdminLoginPage');
     }
-    public function ADMINLOGINPAGE(){
-        return view('ADMIN.ADMINLOGIN');
+     public function VENDORREQUESTS()
+    {
+        $data = DB::table('vendors')->where('approve_status','=','0')->orderBy('vendor_id')->cursorPaginate(8);
+        return view('ADMIN.VENDORSREQUESTS', ['vendors' => $data]);
     }
-    public function ADMINSIGNUPPAGE(){
-        return view('ADMIN.ADMINSIGNUP');
+
+    public function UPDATEAPPROVESTATUS(int $id)
+    {
+        $data = DB::table('vendors')->where('vendor_id', '=',$id)->update(['approve_status'=>1]);
+        return redirect()->back()->with('success', 'Vendor approved successfully!');
     }
+
 
 }
