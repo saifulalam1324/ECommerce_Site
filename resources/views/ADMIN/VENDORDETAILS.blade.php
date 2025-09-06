@@ -5,9 +5,8 @@
         <div class="card text-left">
             <div class="card-body">
                 @foreach ($vendors as $id => $data)
-                    <h4 class="card-title">Title</h4>
-                    <p class="card-text">{{$data->company_name}}</p>
-                    <p class="card-text">{{$data->email}}</p>
+                    <h4 class="card-title">{{$data->company_name}}</h4>
+                    <p class="text">{{$data->email}}</p>
                 @endforeach
             </div>
         </div>
