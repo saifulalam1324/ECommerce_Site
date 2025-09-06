@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
-
+use App\Models\Vendor;
 
 // Customer
 Route::controller(UserController::class)->group(function () {
@@ -30,11 +30,23 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/vendoreach/{id}', [AdminController::class, 'READVENDORS1'])->name('Each vendors');
     Route::post('/adminlogout', [AdminController::class, 'ADMINLOGOUT'])->name('AdminLogout');
     Route::get('/adminprofile', [AdminController::class, 'ADMINPROFILE'])->name('AdminProfile');
+    Route::get('/vendorrequests', [AdminController::class, 'VENDORREQUESTS'])->name('VendorsRequests');
+    Route::post('/approverequest/{id}', [AdminController::class, 'UPDATEAPPROVESTATUS'])->name('ApproveRequest');
 });
 
 // Vendor
-Route::controller(VendorController::class)->group(function () {
-    Route::get('/vendor', 'VENDORHOME')->name('Vendor home');
-    Route::get('/addproduct', 'ADDPRODUCT')->name('Add product');
-    Route::post('/storeproduct', 'STOREPRODUCT')->name('Store product');
+Route::get('/vendorloginpage', [VendorController::class, 'VENDORLOGINPAGE'])
+    ->name('VendorLoginPage');
+Route::get('/vendorsignuppage', [VendorController::class, 'VENDORSIGNUPPAGE'])
+    ->name('VendorSignupPage');
+Route::post('/vendorregister', [VendorController::class, 'VENDORSIGNUP'])
+    ->name('VendorSignup');
+Route::post('/vendorlogin', [VendorController::class, 'VENDORLOGIN'])
+    ->name('VendorLogin');
+Route::middleware(['vendor'])->group(function () {
+    Route::get('/vendor', [VendorController::class, 'VENDORHOME'])->name('Vendor home');
+    Route::get('/addproduct', [VendorController::class, 'ADDPRODUCT'])->name('Add product');
+    Route::post('/storeproduct', [VendorController::class, 'STOREPRODUCT'])->name('Store product');
+    Route::post('/vendorlogout', [VendorController::class, 'VENDORLOGOUT'])->name('VendorLogout');
+    Route::get('/vendorprofile', [VendorController::class, 'VENDORPROFILE'])->name('VendorProfile');
 });
