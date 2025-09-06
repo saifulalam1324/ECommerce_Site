@@ -38,7 +38,7 @@ class AdminController extends Controller
         $request->validate([
             'admin_name' => 'required|string|max:255',
             'email' => 'required|email|unique:admins,email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
         ]);
 
         $signup = DB::table('admins')->insert([

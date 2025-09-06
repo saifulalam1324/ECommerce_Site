@@ -19,7 +19,7 @@ class AdminMiddleware
         if (Auth::guard('admin')->check()) {
             return $next($request);
         } else {
-            return redirect()->route('Admin LoginSignup');
+            return redirect()->route('AdminLoginPage');
         }
     }
 }
