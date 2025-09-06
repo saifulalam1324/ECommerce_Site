@@ -30,9 +30,8 @@ class AdminController extends Controller
         $data = DB::table('vendors')->where('vendor_id', $id)->get();
         return view('ADMIN.VENDORDETAILS', ['vendors' => $data]);
     }
-    public function ADMINLOGINSIGNUP()
-    {
-        return view('ADMIN.ADMINLOGINSIGNUP');
+    public function ADMINPROFILE(){
+        return view('ADMIN.PROFILE');
     }
     public function ADMINSIGNUP(Request $request): RedirectResponse
     {
@@ -51,26 +50,26 @@ class AdminController extends Controller
         ]);
 
         if ($signup) {
-            return redirect()->route('Admin LoginSignup')->with('success', 'Registered successfully!');
+            return redirect()->route('AdminLoginPage')->with('success', 'Registered successfully!');
         } else {
             return redirect()->back()->with('error', 'Failed to register. Please try again.');
         }
     }
 
-  public function ADMINLOGIN(Request $request)
-{
-    $credentials = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required|min:6',
-    ]);
+    public function ADMINLOGIN(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
 
-    if (Auth::guard('admin')->attempt($credentials)) {
-        $request->session()->regenerate();
-        return redirect()->route('Admin home')->with('success', 'Welcome back, Admin!');
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('Admin home')->with('success', 'Welcome back, Admin!');
+        }
+
+        return back()->with('error', 'Invalid email or password. Please try again.');
     }
-
-    return back()->with('error', 'Invalid email or password. Please try again.');
-}
 
 
     public function ADMINLOGOUT(Request $request)
@@ -78,6 +77,13 @@ class AdminController extends Controller
         Auth::guard('admin')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('Admin LoginSignup');
+        return redirect()->route('AdminLoginPage');
     }
+    public function ADMINLOGINPAGE(){
+        return view('ADMIN.ADMINLOGIN');
+    }
+    public function ADMINSIGNUPPAGE(){
+        return view('ADMIN.ADMINSIGNUP');
+    }
+
 }

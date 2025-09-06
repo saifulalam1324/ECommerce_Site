@@ -25,16 +25,14 @@
                         <ul class="navbar-nav flex-column w-100 pl-5 pt-2">
                             <li class="nav-item"><a class="nav-link NAV" href="{{route('Admin home')}}">Home</a></li>
                             <li class="nav-item"><a class="nav-link NAV" href="{{route('All users')}}">Users</a></li>
-                            <li class="nav-item"><a class="nav-link NAV" href="{{route('All vendors')}}">Vendors</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link NAV" href="{{ route('AdminLogout') }}">logout</a></li>
+                            <li class="nav-item"><a class="nav-link NAV" href="{{route('All vendors')}}">Vendors</a></li>
                         </ul>
                         <div class="mt-auto w-100 bg-dark">
                             <ul class="navbar-nav flex-column w-100 p-2">
                                 <li class="nav-item">
-                                    <h2 class="text-white">Your Market</h2>
+                                    <h4 class="text-white">Your Market</h4>
                                 </li>
-                                <li class="nav-item"><a class="nav-link NAV" href="#">Profile</a></li>
+                                <li class="nav-item"><a class="nav-link NAV" href="{{ route('AdminProfile') }}"><p><i class="fa-solid fa-user" style="color:white;"></i> {{Auth::guard('admin')->user()->admin_name}}</p></a></li>
                             </ul>
                         </div>
                     </div>
