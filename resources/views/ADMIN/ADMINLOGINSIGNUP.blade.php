@@ -20,14 +20,31 @@
             <div class="container d-flex justify-content-center align-items-center" style="min-block-size:100vh;">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4">
                     <h1 class="mb-3 text-center">Please log in</h1>
+                    @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                     <form action="{{ route('AdminLogin') }}" method="POST" class="mb-3">
                         @csrf
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="E-mail" name="email" required />
+                            <input type="email" class="form-control" id="E-mail" placeholder="E-mail" name="email"/>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" name="password"
-                                required />
+                            <input type="password" class="form-control" id="Password" placeholder="Password" name="password"
+                            />
                         </div>
                         <button type="submit" class="btn btn-block" style="background-color:#7a4eb0; color: white;">
                             Login
@@ -53,20 +70,20 @@
                     <form action="{{ route('AdminSignup') }}" method="POST" class="mb-3">
                         @csrf
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="name" name="admin_name" required />
+                            <input type="text" class="form-control" placeholder="name" id="name" name="admin_name" />
                             <span class="text-danger">
                                 @error('admin_name') {{ $message }} @enderror
                             </span>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="E-mail" name="email" required />
+                            <input type="email" class="form-control" placeholder="E-mail" id="E-mail" name="email"/>
                             <span class="text-danger">
                                 @error('email') {{ $message }} @enderror
                             </span>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" name="password"
-                                required />
+                            <input type="password" class="form-control" placeholder="Password" id="Password" name="password"
+                             />
                             <span class="text-danger">
                                 @error('password') {{ $message }} @enderror
                             </span>

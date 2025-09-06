@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -56,18 +57,27 @@ class AdminController extends Controller
         }
     }
 
-    public function ADMINLOGIN(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+  public function ADMINLOGIN(Request $request)
+{
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|min:6',
+    ]);
 
-        if (Auth::guard('admin')->attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->route('Admin home');
-        } else {
-            echo '<script>alert("Password incorrect. Please try again.");</script>';
-        }
+    if (Auth::guard('admin')->attempt($credentials)) {
+        $request->session()->regenerate();
+        return redirect()->route('Admin home')->with('success', 'Welcome back, Admin!');
+    }
+
+    return back()->with('error', 'Invalid email or password. Please try again.');
+}
+
+
+    public function ADMINLOGOUT(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('Admin LoginSignup');
     }
 }

@@ -27,7 +27,7 @@
                             <li class="nav-item"><a class="nav-link NAV" href="{{route('All users')}}">Users</a></li>
                             <li class="nav-item"><a class="nav-link NAV" href="{{route('All vendors')}}">Vendors</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link NAV" href="#">Cart</a></li>
+                            <li class="nav-item"><a class="nav-link NAV" href="{{ route('AdminLogout') }}">logout</a></li>
                         </ul>
                         <div class="mt-auto w-100 bg-dark">
                             <ul class="navbar-nav flex-column w-100 p-2">
