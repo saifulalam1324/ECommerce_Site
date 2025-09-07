@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class CustomerController extends Controller
 {
-    public function HOME(){
+ public function HOME(){
         $data = DB::table('products')->get();
         return view('USER.HOME', ['products' => $data]);
     }
@@ -19,5 +19,4 @@ class UserController extends Controller
     public function LOGINSIGNUP(){
         return view('USER.LOGINSIGNUP');
     }
-
 }

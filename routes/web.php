@@ -1,13 +1,15 @@
 <?php
 
+use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\VendorController;
 use App\Models\Vendor;
 
 // Customer
-Route::controller(UserController::class)->group(function () {
+Route::controller(CustomerController::class)->group(function () {
     Route::get('/', 'HOME')->name('home');
     Route::get('/login', 'LOGINSIGNUP')->name('LoginSignup');
     Route::get('/product/{id}', 'SHOWEACHPRODUCT')->name('Each Product');
@@ -49,4 +51,8 @@ Route::middleware(['vendor'])->group(function () {
     Route::post('/storeproduct', [VendorController::class, 'STOREPRODUCT'])->name('Store product');
     Route::post('/vendorlogout', [VendorController::class, 'VENDORLOGOUT'])->name('VendorLogout');
     Route::get('/vendorprofile', [VendorController::class, 'VENDORPROFILE'])->name('VendorProfile');
+});
+
+Route::get('/test-request', function () {
+    dd(class_exists(\App\Http\Requests\ProductRequest::class));
 });
