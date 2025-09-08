@@ -156,5 +156,19 @@ body {
 .product-img {
     inline-size: 100%;
     block-size: 200px;
-    object-fit: cover; /* crops but keeps it neat */
+    object-fit: cover;
+}
+
+.dropdown-menu-center {
+    inset-inline-start: 50%;
+    transform: translateX(-50%) !important;
+    inset-inline-end: auto !important;
+}
+
+/* Make dropdown small */
+.custom-dropdown {
+    min-inline-size: 120px;
+    text-align: center;
+    border: none;
+
 }

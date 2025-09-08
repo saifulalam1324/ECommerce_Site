@@ -17,7 +17,7 @@
             <i class="fa-solid fa-bars" style="color: white"></i>
         </a>
         <div class="container-fluid">
-            <a class="navbar-brand mr-5" href="{{ route('home') }}">YOUR MARKET</a>
+            <a class="navbar-brand mr-5" href="{{ route('User home') }}">YOUR MARKET</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -38,9 +38,29 @@
                     <li class="nav-item"><a class="nav-link NAV" href="#">Favorites</a></li>
                     <li class="nav-item"><a class="nav-link NAV" href="#">Cart</a></li>
                 </ul>
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="btn btn-outline-light" href="{{ route('LoginSignup') }}">Sign In</a>
+                        @if (Auth::guard('customer')->check())
+                            <div class="dropdown justify-content-center text-center">
+                                <a class="btn btn-outline-light dropdown-toggle" href="#" role="button"
+                                    data-toggle="dropdown" aria-expanded="false">
+                                    {{Auth::guard('customer')->user()->email}}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-center custom-dropdown bg-transparent">
+                                    <form action="{{ route('UserLogout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa-solid fa-right-from-bracket"></i>
+                                        </button>
+                                    </form>
+                                    <a class="btn btn-success mt-1" href="#"><i class="fa-solid fa-circle-info"></i></a>
+                                </div>
+                            </div>
+
+                        @else
+                            <a class="btn btn-outline-light" href="{{ route('LoginSignup') }}">Sign In</a>
+                        @endif
                     </li>
                 </ul>
             </div>

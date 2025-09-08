@@ -6,27 +6,27 @@
 
         <div class="container" id="container">
             <div class="form-container sign-up">
-                <form>
+                <form action="{{ route('UserSignup') }}" method="POST">
                     @csrf
                     <h1>Create Account</h1>
                     <div class="social-icons">
                     </div>
-                    <input type="text" placeholder="Name" />
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <input type="tel" placeholder="Phone Number"/>
-                    <input type="text" placeholder="Address" />
-                    <button>Sign Up</button>
+                    <input type="text" placeholder="Name" name="name" required />
+                    <input type="email" placeholder="Email" name="email" required />
+                    <input type="password" placeholder="Password" name="password" required />
+                    <input type="tel" placeholder="Phone Number" name="phone" required />
+                    <input type="text" placeholder="Address" name="address" required />
+                    <button type="submit">Sign Up</button>
                 </form>
             </div>
             <div class="form-container sign-in">
-                <form>
+                <form action="{{ route('UserLogin') }}" method="POST">
                     @csrf
                     <h1>Sign In</h1>
                     <div class="social-icons">
                     </div>
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
+                    <input type="email" placeholder="Email" name="email" required />
+                    <input type="password" placeholder="Password" name="password" required />
                     <a href="#">Forget Your Password?</a>
                     <button>Sign In</button>
                 </form>

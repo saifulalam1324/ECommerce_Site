@@ -8,11 +8,15 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\VendorController;
 use App\Models\Vendor;
 
-// Customer
-Route::controller(CustomerController::class)->group(function () {
-    Route::get('/', 'HOME')->name('home');
-    Route::get('/login', 'LOGINSIGNUP')->name('LoginSignup');
-    Route::get('/product/{id}', 'SHOWEACHPRODUCT')->name('Each Product');
+Route::post('/usersignup', [CustomerController::class, 'USERSIGNUP'])
+    ->name('UserSignup');
+Route::post('/userlogin', [CustomerController::class, 'USERLOGIN'])
+    ->name('UserLogin');
+    Route::get('/login', [CustomerController::class,'LOGINSIGNUP'])->name('LoginSignup');
+Route::middleware(['customer'])->group(function () {
+    Route::get('/', [CustomerController::class, 'HOME'])->name('User home');
+    Route::get('/product/{id}',[CustomerController::class,  'SHOWEACHPRODUCT'])->name('Each Product');
+    Route::post('/userlogout', [CustomerController::class, 'USERLOGOUT'])->name('UserLogout');
 });
 
 
