@@ -19,9 +19,10 @@ body {
 
 .search-input {
     inline-size: 100%;
-    border-radius: 30px;
+    /* border-radius: 30px; */
     padding: 6px 40px 6px 15px;
-    block-size: 35px;
+    block-size: 47px;
+    inline-size: 700px;
     font-size: 14px;
 }
 .search-icon {
@@ -171,4 +172,10 @@ body {
     text-align: center;
     border: none;
 
+}
+
+.disable-link {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: default;
 }
