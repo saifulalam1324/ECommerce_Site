@@ -96,6 +96,11 @@ class AdminController extends Controller
         $data = DB::table('vendors')->where('vendor_id', '=',$id)->update(['approve_status'=>1]);
         return redirect()->back()->with('success', 'Vendor approved successfully!');
     }
+    public function DELETEREQUEST(int $id)
+    {
+        $data = DB::table('vendors')->where('vendor_id', '=',$id)->delete();
+        return redirect()->back()->with('success', 'Vendor request deleted successfully!');
+    }
 
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -69,5 +70,71 @@ class CustomerController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('User home');
+    }
+
+    public function CART()
+    {
+        $cart = session()->get('cart', []);
+        return view('USER.CART', compact('cart'));
+    }
+    public function ADDTOCART(Request $request, $id)
+    {
+        $product = DB::table('products')->where('product_id', $id)->first();
+
+        if (! $product) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+        $cart = session()->get('cart', []);
+        $quantity = max(1, (int)$request->input('quantity', 1));
+
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity'] += $quantity;
+        } else {
+            $cart[$id] = [
+                'id'       => $product->product_id,
+                'name'     => $product->product_name,
+                'price'    => $product->price,
+                'quantity' => $quantity,
+                'image'    => $product->image_url,
+            ];
+        }
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', 'Product added to cart!');
+    }
+    public function INCREASE($id)
+    {
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+        }
+
+        return back();
+    }
+    public function DECREASE($id)
+    {
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$id])) {
+            if ($cart[$id]['quantity'] > 1) {
+                $cart[$id]['quantity']--;
+            } else {
+                unset($cart[$id]);
+            }
+            session()->put('cart', $cart);
+        }
+
+        return back();
+    }
+    public function REMOVECART(Request $request, $id)
+    {
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+        }
+        return redirect()->route('Cart');
     }
 }

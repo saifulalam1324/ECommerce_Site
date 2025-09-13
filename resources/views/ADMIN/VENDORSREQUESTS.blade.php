@@ -25,7 +25,7 @@
                                 @csrf
                                 <button type="submit" class="btn btn-success text-white">Accept</button>
                             </form>
-                            <form action="{{ route('ApproveRequest', $data->vendor_id) }}" method="POST"
+                            <form action="{{ route('DeleteRequest', $data->vendor_id) }}" method="POST"
                                 style="display:inline;">
                                 @csrf
                                 <button type="submit" class="btn btn-danger text-white">Delete</button>
