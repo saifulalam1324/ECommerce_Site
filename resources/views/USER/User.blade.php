@@ -22,47 +22,53 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse mt-2 mb-2" id="navbarNav">
-                <ul class="navbar-nav d-flex align-items-center mx-auto my-auto">
-                    <li class="nav-item mx-2">
-                        <div class="search-container">
-                            <form class="search-form" action="#" method="get">
-                                <input type="text" class="form-control search-input"
-                                    placeholder="Search for Tv, Fridge, Washing machine or Air Conditioner"
-                                    name="search">
-                                <a href="" class="search-icon" style="color: #7a4eb0;"><i
-                                        class="fa-solid fa-magnifying-glass"></i></a>
-                            </form>
-                        </div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link NAV" href="#">Orders</a></li>
-                    <li class="nav-item"><a class="nav-link NAV" href="#">Favorites</a></li>
-                    <li class="nav-item"><a class="nav-link NAV" href="#">Cart</a></li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        @if (Auth::guard('customer')->check())
-                            <div class="dropdown justify-content-center text-center">
-                                <a class="btn btn-outline-light dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-expanded="false">
-                                    {{Auth::guard('customer')->user()->email}}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-center custom-dropdown bg-transparent">
-                                    <form action="{{ route('UserLogout') }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa-solid fa-right-from-bracket"></i>
-                                        </button>
-                                    </form>
-                                    <a class="btn btn-success mt-1" href="#"><i class="fa-solid fa-circle-info"></i></a>
-                                </div>
+                <div class="container-fluid">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item mx-2 w-100 d-flex justify-content-center">
+                            <div class="search-container w-75 justify-content-center">
+                                <form class="search-form d-flex" action="#" method="get">
+                                    @csrf
+                                    <input type="text" class="form-control search-input"
+                                        placeholder="Search products..." aria-label="Search" aria-describedby="search"
+                                        name="search">
+                                    <button type="submit" class="btn btn-outline-light ml-1">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </form>
                             </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="contaier-fluid">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            @if (Auth::guard('customer')->check())
+                                <div class="dropdown justify-content-center text-center">
+                                    <a class="btn btn-outline-light dropdown-toggle" href="#" role="button"
+                                        data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-user"></i> {{Auth::guard('customer')->user()->full_name}}
+                                    </a>
 
-                        @else
-                            <a class="btn btn-outline-light" href="{{ route('LoginSignup') }}">Sign In</a>
-                        @endif
-                    </li>
-                </ul>
+                                    <div class="dropdown-menu dropdown-menu-center custom-dropdown bg-transparent">
+                                        <div class="d-flex justify-content-center">
+                                            <form action="{{ route('UserLogout') }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                                </button>
+                                            </form>
+                                            <a class="btn btn-success ml-1" href="#"><i
+                                                    class="fa-solid fa-circle-info"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            @else
+                                <a class="btn btn-outline-light" href="{{ route('LoginSignup') }}">Sign In</a>
+                            @endif
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
@@ -75,9 +81,13 @@
         </div>
     </div>
     <div id="overlay" class="overlay" onclick="closeSidebar()">
-
     </div>
-    <div class="container-fluied">
+    <a href="{{ route('Cart') }}"
+        class="d-flex justify-content-center align-items-center position-fixed bg-transparent border-0 mb-4"
+        style="inset-inline-end:20px; inset-block-end:20px; color:#7a4eb0; z-index:1030;">
+        <i class="fa-solid fa-cart-plus fa-3x"></i>
+    </a>
+    <div class="container-fluid">
         @yield('content')
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
