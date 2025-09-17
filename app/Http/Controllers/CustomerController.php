@@ -137,4 +137,9 @@ class CustomerController extends Controller
         }
         return redirect()->route('Cart');
     }
+
+    public function USERINFO()
+    {
+        return view('USER.USERINFO');
+    }
 }

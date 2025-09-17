@@ -10,7 +10,6 @@
         @endif
 
         @php $cart = session('cart', []); @endphp
-
         @if(count($cart) === 0)
             <h1>Your cart is empty.</h1>
         @else
