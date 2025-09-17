@@ -37,6 +37,8 @@ Route::middleware(['customer'])->group(function () {
         ->name('DEC');
     Route::post('/remove/{id}', [CustomerController::class, 'REMOVECART'])
         ->name('Removecart');
+    Route::get('/userinfo', [CustomerController::class, 'USERINFO'])
+        ->name('UserInfo');
 });
 
 

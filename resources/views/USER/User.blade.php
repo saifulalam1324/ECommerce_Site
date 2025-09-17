@@ -21,57 +21,63 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse mt-2 mb-2" id="navbarNav">
-                <div class="container-fluid">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item mx-2 w-100 d-flex justify-content-center">
-                            <div class="search-container w-75 justify-content-center">
-                                <form class="search-form d-flex" action="#" method="get">
-                                    @csrf
-                                    <input type="text" class="form-control search-input"
-                                        placeholder="Search products..." aria-label="Search" aria-describedby="search"
-                                        name="search">
-                                    <button type="submit" class="btn btn-outline-light ml-1">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="contaier-fluid">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            @if (Auth::guard('customer')->check())
-                                <div class="dropdown justify-content-center text-center">
-                                    <a class="btn btn-outline-light dropdown-toggle" href="#" role="button"
-                                        data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa-solid fa-user"></i> {{Auth::guard('customer')->user()->full_name}}
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-center custom-dropdown bg-transparent">
-                                        <div class="d-flex justify-content-center">
-                                            <form action="{{ route('UserLogout') }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="fa-solid fa-right-from-bracket"></i>
-                                                </button>
-                                            </form>
-                                            <a class="btn btn-success ml-1" href="#"><i
-                                                    class="fa-solid fa-circle-info"></i></a>
-                                        </div>
+            <div class="container-fluid collapse navbar-collapse mt-1 mb-1 justify-content-center" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item mx-2 d-flex nav-item justify-content-center align-items-center">
+                        <div class="search-container w-75">
+                            <form class="search-form d-flex" action="#" method="get">
+                                @csrf
+                                <input type="text" class="form-control search-input" placeholder="Search products..."
+                                    aria-label="Search" aria-describedby="search" name="search">
+                                <button type="submit" class="btn btn-outline-light ml-1" style="border-radius: 10%">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="container-fluid collapse navbar-collapse mt-1 mb-1 justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item justify-content-center align-items-center">
+                        @if (Auth::guard('customer')->check())
+                            <div class="dropdown justify-content-center text-center">
+                                <a class="btn btn-outline-light dropdown-toggle" href="#" role="button"
+                                    data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-user"></i> {{Auth::guard('customer')->user()->full_name}}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-center custom-dropdown bg-transparent">
+                                    <div class="d-flex justify-content-center">
+                                        <form action="{{ route('UserLogout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa-solid fa-right-from-bracket"></i>
+                                            </button>
+                                        </form>
+                                        <a class="btn btn-success ml-1" href="{{ route('UserInfo') }}"><i
+                                                class="fa-solid fa-circle-info"></i></a>
                                     </div>
                                 </div>
+                            </div>
 
-                            @else
-                                <a class="btn btn-outline-light" href="{{ route('LoginSignup') }}">Sign In</a>
-                            @endif
-                        </li>
-                    </ul>
-                </div>
+                        @else
+                            <a class="btn btn-outline-light" href="{{ route('LoginSignup') }}">Sign In</a>
+                        @endif
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
+    <div class="container-fluid d-flex" style="background-color: whitesmoke">
+        <a href="#" class="ml-5 font-weight-bold">
+            <p class="font-weight-bold text-2xl">ad</p>
+        </a>
+        <a href="#" class="ml-3 font-weight-bold">
+            <p class="font-weight-bold" style="color:#7a4eb0; text-decoration:none; font-size: 1.5rem;"
+                onmouseover="this.style.textDecoration='underline'; this.style.textDecorationColor='#7a4eb0';"
+                onmouseout="this.style.textDecoration='none';">ad</p>
+        </a>
+    </div>
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header d-flex justify-content-between align-items-center">
             <a class="" onclick="closeSidebar()"><i class="fa-solid fa-circle-xmark fa-2x"></i>
@@ -85,8 +91,19 @@
     <a href="{{ route('Cart') }}"
         class="d-flex justify-content-center align-items-center position-fixed bg-transparent border-0 mb-4"
         style="inset-inline-end:20px; inset-block-end:20px; color:#7a4eb0; z-index:1030;">
-        <i class="fa-solid fa-cart-plus fa-3x"></i>
+
+        <div class="position-relative">
+            <i class="fa-solid fa-cart-plus fa-3x"></i>
+
+            <!-- top-right badge -->
+            <span class="position-absolute top-0 end-100 translate-middle
+                    badge rounded-pill text-white bg-danger">
+                {{ $cartCount ?? 0 }}
+            </span>
+        </div>
     </a>
+
+
     <div class="container-fluid">
         @yield('content')
     </div>
