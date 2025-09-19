@@ -91,19 +91,15 @@
     <a href="{{ route('Cart') }}"
         class="d-flex justify-content-center align-items-center position-fixed bg-transparent border-0 mb-4"
         style="inset-inline-end:20px; inset-block-end:20px; color:#7a4eb0; z-index:1030;">
-
         <div class="position-relative">
             <i class="fa-solid fa-cart-plus fa-3x"></i>
-
-            <!-- top-right badge -->
-            <span class="position-absolute top-0 end-100 translate-middle
-                    badge rounded-pill text-white bg-danger">
-                {{ $cartCount ?? 0 }}
+            <span class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
+                style="transform: translate(1%, -60%);">
+                {{ count(session('cart', [])) }}
             </span>
+
         </div>
     </a>
-
-
     <div class="container-fluid">
         @yield('content')
     </div>
