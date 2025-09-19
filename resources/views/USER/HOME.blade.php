@@ -22,7 +22,7 @@
                                     <p class="product-price ">price:{{ $data->price}}</p>
                                 </div>
                                 <div class="d-flex justify-content-between">
-                                    @if ($data->stock_quantity == 0)
+                                    @if ($data->stock_quantity <= 0)
                                         <a type="submit" class="btn border-0 disabled" title="Add to cart">
                                             <i class="fa-solid fa-cart-shopping" style="color:#7a4eb0;"></i>
                                         </a>
@@ -40,7 +40,7 @@
                                         </form>
                                     @endif
 
-                                    @if ($data->stock_quantity == 0)
+                                    @if ($data->stock_quantity <= 0)
                                         <h6><span class="badge badge-danger">Stock Out</span></h6>
                                     @else
                                         <h6><span class="badge badge-success">Available</span></h6>

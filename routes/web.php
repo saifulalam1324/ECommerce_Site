@@ -39,6 +39,14 @@ Route::middleware(['customer'])->group(function () {
         ->name('Removecart');
     Route::get('/userinfo', [CustomerController::class, 'USERINFO'])
         ->name('UserInfo');
+    Route::get('/payment', [CustomerController::class, 'SHOWPAYMENTPAGE'])
+        ->name('Paymentpage');
+    Route::post('/placeorder', [CustomerController::class, 'PLACEORDER'])
+        ->name('Placeorder');
+    Route::post('/processpayment', [CustomerController::class, 'processPayment'])
+        ->name('Processpayment');
+    Route::post('/ppayment', [CustomerController::class, 'payment'])
+        ->name('payment');
 });
 
 
