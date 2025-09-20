@@ -15,12 +15,20 @@
                         </p>
                         <form id="stripe-form" method="POST" action="{{ route('payment') }}">
                             @csrf
-                            <input type="hidden" name="price" value="{{ $grand }}">
-                            <input type="hidden" name="stripeToken" id="stripe-token">
-                            <div id="card-element" class="mb-3"></div>
-                            <button id="pay-button" type="button" class="btn btn-success btn-lg px-5">
-                                Pay Now
-                            </button>
+                            @if ($grand > 0)
+                                <input type="hidden" name="stripeToken" id="stripe-token">
+                                <div id="card-element" class="mb-3"></div>
+                                <div class="d-flex justify-content-center">
+                                    <button id="pay-button" type="button" class="btn btn-success btn-lg justify-center px-5">
+                                        Pay Now
+                                    </button>
+                                </div>
+
+                            @else
+                                <div class="alert alert-warning text-center">
+                                    <strong>No items in cart!</strong> Please add items to your cart before proceeding to payment.
+                                </div>
+                            @endif
                         </form>
                     </div>
                     <div class="card-footer text-muted text-center small">
@@ -40,6 +48,7 @@
 
         document.getElementById('pay-button').addEventListener('click', () => {
             stripe.createToken(card).then(res => {
+                // console.log(res);
                 if (res.error) {
                     alert(res.error.message);
                 } else {

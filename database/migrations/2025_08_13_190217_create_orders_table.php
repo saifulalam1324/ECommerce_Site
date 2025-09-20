@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->decimal('price', 10, 2);
             $table->decimal('total', 10, 2);
+            $table->string('order_batch_id');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
