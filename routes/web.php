@@ -18,9 +18,9 @@ Route::get('/login', [CustomerController::class, 'LOGINSIGNUP'])
     ->name('LoginSignup');
 Route::get('/', [CustomerController::class, 'HOME'])
     ->name('User home');
+Route::get('/product/{id}', [CustomerController::class,  'SHOWEACHPRODUCT'])
+    ->name('Each Product');
 Route::middleware(['customer'])->group(function () {
-    Route::get('/product/{id}', [CustomerController::class,  'SHOWEACHPRODUCT'])
-        ->name('Each Product');
     Route::post('/userlogout', [CustomerController::class, 'USERLOGOUT'])
         ->name('UserLogout');
     Route::get('/cart', [CustomerController::class, 'CART'])
