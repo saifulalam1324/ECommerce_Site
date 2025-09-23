@@ -224,4 +224,8 @@ class CustomerController extends Controller
         return redirect()->route('User home')
             ->with('success', 'Payment successful! Your order is confirmed.');
     }
+
+    public function SEARCH(){
+        return view('USER.SEARCH');
+    }
 }

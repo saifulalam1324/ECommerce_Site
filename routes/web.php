@@ -47,6 +47,8 @@ Route::middleware(['customer'])->group(function () {
         ->name('Processpayment');
     Route::post('/ppayment', [CustomerController::class, 'payment'])
         ->name('payment');
+    Route::get('/search', [CustomerController::class, 'SEARCH'])
+        ->name('Search');
 });
 
 
