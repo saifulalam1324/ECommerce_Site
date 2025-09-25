@@ -29,14 +29,14 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="product_name">Product Name</label>
-                            <input type="text" name="product_name" id="product_name" class="form-control">
+                            <input type="text" name="product_name" id="product_name" class="form-control" value="{{ old('product_name') }}">
                             <span class="text-danger">
                                 @error('product_name') {{ $message }} @enderror
                             </span>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="price">Price</label>
-                            <input type="number" step="0.01" name="price" id="price" class="form-control">
+                            <input type="number" step="0.01" name="price" id="price" class="form-control" value="{{ old('price') }}">
                             <span class="text-danger">
                                 @error('price') {{ $message }} @enderror
                             </span>
@@ -53,7 +53,7 @@
 
                     <div class="form-group">
                         <label for="product_model">Model</label>
-                        <input type="text" name="model" id="product_model" class="form-control">
+                        <input type="text" name="model" id="product_model" class="form-control" value="{{ old('model') }}">
                         <span class="text-danger">
                             @error('model') {{ $message }} @enderror
                         </span>
@@ -61,14 +61,14 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="stock">Quantity</label>
-                            <input type="number" name="stock" id="stock" class="form-control">
+                            <input type="number" name="stock" id="stock" class="form-control" value="{{ old('stock') }}">
                             <span class="text-danger">
                                 @error('stock') {{ $message }} @enderror
                             </span>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="category">Category</label>
-                            <select name="category" id="category" class="form-control">
+                            <select name="category" id="category" class="form-control" value="{{ old('category') }}">
                                 <option value="">Select Category</option>
                                 <option value="TV">TV</option>
                                 <option value="AC">AC</option>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="form-group">
                         <label for="image">Picture</label>
-                        <input type="file" name="image" id="image" class="form-control-file" accept="image/*">
+                        <input type="file" name="image" id="image" class="form-control-file" accept="image/*" value="{{ old('image') }}">
                         <span class="text-danger">
                             @error('image') {{ $message }} @enderror
                         </span>

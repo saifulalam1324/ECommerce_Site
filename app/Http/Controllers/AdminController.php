@@ -15,10 +15,12 @@ class AdminController extends Controller
     {
         return view('ADMIN.HOME');
     }
-    public function ADMINLOGINPAGE(){
+    public function ADMINLOGINPAGE()
+    {
         return view('ADMIN.ADMINLOGIN');
     }
-    public function ADMINSIGNUPPAGE(){
+    public function ADMINSIGNUPPAGE()
+    {
         return view('ADMIN.ADMINSIGNUP');
     }
     public function READUSERS()
@@ -36,7 +38,8 @@ class AdminController extends Controller
         $data = DB::table('vendors')->where('vendor_id', $id)->get();
         return view('ADMIN.VENDORDETAILS', ['vendors' => $data]);
     }
-    public function ADMINPROFILE(){
+    public function ADMINPROFILE()
+    {
         return view('ADMIN.PROFILE');
     }
     public function ADMINSIGNUP(Request $request): RedirectResponse
@@ -85,22 +88,142 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('AdminLoginPage');
     }
-     public function VENDORREQUESTS()
+    public function VENDORREQUESTS()
     {
-        $data = DB::table('vendors')->where('approve_status','=','0')->orderBy('vendor_id')->cursorPaginate(8);
+        $data = DB::table('vendors')->where('approve_status', '=', '0')->orderBy('vendor_id')->cursorPaginate(8);
         return view('ADMIN.VENDORSREQUESTS', ['vendors' => $data]);
     }
 
     public function UPDATEAPPROVESTATUS(int $id)
     {
-        $data = DB::table('vendors')->where('vendor_id', '=',$id)->update(['approve_status'=>1]);
+        $data = DB::table('vendors')->where('vendor_id', '=', $id)->update(['approve_status' => 1]);
         return redirect()->back()->with('success', 'Vendor approved successfully!');
     }
     public function DELETEREQUEST(int $id)
     {
-        $data = DB::table('vendors')->where('vendor_id', '=',$id)->delete();
+        $data = DB::table('vendors')->where('vendor_id', '=', $id)->delete();
         return redirect()->back()->with('success', 'Vendor request deleted successfully!');
     }
+    public function BATCHORDERSALL()
+    {
+        $ordersByBatch = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->join('customers', 'orders.customer_id', '=', 'customers.customer_id')
+            ->where('orders.status', 1)
+            ->where('orders.delivery_status', '=', 'Pending')
+            ->select(
+                'orders.order_batch_id',
+                'orders.created_at',
+                'orders.total',
+                'products.product_id',
+                'products.product_name',
+                'products.image_url',
+                'orders.delivery_status',
+                'orders.quantity',
+                'orders.price',
+                'vendors.company_name',
+                'vendors.email',
+                'customers.full_name',
+                'customers.email',
+                'customers.phone_number',
+                'customers.address'
 
+            )
+            ->orderBy('orders.created_at', 'desc')
+            ->get()
+            ->groupBy('order_batch_id')
+            ->map(function ($batch) {
+                return [
+                    'created_at' => $batch->first()->created_at,
+                    'batch_total' => $batch->sum('total'),
+                    'items' => $batch->map(function ($row) {
+                        return [
+                            'product_id'   => $row->product_id,
+                            'product_name' => $row->product_name,
+                            'image_url'    => $row->image_url,
+                            'quantity'     => $row->quantity,
+                            'price'        => $row->price,
+                            'line_total'   => $row->total,
+                            'delivery_status' => $row->delivery_status,
+                            'vendor_name' => $row->company_name,
+                            'vendor_email' => $row->email,
+                            'customer_name' => $row->full_name,
+                            'customer_email' => $row->email,
+                            'customer_phone' => $row->phone_number,
+                            'customer_address' => $row->address,
+                        ];
+                    })
+                ];
+            });
+        return view('ADMIN.ADMINORDERS', ['batches' => $ordersByBatch]);
+    }
 
+    public function UPDATEDELIVERYSTATUS(Request $request, $order_batch_id)
+    {
+        $updateStatus = DB::table('orders')
+            ->where('order_batch_id', $order_batch_id)
+            ->update(['delivery_status' => 'Sent', 'updated_at' => now()]);
+
+        if ($updateStatus) {
+            return redirect()->route('AllOrders')->with('success', 'Delivery status updated successfully!');
+        } else {
+            return redirect()->route('AllOrders')->with('error', 'Failed to update delivery status. Please try again.');
+        }
+    }
+
+    public function CompletedOrders()
+    {
+        $ordersByBatch = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->join('customers', 'orders.customer_id', '=', 'customers.customer_id')
+            ->where('orders.status', 1)
+            ->where('orders.delivery_status', '=', 'Sent')
+            ->select(
+                'orders.order_batch_id',
+                'orders.created_at',
+                'orders.total',
+                'products.product_id',
+                'products.product_name',
+                'products.image_url',
+                'orders.delivery_status',
+                'orders.quantity',
+                'orders.price',
+                'vendors.company_name',
+                'vendors.email',
+                'customers.full_name',
+                'customers.email',
+                'customers.phone_number',
+                'customers.address'
+
+            )
+            ->orderBy('orders.created_at', 'desc')
+            ->get()
+            ->groupBy('order_batch_id')
+            ->map(function ($batch) {
+                return [
+                    'created_at' => $batch->first()->created_at,
+                    'batch_total' => $batch->sum('total'),
+                    'items' => $batch->map(function ($row) {
+                        return [
+                            'product_id'   => $row->product_id,
+                            'product_name' => $row->product_name,
+                            'image_url'    => $row->image_url,
+                            'quantity'     => $row->quantity,
+                            'price'        => $row->price,
+                            'line_total'   => $row->total,
+                            'delivery_status' => $row->delivery_status,
+                            'vendor_name' => $row->company_name,
+                            'vendor_email' => $row->email,
+                            'customer_name' => $row->full_name,
+                            'customer_email' => $row->email,
+                            'customer_phone' => $row->phone_number,
+                            'customer_address' => $row->address,
+                        ];
+                    })
+                ];
+            });
+        return view('ADMIN.COMPLETEDORDERS', ['batches' => $ordersByBatch]);
+    }
 }

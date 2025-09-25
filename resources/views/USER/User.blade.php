@@ -97,7 +97,7 @@
                 style="transform: translate(1%, -60%);">
                 {{ count(session('cart', [])) }}
             </span>
-
+            <p class="text-center text-bold">Cart</p>
         </div>
     </a>
     <div class="container-fluid">
