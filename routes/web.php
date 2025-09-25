@@ -49,6 +49,8 @@ Route::middleware(['customer'])->group(function () {
         ->name('payment');
     Route::get('/search', [CustomerController::class, 'SEARCH'])
         ->name('Search');
+    Route::get('/orders', [CustomerController::class, 'BATCHORDERSPENDING'])
+        ->name('Orders');
 });
 
 
@@ -80,6 +82,12 @@ Route::middleware(['admin'])->group(function () {
         ->name('ApproveRequest');
     Route::post('/deleterequest/{id}', [AdminController::class, 'DELETEREQUEST'])
         ->name('DeleteRequest');
+    Route::get('/adminorders', [AdminController::class, 'BATCHORDERSALL'])
+        ->name('AllOrders');
+    Route::post('/update-delivery-status/{order_batch_id}', [AdminController::class, 'UPDATEDELIVERYSTATUS'])
+        ->name('UpdateDeliveryStatus');
+    Route::get('/completedorders', [AdminController::class, 'COMPLETEDORDERS'])
+        ->name('CompletedOrders');
 });
 
 // Vendor
@@ -102,8 +110,6 @@ Route::middleware(['vendor'])->group(function () {
         ->name('VendorLogout');
     Route::get('/vendorprofile', [VendorController::class, 'VENDORPROFILE'])
         ->name('VendorProfile');
-});
-
-Route::get('/test-request', function () {
-    dd(class_exists(\App\Http\Requests\ProductRequest::class));
+    Route::get('/batchorders', [VendorController::class, 'BATCHORDERS'])
+        ->name('BatchOrders');
 });

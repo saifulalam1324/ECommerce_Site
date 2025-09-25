@@ -168,6 +168,7 @@ class CustomerController extends Controller
                 'price'         => $item['price'],
                 'total'         => $item['price'] * $item['quantity'],
                 'status'        => 0,
+                'delivery_status' => 'Pending',
                 'created_at'    => now(),
                 'updated_at'    => now(),
             ]);
@@ -225,7 +226,94 @@ class CustomerController extends Controller
             ->with('success', 'Payment successful! Your order is confirmed.');
     }
 
-    public function SEARCH(){
+    public function SEARCH()
+    {
         return view('USER.SEARCH');
+    }
+
+
+    public function BATCHORDERSPENDING()
+    {
+        $userId = Auth::guard('customer')->user()->customer_id;
+        $ordersByBatch = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.customer_id', $userId)
+            ->where('orders.status', 1)
+            ->where('orders.delivery_status', '=', 'Pending')
+            ->select(
+                'orders.order_batch_id',
+                'orders.created_at',
+                'orders.total',
+                'products.product_id',
+                'products.product_name',
+                'products.image_url',
+                'orders.delivery_status',
+                'orders.quantity',
+                'orders.price'
+            )
+            ->orderBy('orders.created_at', 'desc')
+            ->get()
+            ->groupBy('order_batch_id')
+            ->map(function ($batch) {
+                return [
+                    'created_at' => $batch->first()->created_at,
+                    'batch_total' => $batch->sum('total'),
+                    'items' => $batch->map(function ($row) {
+                        return [
+                            'product_id'   => $row->product_id,
+                            'product_name' => $row->product_name,
+                            'image_url'    => $row->image_url,
+                            'quantity'     => $row->quantity,
+                            'price'        => $row->price,
+                            'line_total'   => $row->total,
+                            'delivery_status' => $row->delivery_status,
+                        ];
+                    })
+                ];
+            });
+        return view('USER.ORDERS', ['batches' => $ordersByBatch]);
+    }
+
+
+    public function BATCHORDERSDONE()
+    {
+        $userId = Auth::guard('customer')->user()->customer_id;
+        $ordersByBatch = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.customer_id', $userId)
+            ->where('orders.status', 1)
+            ->where('orders.delivery_status', '=', 'Delivered')
+            ->select(
+                'orders.order_batch_id',
+                'orders.created_at',
+                'orders.total',
+                'products.product_id',
+                'products.product_name',
+                'products.image_url',
+                'orders.delivery_status',
+                'orders.quantity',
+                'orders.price'
+            )
+            ->orderBy('orders.created_at', 'desc')
+            ->get()
+            ->groupBy('order_batch_id')
+            ->map(function ($batch) {
+                return [
+                    'created_at' => $batch->first()->created_at,
+                    'batch_total' => $batch->sum('total'),
+                    'items' => $batch->map(function ($row) {
+                        return [
+                            'product_id'   => $row->product_id,
+                            'product_name' => $row->product_name,
+                            'image_url'    => $row->image_url,
+                            'quantity'     => $row->quantity,
+                            'price'        => $row->price,
+                            'line_total'   => $row->total,
+                            'delivery_status' => $row->delivery_status,
+                        ];
+                    })
+                ];
+            });
+        return view('USER.ORDERS', ['batches' => $ordersByBatch]);
     }
 }

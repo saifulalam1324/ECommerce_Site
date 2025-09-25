@@ -13,10 +13,10 @@
         @if(count($cart) === 0)
             <h1>Your cart is empty.</h1>
         @else
-            <div class="card-header shadow" style="background-color: #7a4eb0;">
+            <div class="card-header shadow card-body" style="background-color: #7a4eb0;">
                 <h2 class="text-white">Your Cart</h2>
             </div>
-            <table class="table mb-5"> <!-- add mb-5 for spacing -->
+            <table class="table mb-5"> 
                 <thead>
                     <tr class="text-center">
                         <th>Image</th>

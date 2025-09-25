@@ -19,14 +19,11 @@
                 <nav class="navbar navbar-light flex-column vh-100 p-0 position-fixed shadow-lg"
                     style="inline-size:200px; inset-inline-start:0; inset-block-start:0; background-color:#7a4eb0;">
                     <div class="container-fluid p-0 d-flex flex-column h-100">
-                        <div class="container-fluid pl-4">
-                            <h1 class="text-white text-bold">Vendor</h1>
-                        </div>
-                        <ul class="navbar-nav flex-column w-100 pl-5 pt-2">
+                        <ul class="navbar-nav flex-column w-100 pl-5 pt-5">
                             <li class="nav-item"><a class="nav-link NAV" href="{{route('Vendor home')}}">Home</a></li>
                             <li class="nav-item"><a class="nav-link NAV" href="{{ route('Add product') }}">Add
                                     Product</a></li>
-                            <li class="nav-item"><a class="nav-link NAV" href="#">Favorites</a></li>
+                            <li class="nav-item"><a class="nav-link NAV" href="{{ route('BatchOrders') }}">Orders</a></li>
                             <li class="nav-item"><a class="nav-link NAV" href="#">Cart</a></li>
                         </ul>
                         <div class="mt-auto w-100 bg-dark">

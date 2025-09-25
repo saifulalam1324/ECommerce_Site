@@ -18,22 +18,33 @@
             <div class="col-1 p-0">
                 <nav class="navbar navbar-light flex-column vh-100 p-0 position-fixed shadow-lg"
                     style="inline-size:180px; inset-inline-start:0; inset-block-start:0; background-color:#7a4eb0;">
-                    <div class="container-fluid p-0 d-flex flex-column h-100">
-                        <div class="container-fluid pl-4">
-                            <h1 class="text-white text-bold">Admin</h1>
+                    <div class="container-fluid p-0 d-flex flex-column h-100 ">
+                        <div class="container-fluid fixed-top border-0 p-2 mb-5" style="background-color: #7a4eb0;">
+                            <h2 class="text-white text-center">Admin Panel</h2>
                         </div>
-                        <ul class="navbar-nav flex-column w-100 pl-5 pt-2">
-                            <li class="nav-item"><a class="nav-link NAV" href="{{route('Admin home')}}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link NAV" href="{{route('All users')}}">Users</a></li>
-                            <li class="nav-item"><a class="nav-link NAV" href="{{route('All vendors')}}">Vendors</a></li>
-                            <li class="nav-item"><a class="nav-link NAV" href="{{route('VendorsRequests')}}">Vendors Requests</a></li>
+                        <ul class="navbar-nav flex-column w-100 pl-3 pt-3 mt-5">
+                            <li class="nav-item"><a class="nav-link text-white" href="{{route('Admin home')}}">Home</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link text-white" href="{{route('All users')}}">Users</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link text-white"
+                                    href="{{route('All vendors')}}">Vendors</a></li>
+                            <li class="nav-item"><a class="nav-link text-white"
+                                    href="{{route('VendorsRequests')}}">Vendors Requests</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" href="{{route('AllOrders')}}">Pending
+                                    Orders</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" href="{{route('CompletedOrders')}}">Completed
+                                    Orders</a></li>
                         </ul>
                         <div class="mt-auto w-100 bg-dark">
                             <ul class="navbar-nav flex-column w-100 p-2">
                                 <li class="nav-item">
                                     <h4 class="text-white">Your Market</h4>
                                 </li>
-                                <li class="nav-item"><a class="nav-link NAV" href="{{ route('AdminProfile') }}"><p><i class="fa-solid fa-user" style="color:white;"></i> {{Auth::guard('admin')->user()->admin_name}}</p></a></li>
+                                <li class="nav-item"><a class="nav-link NAV" href="{{ route('AdminProfile') }}">
+                                        <p><i class="fa-solid fa-user" style="color:white;"></i>
+                                            {{Auth::guard('admin')->user()->admin_name}}</p>
+                                    </a></li>
                             </ul>
                         </div>
                     </div>

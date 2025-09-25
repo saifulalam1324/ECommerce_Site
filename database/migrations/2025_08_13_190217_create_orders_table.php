@@ -27,6 +27,7 @@ return new class extends Migration
             $table->decimal('total', 10, 2);
             $table->string('order_batch_id');
             $table->tinyInteger('status')->default(0);
+            $table->string('delivery_status')->default('Pending');
             $table->timestamps();
         });
     }
