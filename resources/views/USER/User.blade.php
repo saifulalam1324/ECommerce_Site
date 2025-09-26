@@ -9,6 +9,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('ASSATS/CSS/STYLE.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -27,8 +28,9 @@
                         <div class="search-container w-75">
                             <form class="search-form d-flex" action="#" method="get">
                                 @csrf
-                                <input type="text" class="form-control search-input" placeholder="Search products..."
-                                    aria-label="Search" aria-describedby="search" name="search">
+                                <input type="search" id="search" class="form-control search-input"
+                                    placeholder="Search products..." aria-label="Search" aria-describedby="search"
+                                    name="search">
                                 <button type="submit" class="btn btn-outline-light ml-1" style="border-radius: 10%">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -41,7 +43,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item justify-content-center align-items-center">
                         @if (Auth::guard('customer')->check())
-                            <div class="dropdown justify-content-center text-center">
+                            <div class="dropdown justifyF-content-center text-center">
                                 <a class="btn btn-outline-light dropdown-toggle" href="#" role="button"
                                     data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-solid fa-user"></i> {{Auth::guard('customer')->user()->full_name}}
@@ -88,18 +90,33 @@
     </div>
     <div id="overlay" class="overlay" onclick="closeSidebar()">
     </div>
-    <a href="{{ route('Cart') }}"
-        class="d-flex justify-content-center align-items-center position-fixed bg-transparent border-0 mb-4"
-        style="inset-inline-end:20px; inset-block-end:20px; color:#7a4eb0; z-index:1030;">
-        <div class="position-relative">
-            <i class="fa-solid fa-cart-plus fa-3x"></i>
-            <span class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
-                style="transform: translate(1%, -60%);">
-                {{ count(session('cart', [])) }}
-            </span>
-            <p class="text-center text-bold">Cart</p>
-        </div>
-    </a>
+    <div class="fixed-bottom d-flex flex-column align-items-end">
+        <a href="{{ route('Orders') }}"
+            class="d-flex justify-content-center align-items-center position-fixed bg-transparent border-0 mb-4"
+            style="inset-inline-end:20px; inset-block-end:120px; color:#7a4eb0; z-index:1030;">
+            <div class="position-relative">
+                <i class="fa-solid fa-bag-shopping fa-3x"></i>
+                {{-- <span class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
+                    style="transform: translate(1%, -60%);">
+                </span> --}}
+                <p class="text-center fw-bold">Orders</p>
+            </div>
+        </a>
+
+        <a href="{{ route('Cart') }}"
+            class="d-flex justify-content-center align-items-center position-fixed bg-transparent border-0 mb-4"
+            style="inset-inline-end:20px; inset-block-end:20px; color:#7a4eb0; z-index:1030;">
+            <div class="position-relative">
+                <i class="fa-solid fa-cart-plus fa-3x"></i>
+                <span class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
+                    style="transform: translate(1%, -60%);">
+                    {{ count(session('cart', [])) }}
+                </span>
+                <p class="text-center fw-bold">Cart</p>
+            </div>
+        </a>
+    </div>
+
     <div class="container-fluid">
         @yield('content')
     </div>

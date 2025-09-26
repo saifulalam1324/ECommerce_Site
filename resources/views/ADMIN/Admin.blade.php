@@ -19,9 +19,6 @@
                 <nav class="navbar navbar-light flex-column vh-100 p-0 position-fixed shadow-lg"
                     style="inline-size:180px; inset-inline-start:0; inset-block-start:0; background-color:#7a4eb0;">
                     <div class="container-fluid p-0 d-flex flex-column h-100 ">
-                        <div class="container-fluid fixed-top border-0 p-2 mb-5" style="background-color: #7a4eb0;">
-                            <h2 class="text-white text-center">Admin Panel</h2>
-                        </div>
                         <ul class="navbar-nav flex-column w-100 pl-3 pt-3 mt-5">
                             <li class="nav-item"><a class="nav-link text-white" href="{{route('Admin home')}}">Home</a>
                             </li>
@@ -32,6 +29,8 @@
                             <li class="nav-item"><a class="nav-link text-white"
                                     href="{{route('VendorsRequests')}}">Vendors Requests</a></li>
                             <li class="nav-item"><a class="nav-link text-white" href="{{route('AllOrders')}}">Pending
+                                    Orders</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" href="{{route('ShippedOrders')}}">Shipped
                                     Orders</a></li>
                             <li class="nav-item"><a class="nav-link text-white" href="{{route('CompletedOrders')}}">Completed
                                     Orders</a></li>

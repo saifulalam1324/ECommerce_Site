@@ -17,7 +17,6 @@ class VendorController extends Controller
     }
     function ADDPRODUCT()
     {
-
         return view('VENDORPANEL.ADDPRODUCT');
     }
     public function STOREPRODUCT(Request $req): RedirectResponse
@@ -112,7 +111,6 @@ class VendorController extends Controller
         return view('VENDORPANEL.PROFILE');
     }
 
-
     public function BATCHORDERS()
     {
         $vendorid = Auth::guard('vendor')->user()->vendor_id;
@@ -130,7 +128,7 @@ class VendorController extends Controller
                 'products.image_url',
                 'orders.delivery_status',
                 'orders.quantity',
-                'orders.price'
+                'orders.price',
             )
             ->orderBy('orders.created_at', 'desc')
             ->get()

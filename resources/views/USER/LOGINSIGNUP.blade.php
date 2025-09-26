@@ -4,8 +4,8 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('ASSATS/CSS/LOGINSIGNUP.css') }}">
 
-    <div class="container-fluied mt-lg-1 my-5 p-5">
-        <div class="container" id="container">
+    <div class="container-fluid mt-lg-1 my-5 p-5">
+        <div class="container overflow-hidden" id="container">
 
             <div class="form-container sign-up">
                 <form action="{{ route('UserSignup') }}" method="POST">

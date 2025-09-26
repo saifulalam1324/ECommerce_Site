@@ -15,21 +15,22 @@
 <body>
     <div class="container-fluid overflow-hidden">
         <div class="row">
-            <div class="col-2 p-0">
+            <div class="col-1 p-0">
                 <nav class="navbar navbar-light flex-column vh-100 p-0 position-fixed shadow-lg"
-                    style="inline-size:200px; inset-inline-start:0; inset-block-start:0; background-color:#7a4eb0;">
-                    <div class="container-fluid p-0 d-flex flex-column h-100">
-                        <ul class="navbar-nav flex-column w-100 pl-5 pt-5">
-                            <li class="nav-item"><a class="nav-link NAV" href="{{route('Vendor home')}}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link NAV" href="{{ route('Add product') }}">Add
-                                    Product</a></li>
-                            <li class="nav-item"><a class="nav-link NAV" href="{{ route('BatchOrders') }}">Orders</a></li>
-                            <li class="nav-item"><a class="nav-link NAV" href="#">Cart</a></li>
+                    style="inline-size:180px; inset-inline-start:0; inset-block-start:0; background-color:#7a4eb0;">
+                    <div class="container-fluid p-0 d-flex flex-column h-100 ">
+                        <ul class="navbar-nav flex-column w-100 pl-3 pt-3 mt-5">
+                            <li class="nav-item"><a class="nav-link text-white" href="{{route('Vendor home')}}">Home</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link text-white" href="{{route('Add product')}}">Add Product</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" href="{{route('BatchOrders')}}">Pending Orders</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" href="#">Shipped Orders</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" href="#">Completed Orders</a></li>
                         </ul>
                         <div class="mt-auto w-100 bg-dark">
                             <ul class="navbar-nav flex-column w-100 p-2">
                                 <li class="nav-item">
-                                    <h2 class="text-white">Your Market</h2>
+                                    <h4 class="text-white">Your Market</h4>
                                 </li>
                                 <li class="nav-item"><a class="nav-link NAV" href="{{ route('VendorProfile') }}">
                                         <p><i class="fa-solid fa-user" style="color:white;"></i>
@@ -42,8 +43,8 @@
 
 
             </div>
-            <div class="col-10 p-0">
-                <div class="container-fluid">
+            <div class="col-11 p-0">
+                <div class="container-fluid overflow-hidden">
                     @yield('content')
                 </div>
             </div>

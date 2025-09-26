@@ -5,6 +5,16 @@
         <div class="container-fluid fixed-top border-0 p-2 mb-5" style="background-color: #7a4eb0;">
             <h2 class="text-white text-center">Completed Orders</h2>
         </div>
+        @if (session('info'))
+            <div class="alert alert-info">
+                {{ session('info') }}
+            </div>
+        @endif
+        @if (count($batches) == 0)
+            <div class="alert alert-danger alert-info mt-5">
+                No completed orders available.
+            </div>
+        @endif
         @foreach ($batches as $batchId => $batch)
             <div class="container mt-4 card p-3">
                 <div class="card-header text-white" style="background-color: #7a4eb0;">
@@ -18,11 +28,12 @@
                                     <img src="{{ asset('storage/' . $item['image_url']) }}" width="60" class="me-2">
                                     {{ $item['product_name'] }} (x{{ $item['quantity'] }})
                                 </span>
-                                <span class="text-danger">Delivery Status : {{ $item['delivery_status'] }}</span>
+                                <span>Delivery Status : <span class="text-success"><strong>{{ $item['delivery_status'] }}</strong></span></span>
                                 <span>Placed: {{ $batch['created_at'] }}</span>
                                 <span>${{ number_format($item['line_total'], 2) }}</span>
                                 <span>Company: {{$item['vendor_name']}}</span>
                                 <span>Company Email: {{$item['vendor_email']}}</span>
+                                <span>Customer ID: {{$item['customer_id']}}</span>
                                 <span>Customer Name: {{$item['customer_name']}}</span>
                                 <span>Customer Address: {{$item['customer_address']}}</span>
                                 <span>Customer Phone: {{$item['customer_phone']}}</span>

@@ -1,10 +1,9 @@
 @extends('ADMIN.Admin')
-@section('title', 'Admin Orders')
-
+@section('title', 'Shipped Orders')
 @section('content')
     <div class="container-fluid pl-5 pt-4 mt-5 ml-3 justify-content-center align-items-center">
         <div class="container-fluid fixed-top border-0 p-2 mb-5" style="background-color: #7a4eb0;">
-            <h2 class="text-white text-center">Pending Orders</h2>
+            <h2 class="text-white text-center">Shipped Orders</h2>
         </div>
         @if (session('info'))
             <div class="alert alert-info mt-5">
@@ -13,7 +12,7 @@
         @endif
         @if (count($batches) == 0)
             <div class="alert alert-danger alert-info mt-5">
-                No pending orders available.
+                No shipped orders available.
             </div>
         @endif
         @foreach ($batches as $batchId => $batch)
@@ -29,7 +28,7 @@
                                     <img src="{{ asset('storage/' . $item['image_url']) }}" width="60" class="me-2">
                                     {{ $item['product_name'] }} (x{{ $item['quantity'] }})
                                 </span>
-                                <span>Delivery Status : <span class="text-danger"><strong>{{ $item['delivery_status'] }}</strong></span></span>
+                                <span>Delivery Status : <span class="text-success"><strong>{{ $item['delivery_status'] }}</strong></span></span>
                                 <span>Placed: {{ $batch['created_at'] }}</span>
                                 <span>${{ number_format($item['line_total'], 2) }}</span>
                                 <span>Company: {{$item['vendor_name']}}</span>
@@ -44,12 +43,7 @@
                     </ul>
                     <h5 class="text-end">Batch Total: ${{ number_format($batch['batch_total'], 2) }}</h5>
                 </div>
-                <div>
-                    <form action="{{ route('UpdateDeliveryStatus', ['order_batch_id' => $batchId]) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-primary mt-2 border-0" style="background-color: #7a4eb0;">Mark as Shipped</button>
-                    </form>
-                </div>
+            </div>
         @endforeach
         </div>
 @endsection
