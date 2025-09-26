@@ -88,6 +88,8 @@ Route::middleware(['admin'])->group(function () {
         ->name('UpdateDeliveryStatus');
     Route::get('/completedorders', [AdminController::class, 'COMPLETEDORDERS'])
         ->name('CompletedOrders');
+    Route::get('/shippedorders', [AdminController::class, 'SHIPPEDORDERS'])
+        ->name('ShippedOrders');
 });
 
 // Vendor

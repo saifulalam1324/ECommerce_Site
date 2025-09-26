@@ -222,7 +222,7 @@ class CustomerController extends Controller
                 ->decrement('stock_quantity', $order->quantity);
         }
         session()->forget(['grand_total', 'order_batch']);
-        return redirect()->route('User home')
+        return redirect()->route('Orders')
             ->with('success', 'Payment successful! Your order is confirmed.');
     }
 
@@ -237,6 +237,7 @@ class CustomerController extends Controller
         $userId = Auth::guard('customer')->user()->customer_id;
         $ordersByBatch = DB::table('orders')
             ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
             ->where('orders.customer_id', $userId)
             ->where('orders.status', 1)
             ->where('orders.delivery_status', '=', 'Pending')
@@ -249,7 +250,8 @@ class CustomerController extends Controller
                 'products.image_url',
                 'orders.delivery_status',
                 'orders.quantity',
-                'orders.price'
+                'orders.price',
+                'vendors.company_name'
             )
             ->orderBy('orders.created_at', 'desc')
             ->get()
@@ -267,6 +269,7 @@ class CustomerController extends Controller
                             'price'        => $row->price,
                             'line_total'   => $row->total,
                             'delivery_status' => $row->delivery_status,
+                            'vendor_name' => $row->company_name,
                         ];
                     })
                 ];
@@ -280,6 +283,7 @@ class CustomerController extends Controller
         $userId = Auth::guard('customer')->user()->customer_id;
         $ordersByBatch = DB::table('orders')
             ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
             ->where('orders.customer_id', $userId)
             ->where('orders.status', 1)
             ->where('orders.delivery_status', '=', 'Delivered')
@@ -292,7 +296,8 @@ class CustomerController extends Controller
                 'products.image_url',
                 'orders.delivery_status',
                 'orders.quantity',
-                'orders.price'
+                'orders.price',
+                'vendors.company_name',
             )
             ->orderBy('orders.created_at', 'desc')
             ->get()
@@ -310,6 +315,7 @@ class CustomerController extends Controller
                             'price'        => $row->price,
                             'line_total'   => $row->total,
                             'delivery_status' => $row->delivery_status,
+                            'vendor_name' => $row->company_name,
                         ];
                     })
                 ];

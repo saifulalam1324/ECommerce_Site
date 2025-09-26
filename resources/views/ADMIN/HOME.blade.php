@@ -1,6 +1,7 @@
 @extends('ADMIN.Admin')
 @section('title', 'Admin Home')
 @section('content')
-<div>
-</div>
+    <div class="container-fluid fixed-top border-0 p-2 mb-5" style="background-color: #7a4eb0;">
+        <h2 class="text-white text-center">Admin Dashboards</h2>
+    </div>
 @endsection

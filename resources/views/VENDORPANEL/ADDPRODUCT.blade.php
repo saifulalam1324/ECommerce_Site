@@ -3,8 +3,9 @@
 @section('content')
     <div class="container pt-5">
         <div class="card shadow-lg">
-            <div class="card-header" style="background-color: #7a4eb0;">
-                <h5 class="text-center text-white">Add New Product</h5>
+            <div class="card-header text-white" style="background-color: #7a4eb0;">
+                <h3 class="text-center">Add New Product</h3>
+            </div>
             </div>
             <div class="card-body">
                 @if(session('success'))
