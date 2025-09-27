@@ -51,6 +51,8 @@ Route::middleware(['customer'])->group(function () {
         ->name('Search');
     Route::get('/orders', [CustomerController::class, 'BATCHORDERSPENDING'])
         ->name('Orders');
+    Route::get('/pdf/{id}', [CustomerController::class, 'GETPDF'])
+        ->name('Pdf');
 });
 
 

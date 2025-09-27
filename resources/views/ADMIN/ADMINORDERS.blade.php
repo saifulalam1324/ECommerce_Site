@@ -1,6 +1,5 @@
 @extends('ADMIN.Admin')
-@section('title', 'Admin Orders')
-
+@section('title', 'Pending Orders')
 @section('content')
     <div class="container-fluid pl-5 pt-4 mt-5 ml-3 justify-content-center align-items-center">
         <div class="container-fluid fixed-top border-0 p-2 mb-5" style="background-color: #7a4eb0;">
@@ -44,12 +43,7 @@
                     </ul>
                     <h5 class="text-end">Batch Total: ${{ number_format($batch['batch_total'], 2) }}</h5>
                 </div>
-                <div>
-                    <form action="{{ route('UpdateDeliveryStatus', ['order_batch_id' => $batchId]) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-primary mt-2 border-0" style="background-color: #7a4eb0;">Mark as Shipped</button>
-                    </form>
-                </div>
+            </div>
         @endforeach
         </div>
 @endsection
