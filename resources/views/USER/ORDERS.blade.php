@@ -24,12 +24,17 @@
                             </span>
                             <span>Delivery Status : <span class="text-danger"><strong>{{ $item['delivery_status'] }}</strong></span></span>
                             <span>Placed: {{ $batch['created_at'] }}</span>
-                            <span>${{ number_format($item['line_total'], 2) }}</span>
                             <span class="text-secondary">Sold by: {{ $item['vendor_name'] }}</span>
+                            <span>${{ number_format($item['line_total'], 2) }}</span>
                         </li>
                     @endforeach
                 </ul>
+
                 <h5 class="text-end">Batch Total: ${{ number_format($batch['batch_total'], 2) }}</h5>
+            </div>
+            <div>
+                <a href="{{ route('Pdf', ['id' => $batchId]) }}" class="btn"
+                    style="background-color: #7a4eb0; color: white;">Download Pdf</a>
             </div>
         </div>
     @endforeach

@@ -23,7 +23,6 @@
                                         Pay Now
                                     </button>
                                 </div>
-
                             @else
                                 <div class="alert alert-warning text-center">
                                     <strong>No items in cart!</strong> Please add items to your cart before proceeding to payment.

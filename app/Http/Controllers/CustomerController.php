@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CustomerController extends Controller
 {
@@ -231,7 +232,6 @@ class CustomerController extends Controller
         return view('USER.SEARCH');
     }
 
-
     public function BATCHORDERSPENDING()
     {
         $userId = Auth::guard('customer')->user()->customer_id;
@@ -321,5 +321,29 @@ class CustomerController extends Controller
                 ];
             });
         return view('USER.ORDERS', ['batches' => $ordersByBatch]);
+    }
+
+    public function GETPDF($batchId)
+    {
+        $batch = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->where('orders.order_batch_id', $batchId)
+            ->select(
+                'orders.order_batch_id',
+                'orders.created_at',
+                'orders.total',
+                'products.product_id',
+                'products.product_name',
+                'products.image_url',
+                'orders.delivery_status',
+                'orders.quantity',
+                'orders.price',
+                'vendors.company_name'
+            )
+            ->get();
+
+        $pdf = Pdf::loadView('USER.PDF', ['batches' => [$batchId => $batch]]);
+        return $pdf->download($batchId .'.pdf');
     }
 }
