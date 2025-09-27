@@ -14,9 +14,13 @@
                 return $i->price * $i->quantity;
             });
         @endphp
-
         <div class="container mt-2 card mb-4 p-3">
-            <div class="card-header text-white" style="background-color:#7a4eb0;">
+            <div class="card-header" style="background-color:#7a4eb0; color: white;">
+                <h2 class="text-center">Your Market</h2>
+            </div>
+        </div>
+        <div class="container mt-2 card mb-4 p-3">
+            <div class="card-header" style="background-color:#7a4eb0; color: white;">
                 <strong>Transaction ID:</strong> {{ $batchId }}
                 <span class="float-right">Placed: {{ $createdAt }}</span>
             </div>
@@ -26,8 +30,6 @@
                     @foreach($items as $item)
                         <li class="list-group-item d-flex justify-content-between">
                             <span>
-                                <img src="{{ asset('storage/' . $item->image_url) }}"
-                                     width="60" class="me-2">
                                 {{ $item->product_name }} (x{{ $item->quantity }})
                             </span>
                             <span>
@@ -43,7 +45,7 @@
                         </li>
                     @endforeach
                 </ul>
-                <h5 class="text-end">Batch Total: ${{ number_format($batchTotal, 2) }}</h5>
+                <h5 class="text-end">Total: ${{ number_format($batchTotal, 2) }}</h5>
             </div>
         </div>
     @endforeach
