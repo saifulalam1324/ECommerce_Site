@@ -42,6 +42,10 @@
                         @endforeach
                     </ul>
                     <h5 class="text-end">Batch Total: ${{ number_format($batch['batch_total'], 2) }}</h5>
+                    <form action="{{ route('UpdateDeliveryStatus', $batchId) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn" style="background-color: #7a4eb0; color: white;">Mark as Shipped</button>
+                    </form>
                 </div>
             </div>
         @endforeach
