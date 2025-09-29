@@ -152,4 +152,21 @@ class VendorController extends Controller
             });
         return view('VENDORPANEL.VENDORORDERS', ['batches' => $ordersByBatch]);
     }
+
+    public function PRODUCTS(){
+        $vendorID=Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id',$vendorID)->orderBy('product_id')->cursorPaginate(10);
+        return view('VENDORPANEL.OWNPRODUCT', ['products' => $data]);
+    }
+
+    public function WIPEOUTPRODUCT($productID){
+        $deleteProduct=DB::table('products')->where('product_id',$productID)->delete();
+         return redirect()->back()->with('success', 'Product Wiped Out successfully!');
+    }
+
+    public function STOCKOUTPRODUCT(){
+         $vendorID=Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id',$vendorID)->where('stock_quantity','<=','0')->orderBy('product_id')->cursorPaginate(10);
+        return view('VENDORPANEL.STOCKOUTPRODUCTS', ['Products' => $data]);
+    }
 }
