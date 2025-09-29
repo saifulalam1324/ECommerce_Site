@@ -85,7 +85,17 @@
             <a class="" onclick="closeSidebar()"><i class="fa-solid fa-circle-xmark fa-2x"></i>
         </div>
         <div class="sidebar-content">
-
+            <h5>Cetagorys</h5>
+            <span><a href="" class="text-decoration-none mr-4" style="color: black;"><i
+                        class="fa-solid fa-square">Ac</i></a></span>
+            <span><a href="" class="text-decoration-none mr-4" style="color: black;"><i
+                        class="fa-solid fa-square">Ac</i></a></span>
+            <span><a href="" class="text-decoration-none mr-4" style="color: black;"><i
+                        class="fa-solid fa-square">Ac</i></a></span>
+            <span><a href="" class="text-decoration-none mr-4" style="color: black;"><i
+                        class="fa-solid fa-square">Ac</i></a></span>
+            <span><a href="" class="text-decoration-none mr-4" style="color: black;"><i
+                        class="fa-solid fa-square">Ac</i></a></span>
         </div>
     </div>
     <div id="overlay" class="overlay" onclick="closeSidebar()">
@@ -96,7 +106,8 @@
             style="inset-inline-end:20px; inset-block-end:120px; color:#7a4eb0; z-index:1030;">
             <div class="position-relative">
                 <i class="fa-solid fa-bag-shopping fa-3x"></i>
-                {{-- <span class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
+                {{-- <span
+                    class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
                     style="transform: translate(1%, -60%);">
                 </span> --}}
                 <p class="text-center fw-bold">Orders</p>

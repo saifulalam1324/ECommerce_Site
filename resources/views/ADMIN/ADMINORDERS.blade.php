@@ -28,7 +28,8 @@
                                     <img src="{{ asset('storage/' . $item['image_url']) }}" width="60" class="me-2">
                                     {{ $item['product_name'] }} (x{{ $item['quantity'] }})
                                 </span>
-                                <span>Delivery Status : <span class="text-danger"><strong>{{ $item['delivery_status'] }}</strong></span></span>
+                                <span>Delivery Status : <span
+                                        class="text-danger"><strong>{{ $item['delivery_status'] }}</strong></span></span>
                                 <span>Placed: {{ $batch['created_at'] }}</span>
                                 <span>${{ number_format($item['line_total'], 2) }}</span>
                                 <span>Company: {{$item['vendor_name']}}</span>
@@ -44,10 +45,11 @@
                     <h5 class="text-end">Batch Total: ${{ number_format($batch['batch_total'], 2) }}</h5>
                     <form action="{{ route('UpdateDeliveryStatus', $batchId) }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn" style="background-color: #7a4eb0; color: white;">Mark as Shipped</button>
+                        <button type="submit" class="btn btn-success text-white">Mark as
+                            Shipped</button>
                     </form>
                 </div>
             </div>
         @endforeach
-        </div>
+    </div>
 @endsection

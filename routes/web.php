@@ -116,4 +116,10 @@ Route::middleware(['vendor'])->group(function () {
         ->name('VendorProfile');
     Route::get('/batchorders', [VendorController::class, 'BATCHORDERS'])
         ->name('BatchOrders');
+    Route::get('/products', [VendorController::class, 'PRODUCTS'])
+        ->name('Products');
+    Route::post('/deleteproduct/{id}', [VendorController::class, 'WIPEOUTPRODUCT'])
+        ->name('Deleteproduct');
+       Route::get('/stockoutedproducts', [VendorController::class, 'STOCKOUTPRODUCT'])
+        ->name('Stockoutproduct');
 });

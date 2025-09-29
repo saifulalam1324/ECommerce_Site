@@ -19,22 +19,37 @@
                 <nav class="navbar navbar-light flex-column vh-100 p-0 position-fixed shadow-lg"
                     style="inline-size:180px; inset-inline-start:0; inset-block-start:0; background-color:#7a4eb0;">
                     <div class="container-fluid p-0 d-flex flex-column h-100 ">
-                        <ul class="navbar-nav flex-column w-100 pl-3 pt-3 mt-5">
-                            <li class="nav-item"><a class="nav-link text-white" href="{{route('Admin home')}}">Home</a>
+                        <ul class="navbar-nav flex-column w-100 pt-3 mt-5">
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="text-center btn w-100 ml-1 mr-1 mb-1 {{ request()->routeIs('Admin home') ? 'btn-light text-dark' : 'btn-outline-light' }}"
+                                    href="{{ route('Admin home') }}">Home</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link text-white" href="{{route('All users')}}">Users</a>
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="text-center btn w-100 ml-1 mr-1  mb-1 {{ request()->routeIs('All users') ? 'btn-light text-dark' : 'btn-outline-light' }}"
+                                    href="{{ route('All users') }}">Users</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link text-white"
-                                    href="{{route('All vendors')}}">Vendors</a></li>
-                            <li class="nav-item"><a class="nav-link text-white"
-                                    href="{{route('VendorsRequests')}}">Vendors Requests</a></li>
-                            <li class="nav-item"><a class="nav-link text-white" href="{{route('AllOrders')}}">Pending
-                                    Orders</a></li>
-                            <li class="nav-item"><a class="nav-link text-white" href="{{route('ShippedOrders')}}">Shipped
-                                    Orders</a></li>
-                            <li class="nav-item"><a class="nav-link text-white" href="{{route('CompletedOrders')}}">Completed
-                                    Orders</a></li>
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="text-center btn w-100 ml-1 mr-1  mb-1 {{ request()->routeIs('All vendors') ? 'btn-light text-dark' : 'btn-outline-light' }}"
+                                    href="{{ route('All vendors') }}">Vendors</a>
+                            </li>
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="text-center btn w-100 ml-1 mr-1  mb-1 {{ request()->routeIs('VendorsRequests') ? 'btn-light text-dark' : 'btn-outline-light' }}"
+                                    href="{{ route('VendorsRequests') }}">Vendors Requests</a>
+                            </li>
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="text-center btn w-100 ml-1 mr-1  mb-1 {{ request()->routeIs('AllOrders') ? 'btn-light text-dark' : 'btn-outline-light' }}"
+                                    href="{{ route('AllOrders') }}">Pending Orders</a>
+                            </li>
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="text-center btn w-100 ml-1 mr-1  mb-1 {{ request()->routeIs('ShippedOrders') ? 'btn-light text-dark' : 'btn-outline-light' }}"
+                                    href="{{ route('ShippedOrders') }}">Shipped Orders</a>
+                            </li>
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="text-center btn w-100 ml-1 mr-1  mb-1 {{ request()->routeIs('CompletedOrders') ? 'btn-light text-dark' : 'btn-outline-light' }}"
+                                    href="{{ route('CompletedOrders') }}">Completed Orders</a>
+                            </li>
                         </ul>
+
                         <div class="mt-auto w-100 bg-dark">
                             <ul class="navbar-nav flex-column w-100 p-2">
                                 <li class="nav-item">
