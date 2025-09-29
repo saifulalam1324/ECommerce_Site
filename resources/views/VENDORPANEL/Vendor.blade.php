@@ -18,14 +18,37 @@
             <div class="col-1 p-0">
                 <nav class="navbar navbar-light flex-column vh-100 p-0 position-fixed shadow-lg"
                     style="inline-size:180px; inset-inline-start:0; inset-block-start:0; background-color:#7a4eb0;">
-                    <div class="container-fluid p-0 d-flex flex-column h-100 ">
-                        <ul class="navbar-nav flex-column w-100 pl-3 pt-3 mt-5">
-                            <li class="nav-item"><a class="nav-link text-white" href="{{route('Vendor home')}}">Home</a>
+                    <div class="container-fluid p-0 d-flex flex-column h-100">
+                        <ul class="navbar-nav flex-column w-100 pt-3 mt-5">
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="btn w-100 ml-1 mr-1 mb-1 btn-outline-light {{ request()->routeIs('Vendor home') ? 'active' : '' }}"
+                                    href="{{ route('Vendor home') }}">Home</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link text-white" href="{{route('Add product')}}">Add Product</a></li>
-                            <li class="nav-item"><a class="nav-link text-white" href="{{route('BatchOrders')}}">Pending Orders</a></li>
-                            <li class="nav-item"><a class="nav-link text-white" href="#">Shipped Orders</a></li>
-                            <li class="nav-item"><a class="nav-link text-white" href="#">Completed Orders</a></li>
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('Add product') ? 'active' : '' }}"
+                                    href="{{ route('Add product') }}">Add Product</a>
+                            </li>
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('BatchOrders') ? 'active' : '' }}"
+                                    href="{{ route('BatchOrders') }}">Pending Orders</a>
+                            </li>
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('ShippedOrders') ? 'active' : '' }}"
+                                    href="#">Shipped Orders</a>
+                            </li>
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('CompletedOrders') ? 'active' : '' }}"
+                                    href="#">Completed Orders</a>
+                            </li>
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('Products') ? 'active' : '' }}"
+                                    href="{{ route('Products') }}">Your Products</a>
+                            </li>
+                            <li class="nav-item d-flex justify-content-center">
+                                <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('StockoutProducts') ? 'active' : '' }}"
+                                    href="{{ route('Stockoutproduct') }}">Stock Out Items</a>
+                            </li>
+
                         </ul>
                         <div class="mt-auto w-100 bg-dark">
                             <ul class="navbar-nav flex-column w-100 p-2">

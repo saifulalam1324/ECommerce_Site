@@ -9,3 +9,11 @@
 .NAV1{
     color: white !important;
 }
+.btn-outline-light.active,
+.btn-outline-light.active:hover,
+.btn-outline-light.active:focus {
+    background-color: #fff;
+    color: #7a4eb0;
+    border-color: #fff;
+
+}
