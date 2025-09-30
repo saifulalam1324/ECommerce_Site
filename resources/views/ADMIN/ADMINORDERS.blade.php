@@ -45,8 +45,8 @@
                     <h5 class="text-end">Batch Total: ${{ number_format($batch['batch_total'], 2) }}</h5>
                     <form action="{{ route('UpdateDeliveryStatus', $batchId) }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-success text-white">Mark as
-                            Shipped</button>
+                        <input type="hidden" name="vendor_email" value="{{ $item['vendor_email'] }}">
+                        <button type="submit" class="btn btn-success text-white">Mark as Shipped</button>
                     </form>
                 </div>
             </div>
