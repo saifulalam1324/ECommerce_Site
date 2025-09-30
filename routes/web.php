@@ -120,6 +120,6 @@ Route::middleware(['vendor'])->group(function () {
         ->name('Products');
     Route::post('/deleteproduct/{id}', [VendorController::class, 'WIPEOUTPRODUCT'])
         ->name('Deleteproduct');
-       Route::get('/stockoutedproducts', [VendorController::class, 'STOCKOUTPRODUCT'])
+    Route::get('/stockoutedproducts', [VendorController::class, 'STOCKOUTPRODUCT'])
         ->name('Stockoutproduct');
 });

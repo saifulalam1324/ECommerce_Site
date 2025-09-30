@@ -15,7 +15,8 @@
 
         @if ($Products->isEmpty())
             <div class="alert alert-danger mt-5">
-                No Product found
+               <p>No Product found</p>
+            </div>
         @endif
 
             @foreach ($Products as $product)

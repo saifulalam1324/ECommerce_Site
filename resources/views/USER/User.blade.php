@@ -70,7 +70,7 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid d-flex" style="background-color: whitesmoke">
+    <div class="container-fluid d-flex shadow-lg" style="background-color: whitesmoke">
         <a href="#" class="ml-5 font-weight-bold">
             <p class="font-weight-bold text-2xl">ad</p>
         </a>
@@ -82,38 +82,96 @@
     </div>
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header d-flex justify-content-between align-items-center">
-            <a class="" onclick="closeSidebar()"><i class="fa-solid fa-circle-xmark fa-2x"></i>
+            <a onclick="closeSidebar()"><i class="fa-solid fa-circle-xmark fa-2x"></i></a>
         </div>
         <div class="sidebar-content">
-            <h5>Cetagorys</h5>
-            <div class="row container">
-                <div class="col-6">
-                    <a href="" class="text-decoration-none" style="color: black;">
-                        </i>Aczxzxzx</a>
-                    <a href="" class="text-decoration-none mr-4" style="color: black;">
-                        </i>Ac</a>
-                    <a href="" class="text-decoration-none mr-4" style="color: black;">
-                        Ac</a>
-                    <a href="" class="text-decoration-none mr-4" style="color: black;">
-                        Ac</a>
-                    <a href="" class="text-decoration-none mr-4" style="color: black;">
-                        Ac</a>
+            <h5>Category</h5>
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 d-flex flex-column">
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Ac</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Air Cooler</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>TV</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Fridge</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Washing Machine</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Rice Cooker</a>
+                    </div>
+                    <div class="col-6 d-flex flex-column">
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Oven</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Blender</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Dish Washer</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Chimney</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Electric Stove</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Ceiling Fan</a>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <a href="" class="text-decoration-none" style="color: black;">
-                        </i>Aczxzxzx</a>
-                    <a href="" class="text-decoration-none mr-4" style="color: black;">
-                        </i>Ac</a>
-                    <a href="" class="text-decoration-none mr-4" style="color: black;">
-                        Ac</a>
-                    <a href="" class="text-decoration-none mr-4" style="color: black;">
-                        Ac</a>
-                    <a href="" class="text-decoration-none mr-4" style="color: black;">
-                        Ac</a>
+            </div>
+        </div>
+        <div class="sidebar-content mt-3">
+            <h5>Company</h5>
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 d-flex flex-column">
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Ac</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Air Cooler</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>TV</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Fridge</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Washing Machine</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Rice Cooker</a>
+                    </div>
+                    <div class="col-6 d-flex flex-column">
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Oven</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Blender</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Dish Washer</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Chimney</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Electric Stove</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Ceiling Fan</a>
+                    </div>
+                    <div class="col-6 d-flex flex-column">
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Toaster</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Blender</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Dish Washer</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Chimney</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Electric Stove</a>
+                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                                class="fa-solid fa-square"></i>Ceiling Fan</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+
+
     <div id="overlay" class="overlay" onclick="closeSidebar()">
     </div>
     <div class="fixed-bottom d-flex flex-column align-items-end">

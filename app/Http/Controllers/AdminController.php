@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AttachmentEmail;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -167,10 +169,11 @@ class AdminController extends Controller
 
     public function UPDATEDELIVERYSTATUS(Request $request, $order_batch_id)
     {
+        $mail = $request->input('vendor_email');
+        Mail::to($mail)->send(new AttachmentEmail());
         $updateStatus = DB::table('orders')
             ->where('order_batch_id', $order_batch_id)
             ->update(['delivery_status' => 'Shipped', 'updated_at' => now()]);
-
         if ($updateStatus) {
             return redirect()->route('AllOrders')->with('success', 'Delivery status updated successfully!');
         } else {
