@@ -86,16 +86,32 @@
         </div>
         <div class="sidebar-content">
             <h5>Cetagorys</h5>
-            <span><a href="" class="text-decoration-none mr-4" style="color: black;"><i
-                        class="fa-solid fa-square">Ac</i></a></span>
-            <span><a href="" class="text-decoration-none mr-4" style="color: black;"><i
-                        class="fa-solid fa-square">Ac</i></a></span>
-            <span><a href="" class="text-decoration-none mr-4" style="color: black;"><i
-                        class="fa-solid fa-square">Ac</i></a></span>
-            <span><a href="" class="text-decoration-none mr-4" style="color: black;"><i
-                        class="fa-solid fa-square">Ac</i></a></span>
-            <span><a href="" class="text-decoration-none mr-4" style="color: black;"><i
-                        class="fa-solid fa-square">Ac</i></a></span>
+            <div class="row container">
+                <div class="col-6">
+                    <a href="" class="text-decoration-none" style="color: black;">
+                        </i>Aczxzxzx</a>
+                    <a href="" class="text-decoration-none mr-4" style="color: black;">
+                        </i>Ac</a>
+                    <a href="" class="text-decoration-none mr-4" style="color: black;">
+                        Ac</a>
+                    <a href="" class="text-decoration-none mr-4" style="color: black;">
+                        Ac</a>
+                    <a href="" class="text-decoration-none mr-4" style="color: black;">
+                        Ac</a>
+                </div>
+                <div class="col-6">
+                    <a href="" class="text-decoration-none" style="color: black;">
+                        </i>Aczxzxzx</a>
+                    <a href="" class="text-decoration-none mr-4" style="color: black;">
+                        </i>Ac</a>
+                    <a href="" class="text-decoration-none mr-4" style="color: black;">
+                        Ac</a>
+                    <a href="" class="text-decoration-none mr-4" style="color: black;">
+                        Ac</a>
+                    <a href="" class="text-decoration-none mr-4" style="color: black;">
+                        Ac</a>
+                </div>
+            </div>
         </div>
     </div>
     <div id="overlay" class="overlay" onclick="closeSidebar()">
