@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('vendor_id')
                 ->constrained('vendors', 'vendor_id')
                 ->onDelete('cascade');
+            $table->unsignedTinyInteger('discount')->nullable();
             $table->timestamps();
         });
     }
