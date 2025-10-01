@@ -16,7 +16,7 @@
             <div class="card-header shadow card-body" style="background-color: #7a4eb0;">
                 <h2 class="text-white">Your Cart</h2>
             </div>
-            <table class="table mb-5"> 
+            <table class="table mb-5">
                 <thead>
                     <tr class="text-center">
                         <th>Image</th>
@@ -28,11 +28,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php $grand = 0; @endphp
+                    @php
+                        $grand = 0;
+                        $grandDiscounted = 0;
+                    @endphp
                     @foreach($cart as $pid => $item)
                         @php
                             $total = $item['price'] * $item['quantity'];
+                            $discount = $item['discount'] ?? 0;
+                            $discountedPrice = $item['price'] - ($item['price'] * $discount / 100);
+                            $discountedTotal = $discountedPrice * $item['quantity'];
+
                             $grand += $total;
+                            $grandDiscounted += $discountedTotal;
                         @endphp
                         <tr class="text-center">
                             <td>
@@ -71,13 +79,19 @@
             </table>
             <div class="container fixed-bottom bg-white border-top shadow-lg py-3">
                 <div class="container d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Grand Total: <strong>{{ number_format($grand, 2) }}</strong></h5>
+                    <h6 class="mb-0">
+                        Grand Total: <strong>{{ number_format($grand, 2) }}</strong>
+                        @if ($grandDiscounted < $grand) <br>
+                            Discounted Total: <strong class="text-success">{{ number_format($grandDiscounted, 2) }}</strong>
+                            @endif
+                    </h6>
                     <form action="{{ route('Placeorder') }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-success btn-lg">Place Order</button>
                     </form>
                 </div>
             </div>
+
         @endif
     </div>
 @endsection

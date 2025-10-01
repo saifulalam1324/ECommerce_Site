@@ -5,33 +5,37 @@
     <div class="container-fluid mt-lg-4">
         <div class="row">
             @if ($products->isEmpty())
-                <div class="alert alert-danger mt-5">
+                <div class="alert alert-danger mt-5 w-100 text-center">
                     No Products Available.
                 </div>
             @endif
 
             @foreach ($products as $id => $data)
-                <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                    <div class="card product-card shadow-lg">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="card product-card shadow-sm h-100">
                         <div class="position-relative">
                             <span class="badge badge-danger position-absolute"
                                 style="inset-block-start: 10px; inset-inline-start: 10px; font-size: 0.8rem;">
-                                -20%
+                                -{{ $data->discount }}%
                             </span>
-                            <div>
+                            <div class="text-center">
                                 <img src="{{ asset('storage/' . $data->image_url) }}" class="product-img card-img-top img-fluid"
-                                    alt="{{ $data->product_name ?? 'Product image' }}">
+                                    alt="{{ $data->product_name ?? 'Product image' }}"
+                                    style="object-fit: contain; max-block-size: 180px;">
                             </div>
                             <div class="d-flex justify-content-end card-img-overlay">
                                 <a href="{{ route('Each Product', $data->product_id) }}">
-                                    <i class="fa-solid fa-eye" style="color: #7a4eb0;"></i>
+                                    <i class="fa-solid fa-eye fs-5" style="color: #7a4eb0;"></i>
                                 </a>
                             </div>
                         </div>
 
-                        <div class="card-body">
-                            <span><strong>{{ $data->product_name }}</strong></span>
-                            <span>Price: $<strong>{{ $data->price }}</strong></span>
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div class="mb-2">
+                                <span class="d-block fw-bold text-truncate">{{ $data->product_name }}</span>
+                                <small>Price: $<strong>{{ $data->price }}</strong></small>
+                            </div>
+
                             <div class="d-flex justify-content-between align-items-center">
                                 @if ($data->stock_quantity <= 0)
                                     <button class="btn border-0 disabled" title="Add to cart">
@@ -50,10 +54,11 @@
                                         </button>
                                     </form>
                                 @endif
+
                                 @if ($data->stock_quantity <= 0)
-                                    <h6><span class="badge badge-danger">Stock Out</span></h6>
+                                    <span class="badge badge-danger">Stock Out</span>
                                 @else
-                                    <h6><span class="badge badge-success">Available</span></h6>
+                                    <span class="badge badge-success">Available</span>
                                 @endif
                             </div>
                         </div>
@@ -62,6 +67,7 @@
             @endforeach
         </div>
     </div>
+
 
     <div class="container my-4">
         <div class="row g-4 text-center">
@@ -320,6 +326,78 @@
                     </div>
                 </a>
             </div>
+        </div>
+    </div>
+
+
+    <div class="container text-center mt-5">
+        <h1>Featured Discounts</h1>
+        <p>Get Your Desired Product With Discounts</p>
+    </div>
+
+    <div class="container-fluid mt-lg-4">
+        <div class="row">
+            @if ($products->isEmpty())
+                <div class="alert alert-danger mt-5 w-100 text-center">
+                    No Products Available.
+                </div>
+            @endif
+
+            @foreach ($products as $id => $data)
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                    <div class="card product-card shadow-sm h-100">
+                        <div class="position-relative">
+                            <span class="badge badge-danger position-absolute"
+                                style="inset-block-start: 10px; inset-inline-start: 10px; font-size: 0.8rem;">
+                                -{{ $data->discount }}%
+                            </span>
+                            <div class="text-center">
+                                <img src="{{ asset('storage/' . $data->image_url) }}" class="product-img card-img-top img-fluid"
+                                    alt="{{ $data->product_name ?? 'Product image' }}"
+                                    style="object-fit: contain; max-block-size: 180px;">
+                            </div>
+                            <div class="d-flex justify-content-end card-img-overlay">
+                                <a href="{{ route('Each Product', $data->product_id) }}">
+                                    <i class="fa-solid fa-eye fs-5" style="color: #7a4eb0;"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div class="mb-2">
+                                <span class="d-block fw-bold text-truncate">{{ $data->product_name }}</span>
+                                <small>Price: $<strong>{{ $data->price }}</strong></small>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                @if ($data->stock_quantity <= 0)
+                                    <button class="btn border-0 disabled" title="Add to cart">
+                                        <i class="fa-solid fa-cart-shopping" style="color:#7a4eb0;"></i>
+                                    </button>
+                                @elseif (session('cart') && array_key_exists($data->product_id, session('cart')))
+                                    <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                                        <i class="fa-solid fa-cart-shopping" style="color:#7a4eb0;"></i>
+                                    </a>
+                                @else
+                                    <form action="{{ route('Addtocart', $data->product_id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <input type="hidden" name="quantity" value="1">
+                                        <button type="submit" class="btn border-0 bg-transparent" title="Add to cart">
+                                            <i class="fa-solid fa-cart-shopping" style="color:#7a4eb0;"></i>
+                                        </button>
+                                    </form>
+                                @endif
+
+                                @if ($data->stock_quantity <= 0)
+                                    <span class="badge badge-danger">Stock Out</span>
+                                @else
+                                    <span class="badge badge-success">Available</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection

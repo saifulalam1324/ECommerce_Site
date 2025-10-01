@@ -175,32 +175,36 @@
     <div id="overlay" class="overlay" onclick="closeSidebar()">
     </div>
     <div class="fixed-bottom d-flex flex-column align-items-end">
-        <a href="{{ route('Orders') }}"
-            class="d-flex justify-content-center align-items-center position-fixed bg-transparent border-0 mb-4"
-            style="inset-inline-end:20px; inset-block-end:120px; color:#7a4eb0; z-index:1030;">
-            <div class="position-relative">
-                <i class="fa-solid fa-bag-shopping fa-3x"></i>
-                {{-- <span
-                    class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
-                    style="transform: translate(1%, -60%);">
-                </span> --}}
-                <p class="text-center fw-bold">Orders</p>
-            </div>
-        </a>
+        <div>
+            <a href="{{ route('Orders') }}"
+                class="d-flex justify-content-center align-items-center position-fixed bg-transparent border-0 mb-2"
+                style="inset-inline-end:10px; inset-block-end:85px; color:#7a4eb0; z-index:1030;">
+                <div class="btn-box text-center">
+                    <i class="fa-solid fa-bag-shopping fa-2x"></i>
+                    <span class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
+                        style="transform: translate(1%, -60%);">
+                    </span>
+                    <p class="fw-bold">Orders</p>
+                </div>
+            </a>
+        </div>
 
-        <a href="{{ route('Cart') }}"
-            class="d-flex justify-content-center align-items-center position-fixed bg-transparent border-0 mb-4"
-            style="inset-inline-end:20px; inset-block-end:20px; color:#7a4eb0; z-index:1030;">
-            <div class="position-relative">
-                <i class="fa-solid fa-cart-plus fa-3x"></i>
-                <span class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
-                    style="transform: translate(1%, -60%);">
-                    {{ count(session('cart', [])) }}
-                </span>
-                <p class="text-center fw-bold">Cart</p>
-            </div>
-        </a>
+        <div>
+            <a href="{{ route('Cart') }}"
+                class="d-flex justify-content-center align-items-center position-fixed bg-transparent border-0 mb-2"
+                style="inset-inline-end:10px; inset-block-end:10px; color:#7a4eb0; z-index:1030;">
+                <div class="btn-box text-center">
+                    <i class="fa-solid fa-cart-plus fa-2x"></i>
+                    <span class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
+                        style="transform: translate(1%, -60%);">
+                        {{ count(session('cart', [])) }}
+                    </span>
+                    <p class="fw-bold">Cartss</p>
+                </div>
+            </a>
+        </div>
     </div>
+
 
     <div class="container-fluid">
         @yield('content')

@@ -30,6 +30,7 @@ class VendorController extends Controller
             'category' => 'required|string|max:100',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'model' => 'required|string|max:100',
+            'discount' => 'min:0',
         ]);
         $storeProduct = DB::table('products')->insert([
             'product_name' => $req->product_name,
@@ -41,7 +42,8 @@ class VendorController extends Controller
             'image_url' => $req->file('image')->store('image', 'public'),
             'created_at' => now(),
             'updated_at' => now(),
-            'model' => $req->model
+            'model' => $req->model,
+            'discount' => $req->discount,
         ]);
         if ($storeProduct) {
             return redirect()->route('Add product')->with('success', 'Product added successfully!');
