@@ -97,6 +97,7 @@ class CustomerController extends Controller
                 'price'    => $product->price,
                 'quantity' => $quantity,
                 'image'    => $product->image_url,
+                'discount' => $product->discount ?? 0,
             ];
         }
         session()->put('cart', $cart);
@@ -152,50 +153,64 @@ class CustomerController extends Controller
         }
 
         $userId = auth()->guard('customer')->id();
-        $grand  = 0;
+        $grand  = 0;   // without discount
+        $grand1 = 0;   // with discount
         $batchId = uniqid('order_', true);
 
         foreach ($cart as $pid => $item) {
-            $vendorId = DB::table('products')
+            $product = DB::table('products')
+                ->select('vendor_id', 'discount')
                 ->where('product_id', $pid)
-                ->value('vendor_id');
+                ->first();
+
+            $vendorId = $product->vendor_id;
+            $discount = $product->discount ?? 0;
+            $lineTotal = $item['price'] * $item['quantity'];
+            $grand += $lineTotal;
+            $discountedLineTotal = $lineTotal;
+            if ($discount > 0) {
+                $discountedLineTotal = $lineTotal - ($lineTotal * ($discount / 100));
+            }
+            $grand1 += $discountedLineTotal;
 
             DB::table('orders')->insert([
-                'order_batch_id' => $batchId,
-                'customer_id'   => $userId,
-                'vendor_id'     => $vendorId,
-                'product_id'    => $pid,
-                'quantity'      => $item['quantity'],
-                'price'         => $item['price'],
-                'total'         => $item['price'] * $item['quantity'],
-                'status'        => 0,
-                'delivery_status' => 'Pending',
-                'created_at'    => now(),
-                'updated_at'    => now(),
+                'order_batch_id'   => $batchId,
+                'customer_id'      => $userId,
+                'vendor_id'        => $vendorId,
+                'product_id'       => $pid,
+                'quantity'         => $item['quantity'],
+                'price'            => $item['price'],
+                'total'            => $lineTotal,
+                'discounted_tota' => $discountedLineTotal,
+                'status'           => 0,
+                'delivery_status'  => 'Pending',
+                'created_at'       => now(),
+                'updated_at'       => now(),
             ]);
-
-            $grand += $item['price'] * $item['quantity'];
         }
         session()->put([
-            'grand_total' => $grand,
-            'order_batch' => $batchId,
+            'grand_total'      => $grand,
+            'grand_total_disc' => $grand1,
+            'order_batch'      => $batchId,
         ]);
+
         session()->forget('cart');
 
         return redirect()->route('Paymentpage')
             ->with('success', 'Proceed to payment.');
     }
+
     public function SHOWPAYMENTPAGE()
     {
-        $grand = session('grand_total', 0);
+        $grand = session('grand_total_disc', session('grand_total', 0));
         return view('USER.PAYMENT', compact('grand'));
     }
+
     public function Payment(Request $request)
     {
         $batchId = session('order_batch');
         $userId  = auth()->guard('customer')->id();
-        $amount  = session('grand_total', 0);
-
+        $amount  = session('grand_total_disc', session('grand_total', 0));
         if (! $batchId || $amount <= 0) {
             return back()->with('error', 'No pending order found.');
         }
@@ -207,6 +222,7 @@ class CustomerController extends Controller
             'source'      => $request->stripeToken,
             'description' => 'Order Payment: ' . $batchId,
         ]);
+
         $orders = DB::table('orders')
             ->where('customer_id', $userId)
             ->where('order_batch_id', $batchId)
@@ -222,10 +238,13 @@ class CustomerController extends Controller
                 ->where('product_id', $order->product_id)
                 ->decrement('stock_quantity', $order->quantity);
         }
-        session()->forget(['grand_total', 'order_batch']);
+
+        session()->forget(['grand_total', 'grand_total_disc', 'order_batch']);
+
         return redirect()->route('Orders')
             ->with('success', 'Payment successful! Your order is confirmed.');
     }
+
 
     public function SEARCH()
     {
@@ -344,6 +363,6 @@ class CustomerController extends Controller
             ->get();
 
         $pdf = Pdf::loadView('USER.PDF', ['batches' => [$batchId => $batch]]);
-        return $pdf->download($batchId .'.pdf');
+        return $pdf->download($batchId . '.pdf');
     }
 }
