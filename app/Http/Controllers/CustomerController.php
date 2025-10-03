@@ -153,8 +153,8 @@ class CustomerController extends Controller
         }
 
         $userId = auth()->guard('customer')->id();
-        $grand  = 0;   // without discount
-        $grand1 = 0;   // with discount
+        $grand  = 0;
+        $grand1 = 0;
         $batchId = uniqid('order_', true);
 
         foreach ($cart as $pid => $item) {
@@ -364,5 +364,74 @@ class CustomerController extends Controller
 
         $pdf = Pdf::loadView('USER.PDF', ['batches' => [$batchId => $batch]]);
         return $pdf->download($batchId . '.pdf');
+    }
+
+    public function TOTALTRANSACTION()
+    {
+        $userId = Auth::guard('customer')->user()->customer_id;
+        $ordersByBatch = DB::table('orders')
+            ->where('customer_id', $userId)
+            ->where('status', 1)
+            ->select(
+                'order_batch_id',
+                'orders.total',
+                'orders.price',
+            )
+            ->orderBy('orders.created_at', 'desc')
+            ->get()
+            ->groupBy('order_batch_id')
+            ->map(function ($batch) {
+                return [
+                    'batch_total' => $batch->sum('total'),
+                    'items' => $batch->map(function ($row) {
+                        return [
+                            'price'        => $row->price,
+                            'line_total'   => $row->total,
+                        ];
+                    })
+                ];
+            });
+        return view('USER.TRANSACTIONS', ['batches' => $ordersByBatch]);
+    }
+
+    public function SHOWCHANGEPASS()
+    {
+        return view('USER.CHANGEPASSWORD');
+    }
+    public function CHANGEPASS(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required|min:6',
+            'new_password' => 'required|min:6|confirmed',
+        ]);
+
+        $user = Auth::guard('customer')->user();
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        }
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return back()->with('success', 'Password changed successfully!');
+    }
+    public function SHOWUPDATEPAGE()
+    {
+        return view('USER.UPDATEPROFILE');
+    }
+
+    public function UPDATEPROFILE(Request $request)
+    {
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'phone'    => 'required|string|max:20',
+            'address'  => 'required|string|max:255',
+        ]);
+        $customer = Auth::guard('customer')->user();
+        $customer->full_name    = $request->name;
+        $customer->phone_number = $request->phone;
+        $customer->address      = $request->address;
+        $customer->save();
+
+        return back()->with('success', 'Profile updated successfully!');
     }
 }

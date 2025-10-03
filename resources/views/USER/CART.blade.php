@@ -13,7 +13,7 @@
         @if(count($cart) === 0)
             <h1>Your cart is empty.</h1>
         @else
-            <div class="card-header shadow card-body" style="background-color: #7a4eb0;">
+            <div class="card-header shadow card-body" style="background-color: #081621;">
                 <h2 class="text-white">Your Cart</h2>
             </div>
             <table class="table mb-5">
@@ -83,15 +83,15 @@
                         Grand Total: <strong>{{ number_format($grand, 2) }}</strong>
                         @if ($grandDiscounted < $grand) <br>
                             Discounted Total: <strong class="text-success">{{ number_format($grandDiscounted, 2) }}</strong>
-                            @endif
+                        @endif
                     </h6>
                     <form action="{{ route('Placeorder') }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-success btn-lg">Place Order</button>
+                        <button type="submit" class="btn btn-lg text-white" style="background-color: #081621;">Place
+                            Order</button>
                     </form>
                 </div>
             </div>
-
         @endif
     </div>
 @endsection

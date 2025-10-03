@@ -50,7 +50,7 @@
                                 @error('password') {{ $message }} @enderror
                             </span>
                         </div>
-                        <button type="submit" class="btn btn-block" style="background-color:#7a4eb0; color: white;">
+                        <button type="submit" class="btn btn-block" style="background-color:#081621; color: white;">
                             Register
                         </button>
                     </form>
