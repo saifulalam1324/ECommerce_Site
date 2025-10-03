@@ -53,6 +53,16 @@ Route::middleware(['customer'])->group(function () {
         ->name('Orders');
     Route::get('/pdf/{id}', [CustomerController::class, 'GETPDF'])
         ->name('Pdf');
+    Route::get('/transactions', [CustomerController::class, 'TOTALTRANSACTION'])
+        ->name('Trans');
+    Route::get('/changepassword', [CustomerController::class, 'SHOWCHANGEPASS'])
+        ->name('Passpage');
+    Route::post('/changepassword', [CustomerController::class, 'CHANGEPASS'])
+        ->name('Passchange');
+    Route::get('/updateprofile', [CustomerController::class, 'SHOWUPDATEPAGE'])
+        ->name('Showupdateprofile');
+    Route::post('/updateprofile', [CustomerController::class, 'UPDATEPROFILE'])
+        ->name('Updateprofile');
 });
 
 

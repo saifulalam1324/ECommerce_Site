@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <a class="" onclick="openSidebar()">
             <i class="fa-solid fa-bars" style="color: white"></i>
         </a>
@@ -61,7 +61,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         @else
                             <a class="btn btn-outline-light" href="{{ route('LoginSignup') }}">Sign In</a>
                         @endif
@@ -70,16 +69,6 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid d-flex shadow-lg" style="background-color: whitesmoke">
-        <a href="#" class="ml-5 font-weight-bold">
-            <p class="font-weight-bold text-2xl">ad</p>
-        </a>
-        <a href="#" class="ml-3 font-weight-bold">
-            <p class="font-weight-bold" style="color:#7a4eb0; text-decoration:none; font-size: 1.5rem;"
-                onmouseover="this.style.textDecoration='underline'; this.style.textDecorationColor='#7a4eb0';"
-                onmouseout="this.style.textDecoration='none';">ad</p>
-        </a>
-    </div>
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header d-flex justify-content-between align-items-center">
             <a onclick="closeSidebar()"><i class="fa-solid fa-circle-xmark fa-2x"></i></a>
@@ -178,7 +167,7 @@
         <div>
             <a href="{{ route('Orders') }}"
                 class="d-flex justify-content-center align-items-center position-fixed bg-transparent border-0 mb-2"
-                style="inset-inline-end:10px; inset-block-end:85px; color:#7a4eb0; z-index:1030;">
+                style="inset-inline-end:10px; inset-block-end:85px; color:#081621; z-index:1030;">
                 <div class="btn-box text-center">
                     <i class="fa-solid fa-bag-shopping fa-2x"></i>
                     <span class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
@@ -192,7 +181,7 @@
         <div>
             <a href="{{ route('Cart') }}"
                 class="d-flex justify-content-center align-items-center position-fixed bg-transparent border-0 mb-2"
-                style="inset-inline-end:10px; inset-block-end:10px; color:#7a4eb0; z-index:1030;">
+                style="inset-inline-end:10px; inset-block-end:10px; color:#081621; z-index:1030;">
                 <div class="btn-box text-center">
                     <i class="fa-solid fa-cart-plus fa-2x"></i>
                     <span class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
@@ -206,7 +195,7 @@
     </div>
 
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-5">
         @yield('content')
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

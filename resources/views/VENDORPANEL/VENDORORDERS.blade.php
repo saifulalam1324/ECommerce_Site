@@ -3,14 +3,13 @@
 
 @section('content')
     <div class="container-fluid pl-5 pt-4 mt-3 ml-3 justify-content-center align-items-center">
-        <div class="container-fluid fixed-top border-0 p-2 mb-5 d-flex justify-content-between"
-            style="background-color: #7a4eb0;">
+        <div class="container-fluid fixed-top border-0 p-2 mb-5 d-flex justify-content-center"
+            style="background-color:#081621;">
             <h2 class="text-white text-center">Pending Orders</h2>
-            <h2>ss</h2>
         </div>
         @foreach ($batches as $batchId => $batch)
             <div class="container mt-5 card p-3">
-                <div class="card-header text-white" style="background-color: #7a4eb0;">
+                <div class="card-header text-white" style="background-color: #081621;">
                     <strong>Transaction ID:</strong> {{ $batchId }}
                 </div>
                 <div class="card-body">

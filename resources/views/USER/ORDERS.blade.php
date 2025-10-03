@@ -2,7 +2,7 @@
 @section('title', 'Orders')
 @section('content')
     <div class="container mt-3 card mb-4 p-3">
-        <div class="card-header d-flex justify-content-between" style="background-color: #7a4eb0;">
+        <div class="card-header d-flex justify-content-between" style="background-color: #081621">
             <a href="#" class="text-white" style="text-decoration: none;">Pending Orders</a>
             <a href="#" class="text-white" style="text-decoration: none;">Shipped Orders</a>
             <a href="#" class="text-white" style="text-decoration: none;">Delivered Orders</a>
@@ -11,7 +11,7 @@
 
     @foreach($batches as $batchId => $batch)
         <div class="container mt-2 card mb-4 p-3">
-            <div class="card-header text-white" style="background-color: #7a4eb0;">
+            <div class="card-header text-white" style="background-color: #081621;">
                 <strong>Transaction ID:</strong> {{ $batchId }}
             </div>
             <div class="card-body">
@@ -34,7 +34,7 @@
             </div>
             <div>
                 <a href="{{ route('Pdf', ['id' => $batchId]) }}" class="btn"
-                    style="background-color: #7a4eb0; color: white;">Download Pdf</a>
+                    style="background-color: #081621; color: white;">Download Pdf</a>
             </div>
         </div>
     @endforeach

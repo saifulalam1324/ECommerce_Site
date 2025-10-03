@@ -15,12 +15,12 @@
             });
         @endphp
         <div class="container mt-2 card mb-4 p-3">
-            <div class="card-header" style="background-color:#7a4eb0; color: white;">
+            <div class="card-header" style="background-color:#081621; color: white;">
                 <h2 class="text-center">Your Market</h2>
             </div>
         </div>
         <div class="container mt-2 card mb-4 p-3">
-            <div class="card-header" style="background-color:#7a4eb0; color: white;">
+            <div class="card-header" style="background-color:#081621; color: white;">
                 <strong>Transaction ID:</strong> {{ $batchId }}
                 <span class="float-right">Placed: {{ $createdAt }}</span>
             </div>

@@ -1,5 +1,5 @@
 .bg-light {
-    background-color: #7952b3 !important;
+    background-color: #081621 !important;
 }
 .NAV {
     color: white !important;
@@ -13,7 +13,7 @@
 .btn-outline-light.active:hover,
 .btn-outline-light.active:focus {
     background-color: #fff;
-    color: #7a4eb0;
+    color:#081621;
     border-color: #fff;
 
 }

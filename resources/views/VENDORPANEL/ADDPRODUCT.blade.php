@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mt-5">
         <div class="card shadow-lg">
-            <div class="card-header text-white" style="background-color: #7a4eb0;">
+            <div class="card-header text-white" style="background-color:#081621">
                 <h3 class="text-center">Add New Product</h3>
             </div>
         </div>
@@ -71,7 +71,8 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="stock">Discount</label>
-                        <input type="number" name="discount" id="discount" class="form-control" value="{{ old('discount') }}">
+                        <input type="number" name="discount" id="discount" class="form-control"
+                            value="{{ old('discount') }}">
                         <span class="text-danger">
                             @error('discount') {{ $message }} @enderror
                         </span>
@@ -101,7 +102,7 @@
                 </div>
 
                 <div class="text-center">
-                    <button type="submit" class="btn text-white" style="background-color: #7a4eb0;">
+                    <button type="submit" class="btn text-white" style="background-color:#081621">
                         Add Product
                     </button>
                 </div>

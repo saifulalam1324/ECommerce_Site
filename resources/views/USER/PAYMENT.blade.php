@@ -3,9 +3,9 @@
 @section('content')
     <div class="container my-5">
         <div class="row justify-content-center align-content-center">
-            <div class="col-md-6">
-                <div class="card shadow-lg border-0 rounded-3">
-                    <div class="card-header text-white text-center h4" style="background-color: #7a4eb0;">
+            <div class="col-md-6" style="border-radius: 10px">
+                <div class="card shadow-lg" style=" border-radius: 10px;">
+                    <div class="card-header text-white text-center h4" style="background-color:#081621">
                         Payment Summary
                     </div>
                     <div class="card-body">
