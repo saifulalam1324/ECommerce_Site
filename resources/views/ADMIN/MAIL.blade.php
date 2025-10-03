@@ -16,7 +16,7 @@
 
 
     <h1>Hello,</h1>
-    <p>Cudanir Fuo.</p>
+    <p>Cudna sohi.</p>
     {{-- <p>Check your Mailtrap inbox to view this message.</p> --}}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

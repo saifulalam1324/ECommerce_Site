@@ -92,7 +92,6 @@ class VendorController extends Controller
         return back()->with('error', 'Your account is not approved yet or credentials are invalid.');
     }
 
-
     public function VENDORLOGOUT(Request $request)
     {
         Auth::guard('vendor')->logout();
@@ -155,20 +154,34 @@ class VendorController extends Controller
         return view('VENDORPANEL.VENDORORDERS', ['batches' => $ordersByBatch]);
     }
 
-    public function PRODUCTS(){
-        $vendorID=Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id',$vendorID)->orderBy('product_id')->cursorPaginate(10);
+    public function PRODUCTS()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->orderBy('product_id')->cursorPaginate(10);
         return view('VENDORPANEL.OWNPRODUCT', ['products' => $data]);
     }
 
-    public function WIPEOUTPRODUCT($productID){
-        $deleteProduct=DB::table('products')->where('product_id',$productID)->delete();
-         return redirect()->back()->with('success', 'Product Wiped Out successfully!');
+    public function WIPEOUTPRODUCT($productID)
+    {
+        $deleteProduct = DB::table('products')->where('product_id', $productID)->delete();
+        return redirect()->back()->with('success', 'Product Wiped Out successfully!');
     }
 
-    public function STOCKOUTPRODUCT(){
-         $vendorID=Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id',$vendorID)->where('stock_quantity','<=','0')->orderBy('product_id')->cursorPaginate(10);
+    public function STOCKOUTPRODUCT()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('stock_quantity', '<=', '0')->orderBy('product_id')->cursorPaginate(10);
         return view('VENDORPANEL.STOCKOUTPRODUCTS', ['Products' => $data]);
+    }
+
+    public function COUNTITEMSALE()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('orders')->where('vendor_id', $vendorID)->where('payment_status', 1)->where('category', 'Tv')->count();
+        $data1 = DB::table('orders')->where('vendor_id', $vendorID)->where('payment_status', 1)->where('category', 'Tv')->count();
+        $data2 = DB::table('orders')->where('vendor_id', $vendorID)->where('payment_status', 1)->where('category', 'Tv')->count();
+        $data3 = DB::table('orders')->where('vendor_id', $vendorID)->where('payment_status', 1)->where('category', 'Tv')->count();
+        $data4 = DB::table('orders')->where('vendor_id', $vendorID)->where('payment_status', 1)->where('category', 'Tv')->count();
+        return view('VENDORPANEL.HOME', compact('data', 'data1'));
     }
 }

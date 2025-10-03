@@ -30,7 +30,7 @@
 }
 
 .container button{
-    background-color:#7952b3 ;
+    background-color:#081621 ;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -144,9 +144,9 @@
 }
 
 .toggle{
-    background-color: #7952b3 ;
+    background-color: #081621;
     block-size: 100%;
-    background: linear-gradient(to right,#7952b3 ,#7952b3 );
+    background: linear-gradient(to right,#081621,#081621 );
     color: #fff;
     position: relative;
     inset-inline-start: -100%;

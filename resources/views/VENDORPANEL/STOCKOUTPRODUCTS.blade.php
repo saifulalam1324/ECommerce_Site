@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container-fluid pl-5 pt-4 mt-5 ml-3 justify-content-center align-items-center">
-        <div class="container-fluid fixed-top border-0 p-2 mb-5" style="background-color: #7a4eb0;">
+        <div class="container-fluid fixed-top border-0 p-2 mb-5" style="background-color:#081621;">
             <h2 class="text-white text-center">Products</h2>
         </div>
 
@@ -21,7 +21,7 @@
 
             @foreach ($Products as $product)
                 <div class="container mt-4 card p-3">
-                    <div class="card-header text-white" style="background-color: #7a4eb0;">
+                    <div class="card-header text-white" style="background-color: #081621;">
                         <strong>Product ID:</strong> {{ $product->product_id ?? 'N/A' }}
                     </div>
                     <div class="card-body">

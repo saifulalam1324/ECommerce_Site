@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-1 p-0">
                 <nav class="navbar navbar-light flex-column vh-100 p-0 position-fixed shadow-lg"
-                    style="inline-size:180px; inset-inline-start:0; inset-block-start:0; background-color:#7a4eb0;">
+                    style="inline-size:180px; inset-inline-start:0; inset-block-start:0; background-color:#081621;">
                     <div class="container-fluid p-0 d-flex flex-column h-100">
                         <ul class="navbar-nav flex-column w-100 pt-3 mt-5">
                             <li class="nav-item d-flex justify-content-center">

@@ -1,5 +1,5 @@
 .bg-light {
-    background-color: #7952b3 !important;
+    background-color: #081621 !important;
 }
 body {
     overflow-x: hidden; /* Prevents horizontal scroll */
@@ -125,7 +125,7 @@ body {
 .side {
     block-size: 100%;
     inline-size: 100%;
-    background-color: #7952b3;
+    background-color: #081621;
     position: fixed;
     inset-block-start: 0;
 }
@@ -164,45 +164,37 @@ body {
     min-inline-size: 120px;
     text-align: center;
     border: none;
-
 }
 
 .disable-link {
-  pointer-events: none;
-  opacity: 0.5;
-  cursor: default;
-}
-.icon-circle {
-    inline-size: 50px;
-    block-size: 50px;
-    border-radius: 50%;
-    background-color: #f0f2ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: #4e54c8; /* bluish purple */
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
 }
 .card {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
+    border-radius: 10px;
 }
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
 }
 .btn-box {
     position: relative;
-    background-color:  #7952b3; /* same as bg-dark */
-    inline-size: 60px;   /* fixed width for both */
-    block-size: 70px;  /* fixed height */
+    background-color:#081621;
+    inline-size: 60px; /* fixed width for both */
+    block-size: 60px; /* fixed height */
     border-radius: 10px;
     padding-block-start: 10px;
-    margin-block-end: 1px;
     color: white;
 }
 .btn-box p {
     margin: 0;
     font-size: 8px;
 }
+body {
+     padding-block-start: 70px;
+}
+
 
