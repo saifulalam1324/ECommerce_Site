@@ -29,8 +29,6 @@ Route::middleware(['customer'])->group(function () {
         ->name('Addtocart');
     Route::post('/updatecart/{id}', [CustomerController::class, 'UPDATECART'])
         ->name('Updatecart');
-    Route::post('/cartremove/{id}', [CustomerController::class, 'REMOVECART'])
-        ->name('Removecart');
     Route::post('/inc/{id}', [CustomerController::class, 'INCREASE'])
         ->name('INC');
     Route::post('/dic/{id}', [CustomerController::class, 'DECREASE'])

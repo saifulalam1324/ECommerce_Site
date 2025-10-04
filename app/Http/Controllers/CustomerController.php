@@ -13,7 +13,7 @@ class CustomerController extends Controller
 {
     public function HOME()
     {
-        $data = DB::table('products')->get();
+        $data = DB::table('products')->whereNotNull('discount')->get();
         return view('USER.HOME', ['products' => $data]);
     }
     public function SHOWEACHPRODUCT(int $id)
@@ -80,11 +80,19 @@ class CustomerController extends Controller
     }
     public function ADDTOCART(Request $request, $id)
     {
+        if (!auth()->guard('customer')->check()) {
+            if ($request->ajax()) {
+                return response()->json(['login' => false, 'redirect' => route('LoginSignup')], 401);
+            }
+            return redirect()->route('LoginSignup');
+        }
+
         $product = DB::table('products')->where('product_id', $id)->first();
 
         if (! $product) {
             return redirect()->back()->with('error', 'Product not found.');
         }
+
         $cart = session()->get('cart', []);
         $quantity = max(1, (int)$request->input('quantity', 1));
 
@@ -104,6 +112,7 @@ class CustomerController extends Controller
 
         return redirect()->back()->with('success', 'Product added to cart!');
     }
+
     public function INCREASE($id)
     {
         $cart = session()->get('cart', []);
@@ -433,5 +442,10 @@ class CustomerController extends Controller
         $customer->save();
 
         return back()->with('success', 'Profile updated successfully!');
+    }
+
+    public function GETAC(){
+        $data = DB::table('products')->where('category','Ac')->get();
+        return view('USER.HOME', ['products' => $data]);
     }
 }

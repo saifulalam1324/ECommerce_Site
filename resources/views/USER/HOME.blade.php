@@ -292,8 +292,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="container text-center mt-5">
         <h1>Featured Discounts</h1>
         <p>Get Your Desired Product With Discount</p>
@@ -342,15 +340,15 @@
                                         <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
                                     </a>
                                 @else
-                                    <form action="{{ route('Addtocart', $data->product_id) }}" method="POST" class="d-inline">
+                                    <form class="ajaxAddToCartForm" action="{{ route('Addtocart', $data->product_id) }}"
+                                        method="POST">
                                         @csrf
                                         <input type="hidden" name="quantity" value="1">
-                                        <button type="submit" class="btn border-0 bg-transparent" title="Add to cart">
+                                        <button type="submit" class="btn border-0">
                                             <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
                                         </button>
                                     </form>
                                 @endif
-
                                 @if ($data->stock_quantity <= 0)
                                     <span class="badge badge-danger">Stock Out</span>
                                 @else
@@ -396,21 +394,20 @@
                             <div class="modal-footer">
                                 @if ($data->stock_quantity <= 0)
                                     <button class="btn border-0 disabled" title="Add to cart">
-                                        <button class="btn text-white" style="background-color:#081621;">Add to Cart</button>
+                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
                                     </button>
                                 @elseif (session('cart') && array_key_exists($data->product_id, session('cart')))
-                                    <form action="{{ route('Cart') }}" method="GET" class="d-inline">
-                                        @csrf
-                                        <button type="submit" class="btn text-white" style="background-color:#081621;" title="Add to cart">
-                                           Add to Cart
-                                        </button>
-                                    </form>
+                                    <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                    </a>
                                 @else
-                                    <form action="{{ route('Addtocart', $data->product_id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('Addtocart', $data->product_id) }}" method="POST"
+                                        class="ajaxAddToCartForm d-inline">
                                         @csrf
                                         <input type="hidden" name="quantity" value="1">
-                                        <button type="submit" class="btn text-white" style="background-color:#081621;" title="Add to cart">
-                                           Add to Cart
+                                        <button type="submit" class="btn add-to-cart-btn border-0 bg-transparent"
+                                            title="Add to cart">
+                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
                                         </button>
                                     </form>
                                 @endif
@@ -422,4 +419,44 @@
             @endforeach
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $(".ajaxAddToCartForm").on("submit", function (e) {
+                e.preventDefault();
+                let form = $(this);
+                let button = form.find("button");
+                let url = form.attr("action");
+                button.prop("disabled", true);
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    data: form.serialize(),
+                    success: function (response) {
+                        alert("Product added to cart!");
+                        let countEl = $("#cartCount");
+                        let count = parseInt(countEl.text()) || 0;
+                        countEl.text(count + 1);
+                        form.replaceWith(`
+                                <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                                    <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                </a>
+                            `);
+                    },
+                    error: function (xhr) {
+                        if (xhr.status === 401 && xhr.responseJSON?.login === false) {
+                            window.location.href = xhr.responseJSON.redirect;
+                        } else if (xhr.status === 404) {
+                            alert("Product not found!");
+                        } else {
+                            alert("Something went wrong!");
+                        }
+                    },
+                    complete: function () {
+                        button.prop("disabled", false);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
