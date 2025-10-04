@@ -13,9 +13,10 @@ class CustomerController extends Controller
 {
     public function HOME()
     {
-        $data = DB::table('products')->get();
+        $data = DB::table('products')->whereNotNull('discount')->get();
         return view('USER.HOME', ['products' => $data]);
     }
+
     public function SHOWEACHPRODUCT(int $id)
     {
         $data1 = DB::table('products')->where('product_id', '=', $id)->get();
@@ -434,8 +435,9 @@ class CustomerController extends Controller
 
         return back()->with('success', 'Profile updated successfully!');
     }
-     public function GETAC(){
-        $data = DB::table('products')->where('category','Ac')->get();
+    public function GETAC()
+    {
+        $data = DB::table('products')->where('category', 'Ac')->get();
         return view('USER.HOME', ['products' => $data]);
     }
 }
