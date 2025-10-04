@@ -50,12 +50,20 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-center custom-dropdown bg-transparent">
                                     <div class="d-flex justify-content-center">
-                                        <form action="{{ route('UserLogout') }}" method="POST">
+                                        <form id="logoutForm" action="{{ route('UserLogout') }}" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fa-solid fa-right-from-bracket"></i>
                                             </button>
                                         </form>
+                                        <script>
+                                            document.getElementById('logoutForm').addEventListener('submit', function (event) {
+                                                event.preventDefault();
+                                                if (confirm("Are you sure you want to logout?")) {
+                                                    this.submit();
+                                                }
+                                            });
+                                        </script>
                                         <a class="btn btn-success ml-1" href="{{ route('UserInfo') }}"><i
                                                 class="fa-solid fa-circle-info"></i></a>
                                     </div>
@@ -180,17 +188,19 @@
 
         <div>
             <a href="{{ route('Cart') }}"
-                class="d-flex justify-content-center align-items-center position-fixed bg-transparent border-0 mb-2"
+                class="d-flex jus   -mt-pxtify-content-center align-items-center position-fixed bg-transparent border-0 mb-2"
                 style="inset-inline-end:10px; inset-block-end:10px; color:#081621; z-index:1030;">
-                <div class="btn-box text-center">
+                <div class="btn-box text-center position-relative">
                     <i class="fa-solid fa-cart-plus fa-2x"></i>
-                    <span class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
+                    <span id="cartCount"
+                        class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
                         style="transform: translate(1%, -60%);">
                         {{ count(session('cart', [])) }}
                     </span>
                     <p class="fw-bold">Cartss</p>
                 </div>
             </a>
+
         </div>
     </div>
 
@@ -198,15 +208,9 @@
     <div class="container-fluid mt-5">
         @yield('content')
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="{{ asset('ASSATS/JS/LOGINSIGNUP.js') }}"></script>
     <script src="{{ asset('ASSATS/JS/SCRIPT.js') }}"></script>
 </body>
