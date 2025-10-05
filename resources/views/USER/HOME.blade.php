@@ -232,7 +232,7 @@
                                 <img src="{{ asset('ASSATS/PICTURE/vacuum_17954620.png') }}" alt=""
                                     style="inline-size: 40px; block-size: 40px;">
                             </div>
-                            <h6 class="fw-bold">Vacuum clener</h6>
+                            <h6 class="fw-bold">Vacuum Cleaner</h6>
                         </div>
                     </div>
                 </a>
