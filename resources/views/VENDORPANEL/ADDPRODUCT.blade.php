@@ -81,7 +81,7 @@
                         <label for="category">Category</label>
                         <select name="category" id="category" class="form-control" value="{{ old('category') }}">
                             <option value="">Select Category</option>
-                            <option value="AC">AC</option>
+                            <option value="Ac">AC</option>
                             <option value="Air Cooler">Air Cooler</option>
                             <option value="Tv">TV</option>
                             <option value="Fridge">Fridge</option>

@@ -13,6 +13,12 @@
 </head>
 
 <body>
+    <div class="container-fluid pl-5 pt-4 mt-5 ml-3 justify-content-center align-items-center">
+        <div class="container-fluid fixed-top border-0 p-2 mb-5 d-flex justify-content-center"
+            style="background-color: #081621">
+            <h2 class="text-white text-center">Vendor Dashboard</h2>
+        </div>
+    </div>
     <div class="container-fluid overflow-hidden">
         <div class="row">
             <div class="col-1 p-0">
@@ -34,20 +40,40 @@
                             </li>
                             <li class="nav-item d-flex justify-content-center">
                                 <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('ShippedOrders') ? 'active' : '' }}"
-                                    href="#">Shipped Orders</a>
+                                    href="{{ route('ShippedOrders') }}">Shipped Orders</a>
                             </li>
                             <li class="nav-item d-flex justify-content-center">
                                 <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('CompletedOrders') ? 'active' : '' }}"
-                                    href="#">Completed Orders</a>
+                                    href="{{ route('DeliveredOrders') }}">Completed Orders</a>
                             </li>
-                            <li class="nav-item d-flex justify-content-center">
-                                <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('Products') ? 'active' : '' }}"
-                                    href="{{ route('Products') }}">Your Products</a>
-                            </li>
+
                             <li class="nav-item d-flex justify-content-center">
                                 <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('StockoutProducts') ? 'active' : '' }}"
                                     href="{{ route('Stockoutproduct') }}">Stock Out Items</a>
+
                             </li>
+                            <li class="nav-item mb-2">
+                                <div class="dropdown ml-1" style="inline-size: 170px;">
+                                    <button class="btn btn-outline-light w-100 text-start dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                                        Your Products
+                                    </button>
+                                    <div class="dropdown-menu w-100" style="max-block-size: 200px; overflow-y: auto;"
+                                        aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Action 1</a>
+                                        <a class="dropdown-item" href="#">Action 2</a>
+                                        <a class="dropdown-item" href="#">Action 3</a>
+                                        <a class="dropdown-item" href="#">Action 4</a>
+                                        <a class="dropdown-item" href="#">Action 5</a>
+                                        <a class="dropdown-item" href="#">Action 6</a>
+                                        <a class="dropdown-item" href="#">Action 7</a>
+                                        <a class="dropdown-item" href="#">Action 8</a>
+                                        <a class="dropdown-item" href="#">Action 9</a>
+                                        <a class="dropdown-item" href="#">Action 10</a>
+                                    </div>
+                                </div>
+                            </li>
+
 
                         </ul>
                         <div class="mt-auto w-100 bg-dark">

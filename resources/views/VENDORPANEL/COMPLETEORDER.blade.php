@@ -1,5 +1,5 @@
 @extends('VENDORPANEL.Vendor')
-@section('title', 'Pending Orders')
+@section('title', 'Completed Orders')
 @section('content')
     @if (session('info'))
         <div class="alert alert-info mt-5">
@@ -30,7 +30,7 @@
                                 <img src="{{ asset('storage/' . $item['image_url']) }}" width="60" class="me-2">
                                 {{ $item['product_name'] }} (x{{ $item['quantity'] }})
                             </span>
-                            <span>Delivery Status: <strong class="text-danger">{{ $item['delivery_status'] }}</strong></span>
+                            <span>Delivery Status: <strong class="text-success">{{ $item['delivery_status'] }}</strong></span>
                             <span>${{ number_format($display_price, 2) }}
                                 @if($item['line_total'] != $item['discounted_total'])
                                     <small

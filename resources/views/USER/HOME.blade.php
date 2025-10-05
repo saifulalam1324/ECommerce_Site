@@ -331,23 +331,30 @@
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center">
-                                @if ($data->stock_quantity <= 0)
-                                    <button class="btn border-0 disabled" title="Add to cart">
-                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
-                                    </button>
-                                @elseif (session('cart') && array_key_exists($data->product_id, session('cart')))
-                                    <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
-                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
-                                    </a>
-                                @else
-                                    <form class="ajaxAddToCartForm" action="{{ route('Addtocart', $data->product_id) }}"
-                                        method="POST">
-                                        @csrf
-                                        <input type="hidden" name="quantity" value="1">
-                                        <button type="submit" class="btn border-0">
+                                @if (Auth::guard('customer')->check())
+                                    @if ($data->stock_quantity <= 0)
+                                        <button class="btn border-0 disabled" title="Add to cart">
                                             <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
                                         </button>
-                                    </form>
+                                    @elseif (session('cart') && array_key_exists($data->product_id, session('cart')))
+                                        <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                        </a>
+                                    @else
+                                        <form action="{{ route('Addtocart', $data->product_id) }}" method="POST"
+                                            class="ajaxAddToCartForm d-inline">
+                                            @csrf
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" class="btn add-to-cart-btn border-0 bg-transparent"
+                                                title="Add to cart">
+                                                <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                @else
+                                    <button class="btn border-0 disabled" title="Login To Buy">
+                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                    </button>
                                 @endif
                                 @if ($data->stock_quantity <= 0)
                                     <span class="badge badge-danger">Stock Out</span>
@@ -392,24 +399,30 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                @if ($data->stock_quantity <= 0)
-                                    <button class="btn border-0 disabled" title="Add to cart">
-                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
-                                    </button>
-                                @elseif (session('cart') && array_key_exists($data->product_id, session('cart')))
-                                    <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
-                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
-                                    </a>
-                                @else
-                                    <form action="{{ route('Addtocart', $data->product_id) }}" method="POST"
-                                        class="ajaxAddToCartForm d-inline">
-                                        @csrf
-                                        <input type="hidden" name="quantity" value="1">
-                                        <button type="submit" class="btn add-to-cart-btn border-0 bg-transparent"
-                                            title="Add to cart">
+                                @if (Auth::guard('customer')->check())
+                                    @if ($data->stock_quantity <= 0)
+                                        <button class="btn border-0 disabled" title="Add to cart">
                                             <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
                                         </button>
-                                    </form>
+                                    @elseif (session('cart') && array_key_exists($data->product_id, session('cart')))
+                                        <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                        </a>
+                                    @else
+                                        <form action="{{ route('Addtocart', $data->product_id) }}" method="POST"
+                                            class="ajaxAddToCartForm d-inline">
+                                            @csrf
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" class="btn add-to-cart-btn border-0 bg-transparent"
+                                                title="Add to cart">
+                                                <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                @else
+                                    <button class="btn border-0 disabled" title="Login To Buy">
+                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                    </button>
                                 @endif
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
@@ -438,10 +451,9 @@
                         let count = parseInt(countEl.text()) || 0;
                         countEl.text(count + 1);
                         form.replaceWith(`
-                                <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
-                                    <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
-                                </a>
-                            `);
+                        <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
+                    `);
                     },
                     error: function (xhr) {
                         if (xhr.status === 401 && xhr.responseJSON?.login === false) {

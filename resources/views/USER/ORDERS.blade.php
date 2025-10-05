@@ -17,20 +17,43 @@
             <div class="card-body">
                 <ul class="list-group mb-2">
                     @foreach($batch['items'] as $item)
-                        <li class="list-group-item d-flex justify-content-between">
+                        @php
+                            $display_price = ($item['line_total'] == $item['discounted_total'])
+                                ? $item['line_total']
+                                : $item['discounted_total'];
+                        @endphp
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span>
                                 <img src="{{ asset('storage/' . $item['image_url']) }}" width="60" class="me-2">
                                 {{ $item['product_name'] }} (x{{ $item['quantity'] }})
                             </span>
-                            <span>Delivery Status : <span class="text-danger"><strong>{{ $item['delivery_status'] }}</strong></span></span>
+                            <span>Delivery Status: <strong class="text-danger">{{ $item['delivery_status'] }}</strong></span>
                             <span>Placed: {{ $batch['created_at'] }}</span>
                             <span class="text-secondary">Sold by: {{ $item['vendor_name'] }}</span>
-                            <span>${{ number_format($item['line_total'], 2) }}</span>
+                            <span>
+                                ${{ number_format($display_price, 2) }}
+                                @if($item['line_total'] != $item['discounted_total'])
+                                    <small
+                                        class="text-muted text-decoration-line-through">${{ number_format($item['line_total'], 2) }}</small>
+                                @endif
+                            </span>
                         </li>
                     @endforeach
                 </ul>
 
-                <h5 class="text-end">Batch Total: ${{ number_format($batch['batch_total'], 2) }}</h5>
+                @php
+                    $batch_display_total = ($batch['batch_total'] == $batch['batch_discounted_total'])
+                        ? $batch['batch_total']
+                        : $batch['batch_discounted_total'];
+                @endphp
+
+                <h5 class="text-end">
+                    Batch Total Paid: ${{ number_format($batch_display_total, 2) }}
+                    @if($batch['batch_total'] != $batch['batch_discounted_total'])
+                        <small
+                            class="text-muted text-decoration-line-through">${{ number_format($batch['batch_total'], 2) }}</small>
+                    @endif
+                </h5>
             </div>
             <div>
                 <a href="{{ route('Pdf', ['id' => $batchId]) }}" class="btn"

@@ -61,6 +61,8 @@ Route::middleware(['customer'])->group(function () {
         ->name('Showupdateprofile');
     Route::post('/updateprofile', [CustomerController::class, 'UPDATEPROFILE'])
         ->name('Updateprofile');
+    Route::get('/ordercount', [CustomerController::class, 'COUNTORDERS'])
+        ->name('ordercount');
 });
 
 
@@ -98,8 +100,10 @@ Route::middleware(['admin'])->group(function () {
         ->name('UpdateDeliveryStatus');
     Route::get('/completedorders', [AdminController::class, 'COMPLETEDORDERS'])
         ->name('CompletedOrders');
-    Route::get('/shippedorders', [AdminController::class, 'SHIPPEDORDERS'])
-        ->name('ShippedOrders');
+    Route::get('/shippedordersadmin', [AdminController::class, 'SHIPPEDORDERS'])
+        ->name('ShippedOrdersadmin');
+    Route::post('/update-delivery-status-shipted/{order_batch_id}', [AdminController::class, 'UPDATEDELIVERYSTATUSDONE'])
+        ->name('UpdateDeliveryStatusDone');
 });
 
 // Vendor
@@ -130,4 +134,8 @@ Route::middleware(['vendor'])->group(function () {
         ->name('Deleteproduct');
     Route::get('/stockoutedproducts', [VendorController::class, 'STOCKOUTPRODUCT'])
         ->name('Stockoutproduct');
+    Route::get('/shippedorders', [VendorController::class, 'BATCHORDERSSHIPPED'])
+        ->name('ShippedOrders');
+     Route::get('/delivereddorders', [VendorController::class, 'BATCHORDERSSHIPPEDDONE'])
+        ->name('DeliveredOrders');
 });

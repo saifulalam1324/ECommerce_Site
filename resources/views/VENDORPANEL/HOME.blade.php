@@ -1,27 +1,50 @@
 @extends('VENDORPANEL.Vendor')
 @section('title', 'Vendor Home')
 @section('content')
-    <div class="container-fluid pl-5 pt-4 mt-5 ml-3 justify-content-center align-items-center">
-        <div class="container-fluid fixed-top border-0 p-2 mb-5 d-flex justify-content-center"
-            style="background-color: #081621">
-            <h2 class="text-white text-center">Vendor Dashboard</h2>
+
+    <div class="container mt-3 pt-5 mb-5 justify-content-center d-flex">
+        <div class="row container">
+            <div class="col-8 justify-content-center align-items-center d-flex">
+                <div class="container">
+                    <canvas id="myChart" width="700" height="500"></canvas>
+                </div>
+            </div>
+            <div class="col-4 justify-content-center align-items-center d-flex">
+                <div class="container">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-3 pt-5 mb-5 justify-content-center d-flex">
+        <div class="row container">
+            <div class="col-4 ">
+                <div class="container">
+
+                </div>
+            </div>
+            <div class="col-8 justify-content-center align-items-center d-flex">
+                <div class="container">
+                    <canvas id="myDoughnut" width="700" height="500"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-3 pt-5 mb-5 justify-content-center d-flex">
+        <div class="row container">
+            <div class="col-8 justify-content-center align-items-center d-flex">
+                <div class="container">
+                    <canvas id="myLineChart" width="700" height="500"></canvas>
+                </div>
+            </div>
+            <div class="col-4 justify-content-center align-items-center d-flex">
+                <div class="container">
+
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="container mt-5 pt-5 justify-content-center d-flex">
-        <div class="row">
-            <div class="col-6 justify-content-center align-items-center d-flex">
-                <div class="container">
-                    <canvas id="myChart" width="500" height="500"></canvas>
-                </div>
-            </div>
-            <div class="col-6 justify-content-center align-items-center d-flex">
-                <div class="container">
-                    <canvas id="myDoughnut" width="500" height="500"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -71,5 +94,30 @@
                 maintainAspectRatio: false
             }
         });
+
+
+
+        const ctx3 = document.getElementById('myLineChart').getContext('2d');
+
+        const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']; // or Utils.months({count: 7})
+
+        new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
     </script>
 @endsection

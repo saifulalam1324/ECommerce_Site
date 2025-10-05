@@ -124,6 +124,7 @@ class VendorController extends Controller
                 'orders.order_batch_id',
                 'orders.created_at',
                 'orders.total',
+                'orders.discounted_tota',
                 'products.product_id',
                 'products.product_name',
                 'products.image_url',
@@ -135,9 +136,11 @@ class VendorController extends Controller
             ->get()
             ->groupBy('order_batch_id')
             ->map(function ($batch) {
+                $batch_discounted_total = $batch->sum('discounted_tota');
                 return [
                     'created_at' => $batch->first()->created_at,
                     'batch_total' => $batch->sum('total'),
+                    'batch_discounted_total' => $batch_discounted_total,
                     'items' => $batch->map(function ($row) {
                         return [
                             'product_id'   => $row->product_id,
@@ -146,12 +149,105 @@ class VendorController extends Controller
                             'quantity'     => $row->quantity,
                             'price'        => $row->price,
                             'line_total'   => $row->total,
+                            'discounted_total' => $row->discounted_tota,
                             'delivery_status' => $row->delivery_status,
                         ];
                     })
                 ];
             });
         return view('VENDORPANEL.VENDORORDERS', ['batches' => $ordersByBatch]);
+    }
+
+    public function BATCHORDERSSHIPPED()
+    {
+        $vendorid = Auth::guard('vendor')->user()->vendor_id;
+        $ordersByBatch = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorid)
+            ->where('orders.status', 1)
+            ->where('orders.delivery_status', '=', 'Shipped')
+            ->select(
+                'orders.order_batch_id',
+                'orders.created_at',
+                'orders.total',
+                'orders.discounted_tota',
+                'products.product_id',
+                'products.product_name',
+                'products.image_url',
+                'orders.delivery_status',
+                'orders.quantity',
+                'orders.price',
+            )
+            ->orderBy('orders.created_at', 'desc')
+            ->get()
+            ->groupBy('order_batch_id')
+            ->map(function ($batch) {
+                $batch_discounted_total = $batch->sum('discounted_tota');
+                return [
+                    'created_at' => $batch->first()->created_at,
+                    'batch_total' => $batch->sum('total'),
+                    'batch_discounted_total' => $batch_discounted_total,
+                    'items' => $batch->map(function ($row) {
+                        return [
+                            'product_id'   => $row->product_id,
+                            'product_name' => $row->product_name,
+                            'image_url'    => $row->image_url,
+                            'quantity'     => $row->quantity,
+                            'price'        => $row->price,
+                            'line_total'   => $row->total,
+                            'discounted_total' => $row->discounted_tota,
+                            'delivery_status' => $row->delivery_status,
+                        ];
+                    })
+                ];
+            });
+        return view('VENDORPANEL.SHIPPEDORDERS', ['batches' => $ordersByBatch]);
+    }
+
+    public function BATCHORDERSSHIPPEDDONE()
+    {
+        $vendorid = Auth::guard('vendor')->user()->vendor_id;
+        $ordersByBatch = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorid)
+            ->where('orders.status', 1)
+            ->where('orders.delivery_status', '=', 'Delivered')
+            ->select(
+                'orders.order_batch_id',
+                'orders.created_at',
+                'orders.total',
+                'orders.discounted_tota',
+                'products.product_id',
+                'products.product_name',
+                'products.image_url',
+                'orders.delivery_status',
+                'orders.quantity',
+                'orders.price',
+            )
+            ->orderBy('orders.created_at', 'desc')
+            ->get()
+            ->groupBy('order_batch_id')
+            ->map(function ($batch) {
+                $batch_discounted_total = $batch->sum('discounted_tota');
+                return [
+                    'created_at' => $batch->first()->created_at,
+                    'batch_total' => $batch->sum('total'),
+                    'batch_discounted_total' => $batch_discounted_total,
+                    'items' => $batch->map(function ($row) {
+                        return [
+                            'product_id'   => $row->product_id,
+                            'product_name' => $row->product_name,
+                            'image_url'    => $row->image_url,
+                            'quantity'     => $row->quantity,
+                            'price'        => $row->price,
+                            'line_total'   => $row->total,
+                            'discounted_total' => $row->discounted_tota,
+                            'delivery_status' => $row->delivery_status,
+                        ];
+                    })
+                ];
+            });
+        return view('VENDORPANEL.SHIPPEDORDERS', ['batches' => $ordersByBatch]);
     }
 
     public function PRODUCTS()
@@ -183,5 +279,11 @@ class VendorController extends Controller
         $data3 = DB::table('orders')->where('vendor_id', $vendorID)->where('payment_status', 1)->where('category', 'Tv')->count();
         $data4 = DB::table('orders')->where('vendor_id', $vendorID)->where('payment_status', 1)->where('category', 'Tv')->count();
         return view('VENDORPANEL.HOME', compact('data', 'data1'));
+    }
+    public function GETACV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Ac')->get();
+        return view('VENDORPANEL.HOME', ['products' => $data]);
     }
 }

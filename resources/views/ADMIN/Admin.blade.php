@@ -13,6 +13,9 @@
 </head>
 
 <body>
+    <div class="container-fluid fixed-top border-0 p-2 mb-5" style="background-color: #081621;">
+        <h2 class="text-white text-center">Admin Dashboards</h2>
+    </div>
     <div class="container-fluid overflow-hidden">
         <div class="row">
             <div class="col-1 p-0">
@@ -41,8 +44,8 @@
                                     href="{{ route('AllOrders') }}">Pending Orders</a>
                             </li>
                             <li class="nav-item d-flex justify-content-center">
-                                <a class="text-center btn w-100 ml-1 mr-1  mb-1 {{ request()->routeIs('ShippedOrders') ? 'btn-light text-dark' : 'btn-outline-light' }}"
-                                    href="{{ route('ShippedOrders') }}">Shipped Orders</a>
+                                <a class="text-center btn w-100 ml-1 mr-1  mb-1 {{ request()->routeIs('ShippedOrdersadmin') ? 'btn-light text-dark' : 'btn-outline-light' }}"
+                                    href="{{ route('ShippedOrdersadmin') }}">Shipped Orders</a>
                             </li>
                             <li class="nav-item d-flex justify-content-center">
                                 <a class="text-center btn w-100 ml-1 mr-1  mb-1 {{ request()->routeIs('CompletedOrders') ? 'btn-light text-dark' : 'btn-outline-light' }}"
@@ -72,9 +75,9 @@
                 </div>
             </div>
         </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -3,22 +3,40 @@
 
 <head>
     <title>Title</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
 
+ <h2>Your Order Has Been Shipped!</h2>
+    <p>Here are the details of your order:</p>
 
-    <h1>Hello,</h1>
-    {{-- <p>Check your Mailtrap inbox to view this message.</p> --}}
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>ustomer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($orderdetails as $order)
+                <tr>
+                    <td>{{ $order->product_name }}</td>
+                    <td>{{ $order->quantity }}</td>
+                    <td>{{ $order->total}}</td>
+                    <td>{{ $order->full_name}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <p>Thank you for shopping with us!</p>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

@@ -233,7 +233,7 @@ class CustomerController extends Controller
         foreach ($orders as $order) {
             DB::table('orders')
                 ->where('order_id', $order->order_id)
-                ->update(['status' => 1]);
+                ->update(['status' => 1, 'created_at' => now()]);
 
             DB::table('products')
                 ->where('product_id', $order->product_id)
@@ -265,6 +265,7 @@ class CustomerController extends Controller
                 'orders.order_batch_id',
                 'orders.created_at',
                 'orders.total',
+                'orders.discounted_tota',
                 'products.product_id',
                 'products.product_name',
                 'products.image_url',
@@ -277,23 +278,27 @@ class CustomerController extends Controller
             ->get()
             ->groupBy('order_batch_id')
             ->map(function ($batch) {
+                $batch_discounted_total = $batch->sum('discounted_tota');
                 return [
                     'created_at' => $batch->first()->created_at,
                     'batch_total' => $batch->sum('total'),
+                    'batch_discounted_total' => $batch_discounted_total,
                     'items' => $batch->map(function ($row) {
                         return [
-                            'product_id'   => $row->product_id,
-                            'product_name' => $row->product_name,
-                            'image_url'    => $row->image_url,
-                            'quantity'     => $row->quantity,
-                            'price'        => $row->price,
-                            'line_total'   => $row->total,
+                            'product_id'      => $row->product_id,
+                            'product_name'    => $row->product_name,
+                            'image_url'       => $row->image_url,
+                            'quantity'        => $row->quantity,
+                            'price'           => $row->price,
+                            'line_total'      => $row->total,
+                            'discounted_total' => $row->discounted_tota,
                             'delivery_status' => $row->delivery_status,
-                            'vendor_name' => $row->company_name,
+                            'vendor_name'     => $row->company_name,
                         ];
                     })
                 ];
             });
+
         return view('USER.ORDERS', ['batches' => $ordersByBatch]);
     }
 
@@ -311,31 +316,35 @@ class CustomerController extends Controller
                 'orders.order_batch_id',
                 'orders.created_at',
                 'orders.total',
+                'orders.discounted_tota',
                 'products.product_id',
                 'products.product_name',
                 'products.image_url',
                 'orders.delivery_status',
                 'orders.quantity',
                 'orders.price',
-                'vendors.company_name',
+                'vendors.company_name'
             )
             ->orderBy('orders.created_at', 'desc')
             ->get()
             ->groupBy('order_batch_id')
             ->map(function ($batch) {
+                $batch_discounted_total = $batch->sum('discounted_tota');
                 return [
                     'created_at' => $batch->first()->created_at,
                     'batch_total' => $batch->sum('total'),
+                    'batch_discounted_total' => $batch_discounted_total,
                     'items' => $batch->map(function ($row) {
                         return [
-                            'product_id'   => $row->product_id,
-                            'product_name' => $row->product_name,
-                            'image_url'    => $row->image_url,
-                            'quantity'     => $row->quantity,
-                            'price'        => $row->price,
-                            'line_total'   => $row->total,
+                            'product_id'      => $row->product_id,
+                            'product_name'    => $row->product_name,
+                            'image_url'       => $row->image_url,
+                            'quantity'        => $row->quantity,
+                            'price'           => $row->price,
+                            'line_total'      => $row->total,
+                            'discounted_total' => $row->discounted_tota,
                             'delivery_status' => $row->delivery_status,
-                            'vendor_name' => $row->company_name,
+                            'vendor_name'     => $row->company_name,
                         ];
                     })
                 ];
@@ -373,21 +382,21 @@ class CustomerController extends Controller
         $ordersByBatch = DB::table('orders')
             ->where('customer_id', $userId)
             ->where('status', 1)
-            ->select(
-                'order_batch_id',
-                'orders.total',
-                'orders.price',
-            )
+            ->select('order_batch_id', 'orders.total', 'orders.price', 'orders.discounted_tota')
             ->orderBy('orders.created_at', 'desc')
             ->get()
             ->groupBy('order_batch_id')
             ->map(function ($batch) {
+                $batch_total = $batch->sum('total');
+                $batch_discounted_total = $batch->sum('discounted_tota');
                 return [
-                    'batch_total' => $batch->sum('total'),
+                    'batch_total' => $batch_total,
+                    'batch_discounted_total' => $batch_discounted_total,
                     'items' => $batch->map(function ($row) {
                         return [
-                            'price'        => $row->price,
-                            'line_total'   => $row->total,
+                            'price'      => $row->price,
+                            'line_total' => $row->total,
+                            'discounted_total' => $row->discounted_tota,
                         ];
                     })
                 ];
@@ -428,19 +437,26 @@ class CustomerController extends Controller
             'address'  => 'required|string|max:255',
         ]);
         $customer = Auth::guard('customer')->user();
-        $customer->full_name    = $request->name;
+        $customer->full_name = $request->name;
         $customer->phone_number = $request->phone;
-        $customer->address      = $request->address;
+        $customer->address = $request->address;
         $customer->save();
 
         return back()->with('success', 'Profile updated successfully!');
     }
+
+    public function COUNTORDERS(){
+        $userId=Auth::guard('customer')->user()->customer_id;
+        $count=DB::table('orders')->where('status','1')->count();
+        return view('USER.User',['counts' => $count]);
+    }
+
     public function GETAC()
     {
         $data = DB::table('products')->where('category', 'Ac')->get();
         return view('USER.HOME', ['products' => $data]);
     }
-    public function GETTv()
+    public function GETTV()
     {
         $data = DB::table('products')->where('category', 'Tv')->get();
         return view('USER.HOME', ['products' => $data]);

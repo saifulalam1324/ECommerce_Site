@@ -180,6 +180,7 @@
                     <i class="fa-solid fa-bag-shopping fa-2x"></i>
                     <span class="position-absolute top-0 end-0 translate-middle badge rounded-pill text-white bg-danger"
                         style="transform: translate(1%, -60%);">
+                        {{$counts}}
                     </span>
                     <p class="fw-bold">Orders</p>
                 </div>

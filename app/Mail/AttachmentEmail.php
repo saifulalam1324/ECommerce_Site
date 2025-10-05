@@ -13,12 +13,10 @@ class AttachmentEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
+    public $orderdetails;
+    public function __construct($orderdetails)
     {
-        //
+        $this->orderdetails=$orderdetails;
     }
 
     /**
@@ -37,7 +35,10 @@ class AttachmentEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'ADMIN.MAIL'
+            view: 'ADMIN.MAIL',
+            with: [
+                'orderdetails' => $this->orderdetails,
+            ],
         );
     }
 
