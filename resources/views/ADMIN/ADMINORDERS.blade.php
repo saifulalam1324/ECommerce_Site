@@ -64,7 +64,7 @@
                     @endif
                 </h5>
 
-                <form action="{{ route('UpdateDeliveryStatus', $batchId) }}" method="POST">
+                <form action="{{ route('UpdateDeliveryStatus', $batchId)}}" method="POST">
                     @csrf
                     <input type="hidden" name="vendor_email" value="{{ $item['vendor_email'] }}">
                     <button type="submit" class="btn text-white" style="background-color: #081621;">Mark as Shipped</button>
