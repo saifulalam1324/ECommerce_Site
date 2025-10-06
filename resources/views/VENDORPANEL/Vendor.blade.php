@@ -61,7 +61,7 @@
                                     </button>
                                     <div class="dropdown-menu w-100" style="max-block-size: 200px; overflow-y: auto;"
                                         aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{{ route('AC') }}">AC</a>
+                                        <a class="dropdown-item" href="{{ route('ACV') }}">AC</a>
                                         <a class="dropdown-item" href="{{ route('AirCooler') }}">Air Cooler</a>
                                         <a class="dropdown-item" href="{{ route('TV') }}">TV</a>
                                         <a class="dropdown-item" href="{{ route('Fridge') }}">Fridge</a>

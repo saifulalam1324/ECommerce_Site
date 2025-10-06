@@ -407,4 +407,42 @@ class VendorController extends Controller
     }
 
 
+    public function RESTOCK(Request $request, $id)
+    {
+        $request->validate([
+            'stock'     => 'required|integer|min:0',
+        ]);
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $restock = DB::table('products')->where('vendor_id', $vendorID)->where('product_id',$id)->update(['stock_quantity' => $request->stock]);
+        return back()->with('success', 'Restocked Successfully');
+    }
+
+    public function VIEWUPDATEPRODUCTPAGE($productid)
+    {
+        $products = DB::table('products')->where('product_id', $productid)->first();
+        return view('VENDORPANEL.UPDATEPRODUCTINFO', ['product' => $products]);
+    }
+    public function UPDATEPRODUCTINFO(Request $request, $productid)
+    {
+        $request->validate([
+            'product_name' => 'string|max:255',
+            'price'        => 'numeric',
+            'description'  => 'string',
+            'stock'        => 'integer|min:0',
+            'model'        => 'string|max:100',
+        ]);
+
+        $product = DB::table('products')->where('product_id', $productid)->first();
+        $newstock = $product->stock_quantity + $request->stock;
+
+        DB::table('products')->where('product_id', $productid)->update([
+            'product_name'   => $request->product_name,
+            'price'          => $request->price,
+            'description'    => $request->description,
+            'stock_quantity' => $newstock,
+            'model'          => $request->model,
+        ]);
+
+        return back()->with('success', 'Updated Successfully');
+    }
 }

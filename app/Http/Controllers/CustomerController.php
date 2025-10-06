@@ -138,9 +138,8 @@ class CustomerController extends Controller
             unset($cart[$id]);
             session()->put('cart', $cart);
         }
-        return redirect()->route('Cart');
+        return redirect()->back();
     }
-
     public function USERINFO()
     {
         return view('USER.USERINFO');
@@ -306,7 +305,7 @@ class CustomerController extends Controller
     public function BATCHORDERSDONE()
     {
         $userId = Auth::guard('customer')->user()->customer_id;
-        $ordersByBatch = DB::table('orders')
+        $ordersShipped = DB::table('orders')
             ->join('products', 'orders.product_id', '=', 'products.product_id')
             ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
             ->where('orders.customer_id', $userId)
@@ -349,7 +348,56 @@ class CustomerController extends Controller
                     })
                 ];
             });
-        return view('USER.ORDERS', ['batches' => $ordersByBatch]);
+        return view('USER.DELIVEREDORDER', ['batches' => $ordersShipped]);
+    }
+
+    public function BATCHORDERSSHIPPED()
+    {
+        $userId = Auth::guard('customer')->user()->customer_id;
+        $ordersShipped = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->where('orders.customer_id', $userId)
+            ->where('orders.status', 1)
+            ->where('orders.delivery_status', '=', 'Shipped')
+            ->select(
+                'orders.order_batch_id',
+                'orders.created_at',
+                'orders.total',
+                'orders.discounted_tota',
+                'products.product_id',
+                'products.product_name',
+                'products.image_url',
+                'orders.delivery_status',
+                'orders.quantity',
+                'orders.price',
+                'vendors.company_name'
+            )
+            ->orderBy('orders.created_at', 'desc')
+            ->get()
+            ->groupBy('order_batch_id')
+            ->map(function ($batch) {
+                $batch_discounted_total = $batch->sum('discounted_tota');
+                return [
+                    'created_at' => $batch->first()->created_at,
+                    'batch_total' => $batch->sum('total'),
+                    'batch_discounted_total' => $batch_discounted_total,
+                    'items' => $batch->map(function ($row) {
+                        return [
+                            'product_id'      => $row->product_id,
+                            'product_name'    => $row->product_name,
+                            'image_url'       => $row->image_url,
+                            'quantity'        => $row->quantity,
+                            'price'           => $row->price,
+                            'line_total'      => $row->total,
+                            'discounted_total' => $row->discounted_tota,
+                            'delivery_status' => $row->delivery_status,
+                            'vendor_name'     => $row->company_name,
+                        ];
+                    })
+                ];
+            });
+        return view('USER.SHIPPEDORDERS', ['batches' => $ordersShipped]);
     }
 
     public function GETPDF($batchId)

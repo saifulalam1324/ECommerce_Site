@@ -1,7 +1,7 @@
 @extends('VENDORPANEL.Vendor')
 @section('title', 'Add Product')
 @section('content')
-    <div class="container mt-5">
+    <div class="container mt-1">
         <div class="card shadow-lg">
             <div class="card-header text-white" style="background-color:#081621">
                 <h3 class="text-center">Add New Product</h3>
