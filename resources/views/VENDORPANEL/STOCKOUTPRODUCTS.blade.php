@@ -25,7 +25,7 @@
                             <li class="list-group-item"><strong>Quantity:</strong><strong class="text-danger"> {{ $product->stock_quantity }}</strong></li>
                             <li class="list-group-item">
                                 <div class="mt-3 d-flex">
-                                    <form action="#" class="d-flex" method="Post">
+                                    <form action="{{ route('restocked',$product->product_id )}}" class="d-flex" method="Post">
                                         @csrf
                                         <input type="number" name="stock" id="stock" class="form-control"
                                             placeholder="Enter Quantity">

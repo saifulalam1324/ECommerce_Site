@@ -28,7 +28,7 @@
                                     <img src="{{ asset('storage/' . $item['image_url']) }}" width="60" class="me-2">
                                     {{ $item['product_name'] }} (x{{ $item['quantity'] }})
                                 </span>
-                                <span>Delivery Status: <strong class="text-danger">{{ $item['delivery_status'] }}</strong></span>
+                                <span>Delivery Status: <strong class="text-success">{{ $item['delivery_status'] }}</strong></span>
                                 <span>Placed: {{ $batch['created_at'] }}</span>
                                 <span class="text-secondary">Sold by: {{ $item['vendor_name'] }}</span>
                                 <span>
