@@ -54,22 +54,32 @@
                             </li>
                             <li class="nav-item mb-2">
                                 <div class="dropdown ml-1" style="inline-size: 170px;">
-                                    <button class="btn btn-outline-light w-100 text-start dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-outline-light w-100 text-start dropdown-toggle"
+                                        type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                        aria-expanded="false">
                                         Your Products
                                     </button>
                                     <div class="dropdown-menu w-100" style="max-block-size: 200px; overflow-y: auto;"
                                         aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Action 1</a>
-                                        <a class="dropdown-item" href="#">Action 2</a>
-                                        <a class="dropdown-item" href="#">Action 3</a>
-                                        <a class="dropdown-item" href="#">Action 4</a>
-                                        <a class="dropdown-item" href="#">Action 5</a>
-                                        <a class="dropdown-item" href="#">Action 6</a>
-                                        <a class="dropdown-item" href="#">Action 7</a>
-                                        <a class="dropdown-item" href="#">Action 8</a>
-                                        <a class="dropdown-item" href="#">Action 9</a>
-                                        <a class="dropdown-item" href="#">Action 10</a>
+                                        <a class="dropdown-item" href="{{ route('AC') }}">AC</a>
+                                        <a class="dropdown-item" href="{{ route('AirCooler') }}">Air Cooler</a>
+                                        <a class="dropdown-item" href="{{ route('TV') }}">TV</a>
+                                        <a class="dropdown-item" href="{{ route('Fridge') }}">Fridge</a>
+                                        <a class="dropdown-item" href="{{ route('WashingMachine') }}">Washing Machine</a>
+                                        <a class="dropdown-item" href="{{ route('Oven') }}">Oven</a>
+                                        <a class="dropdown-item" href="{{ route('Blender') }}">Blender</a>
+                                        <a class="dropdown-item" href="{{ route('DishWasher') }}">Dish Washer</a>
+                                        <a class="dropdown-item" href="{{ route('Chimney') }}">Chimney</a>
+                                        <a class="dropdown-item" href="{{ route('ElectricStove') }}">Electric Stove</a>
+                                        <a class="dropdown-item" href="{{ route('RiceCooker') }}">Rice Cooker</a>
+                                        <a class="dropdown-item" href="{{ route('CeilingFan') }}">Ceiling Fan</a>
+                                        <a class="dropdown-item" href="{{ route('Toaster') }}">Toaster</a>
+                                        <a class="dropdown-item" href="{{ route('VacuumCleaner') }}">Vacuum Cleaner</a>
+                                        <a class="dropdown-item" href="{{ route('WaterHeater') }}">Water Heater</a>
+                                        <a class="dropdown-item" href="{{ route('Bulb') }}">Bulb</a>
+                                        <a class="dropdown-item" href="{{ route('Iron') }}">Iron</a>
+                                        <a class="dropdown-item" href="{{ route('AirPurifier') }}">Air Purifier</a>
+
                                     </div>
                                 </div>
                             </li>
@@ -83,7 +93,7 @@
                                 </li>
                                 <li class="nav-item"><a class="nav-link NAV" href="{{ route('VendorProfile') }}">
                                         <p><i class="fa-solid fa-user" style="color:white;"></i>
-                                            {{Auth::guard('vendor')->user()->company_name}}</p>
+                                            {{ Auth::guard('vendor')->user()->company_name }}</p>
                                     </a></li>
                             </ul>
                         </div>
