@@ -14,9 +14,11 @@ class AttachmentEmail extends Mailable
     use Queueable, SerializesModels;
 
     public $orderdetails;
-    public function __construct($orderdetails)
+    public $customername;
+    public function __construct($orderdetails,$customername)
     {
         $this->orderdetails=$orderdetails;
+        $this->customername=$customername;
     }
 
     /**
@@ -38,6 +40,7 @@ class AttachmentEmail extends Mailable
             view: 'ADMIN.MAIL',
             with: [
                 'orderdetails' => $this->orderdetails,
+                'customername' => $this->customername,
             ],
         );
     }
