@@ -451,94 +451,112 @@ class CustomerController extends Controller
         return view('USER.User',['counts' => $count]);
     }
 
-    public function GETAC()
-    {
-        $data = DB::table('products')->where('category', 'Ac')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETTV()
-    {
-        $data = DB::table('products')->where('category', 'Tv')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETAIRCOLLER()
-    {
-        $data = DB::table('products')->where('category', 'Air Coller')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETFRIDGE()
-    {
-        $data = DB::table('products')->where('category', 'Fridge')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETWASHINGMACHINE()
-    {
-        $data = DB::table('products')->where('category', 'Washing Machine')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETOVEN()
-    {
-        $data = DB::table('products')->where('category', 'Oven')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETBLENDER()
-    {
-        $data = DB::table('products')->where('category', 'Blender')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETDISHWASHER()
-    {
-        $data = DB::table('products')->where('category', 'Dish Washer')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETCHYMNI()
-    {
-        $data = DB::table('products')->where('category', 'Chymni')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETELECTRICSTOVE()
-    {
-        $data = DB::table('products')->where('category', 'Electriv Stove')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETRICECOOKER()
-    {
-        $data = DB::table('products')->where('category', 'Rice Cooker')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETCELLINGFAN()
-    {
-        $data = DB::table('products')->where('category', 'Celling Fan')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETTOASTER()
-    {
-        $data = DB::table('products')->where('category', 'Toaster')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETVACUUMCLEANER()
-    {
-        $data = DB::table('products')->where('category', 'Vacuum Cleaner')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETWATERHEATER()
-    {
-        $data = DB::table('products')->where('category', 'Water Heater')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETBULB()
-    {
-        $data = DB::table('products')->where('category', 'Bulb')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETIRON()
-    {
-        $data = DB::table('products')->where('category', 'Iron')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
-    public function GETAIRPURIFIER()
-    {
-        $data = DB::table('products')->where('category', 'Air Purifier')->get();
-        return view('USER.HOME', ['products' => $data]);
-    }
+   public function GETAC()
+{
+    $data = DB::table('products')->where('category', 'Ac')->get();
+    return view('USER.AC', ['products' => $data]);
+}
+
+public function GETTV()
+{
+    $data = DB::table('products')->where('category', 'Tv')->get();
+    return view('USER.TV', ['products' => $data]);
+}
+
+public function GETAIRCOOLER()
+{
+    $data = DB::table('products')->where('category', 'Air Cooler')->get();
+    return view('USER.AIRCOOLER', ['products' => $data]);
+}
+
+public function GETFRIDGE()
+{
+    $data = DB::table('products')->where('category', 'Fridge')->get();
+    return view('USER.FRIDGE', ['products' => $data]);
+}
+
+public function GETWASHINGMACHINE()
+{
+    $data = DB::table('products')->where('category', 'Washing Machine')->get();
+    return view('USER.WASHINGMACHINE', ['products' => $data]);
+}
+
+public function GETOVEN()
+{
+    $data = DB::table('products')->where('category', 'Oven')->get();
+    return view('USER.OVEN', ['products' => $data]);
+}
+
+public function GETBLENDER()
+{
+    $data = DB::table('products')->where('category', 'Blender')->get();
+    return view('USER.BLENDER', ['products' => $data]);
+}
+
+public function GETDISHWASHER()
+{
+    $data = DB::table('products')->where('category', 'Dish Washer')->get();
+    return view('USER.DISHWASHER', ['products' => $data]);
+}
+
+public function GETCHIMNEY()
+{
+    $data = DB::table('products')->where('category', 'Chimney')->get();
+    return view('USER.CHYMNI', ['products' => $data]);
+}
+
+public function GETELECTRICSTOVE()
+{
+    $data = DB::table('products')->where('category', 'Electric Stove')->get();
+    return view('USER.ELECTRICSTOVE', ['products' => $data]);
+}
+
+public function GETRICECOOKER()
+{
+    $data = DB::table('products')->where('category', 'Rice Cooker')->get();
+    return view('USER.RICECOOKER', ['products' => $data]);
+}
+
+public function GETCEILINGFAN()
+{
+    $data = DB::table('products')->where('category', 'Ceiling Fan')->get();
+    return view('USER.CELLINGFAN', ['products' => $data]);
+}
+
+public function GETTOASTER()
+{
+    $data = DB::table('products')->where('category', 'Toaster')->get();
+    return view('USER.TOASTER', ['products' => $data]);
+}
+
+public function GETVACUUMCLEANER()
+{
+    $data = DB::table('products')->where('category', 'Vacuum Cleaner')->get();
+    return view('USER.VACUUMCLEANER', ['products' => $data]);
+}
+
+public function GETWATERHEATER()
+{
+    $data = DB::table('products')->where('category', 'Water Heater')->get();
+    return view('USER.WATERHEATER', ['products' => $data]);
+}
+
+public function GETBULB()
+{
+    $data = DB::table('products')->where('category', 'Bulb')->get();
+    return view('USER.BULB', ['products' => $data]);
+}
+
+public function GETIRON()
+{
+    $data = DB::table('products')->where('category', 'Iron')->get();
+    return view('USER.IRON', ['products' => $data]);
+}
+
+public function GETAIRPURIFIER()
+{
+    $data = DB::table('products')->where('category', 'Air Purifier')->get();
+    return view('USER.AIRPURIFIER', ['products' => $data]);
+}
+
 }

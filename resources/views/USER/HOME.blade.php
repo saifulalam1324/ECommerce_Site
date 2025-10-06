@@ -40,7 +40,7 @@
                 <p>Get Your Desired Product from Featured Category</p>
             </div>
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('ACC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -54,7 +54,7 @@
             </div>
 
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('AirCoolerC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -68,7 +68,7 @@
             </div>
 
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('TVC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -81,7 +81,7 @@
                 </a>
             </div>
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('FridgeC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -94,7 +94,7 @@
                 </a>
             </div>
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('WashingMachineC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -107,7 +107,7 @@
                 </a>
             </div>
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('OvenC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -121,12 +121,10 @@
             </div>
         </div>
     </div>
-
-
     <div class="container my-4">
         <div class="row g-4 text-center">
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('BlenderC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -140,7 +138,7 @@
             </div>
 
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('DishWasherC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -154,7 +152,7 @@
             </div>
 
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('ChimneyC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -167,7 +165,7 @@
                 </a>
             </div>
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('ElectricStoveC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -180,7 +178,7 @@
                 </a>
             </div>
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('RiceCookerC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -193,7 +191,7 @@
                 </a>
             </div>
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('CeilingFanC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -211,7 +209,7 @@
     <div class="container my-4">
         <div class="row g-4 text-center">
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('ToasterC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -225,7 +223,7 @@
             </div>
 
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('VacuumCleanerC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -239,7 +237,7 @@
             </div>
 
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('WaterHeaterC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -252,7 +250,7 @@
                 </a>
             </div>
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('BulbC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -265,7 +263,7 @@
                 </a>
             </div>
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('IronC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
@@ -278,7 +276,7 @@
                 </a>
             </div>
             <div class="col-md-2 col-sm-4">
-                <a href="#" class=" text-decoration-none">
+                <a href="{{ route('AirPurifierC') }}" class=" text-decoration-none">
                     <div class="card shadow-lg h-100 btn">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                             <div class="mb-2">
