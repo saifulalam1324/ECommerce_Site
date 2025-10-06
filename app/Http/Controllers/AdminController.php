@@ -191,18 +191,20 @@ class AdminController extends Controller
                 'orders.delivery_status',
                 'orders.quantity',
                 'orders.price',
+                'orders.discounted_tota',
                 'vendors.company_name',
                 'vendors.email',
                 'customers.customer_id',
-                'customers.full_name',
+                'customers.full_name as Name',
                 'customers.email as customer_email',
                 'customers.phone_number',
                 'customers.address'
             )
             ->orderBy('orders.created_at', 'desc')
             ->get();
+        $customername=$orderdetails->first()->Name;
         $customerMail = $orderdetails->first()->customer_email;
-        Mail::to($customerMail)->send(new AttachmentEmail($orderdetails));
+        Mail::to($customerMail)->send(new AttachmentEmail($orderdetails,$customername));
         $updateStatus = DB::table('orders')
             ->where('order_batch_id', $order_batch_id)
             ->update(['delivery_status' => 'Shipped', 'updated_at' => now()]);
@@ -348,9 +350,9 @@ class AdminController extends Controller
             ->where('order_batch_id', $order_batch_id)
             ->update(['delivery_status' => 'Delivered', 'updated_at' => now()]);
         if ($updateStatus) {
-            return redirect()->route('AllOrders')->with('success', 'Delivery status updated successfully!');
+            return redirect()->route('ShippedOrdersadmin')->with('success', 'Delivery status updated successfully!');
         } else {
-            return redirect()->route('AllOrders')->with('error', 'Failed to update delivery status. Please try again.');
+            return redirect()->route('ShippedOrdersadmin')->with('error', 'Failed to update delivery status. Please try again.');
         }
     }
 }
