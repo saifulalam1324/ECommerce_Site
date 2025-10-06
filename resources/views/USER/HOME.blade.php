@@ -305,10 +305,12 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
                     <div class="card product-card shadow-sm h-100">
                         <div class="position-relative">
-                            <span class="badge badge-danger position-absolute"
-                                style="inset-block-start: 10px; inset-inline-start: 10px; font-size: 0.8rem;">
-                                -{{ $data->discount }}%
-                            </span>
+                            @if ($data->discount > 0)
+                                <span class="badge position-absolute text-white"
+                                    style="inset-block-start: 10px; inset-inline-start: 10px; font-size: 0.8rem; background-color: #081621;">
+                                    -{{ $data->discount }}%
+                                </span>
+                            @endif
                             <div class="text-center">
                                 <img src="{{ asset('storage/' . $data->image_url) }}" class="product-img card-img-top img-fluid"
                                     alt="{{ $data->product_name ?? 'Product image' }}"
@@ -398,7 +400,7 @@
                             </div>
                             <div class="modal-footer">
                                 @if (Auth::guard('customer')->check())
-                                    @if ($data->stock_quantity <= 0)
+                                    @if ($data->stock_quantity <= 0 || count(session('cart', [])))
                                         <button class="btn border-0 disabled" title="Add to cart">
                                             <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
                                         </button>
@@ -449,9 +451,9 @@
                         let count = parseInt(countEl.text()) || 0;
                         countEl.text(count + 1);
                         form.replaceWith(`
-                        <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
-                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
-                    `);
+                            <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
+                        `);
                     },
                     error: function (xhr) {
                         if (xhr.status === 401 && xhr.responseJSON?.login === false) {
@@ -469,4 +471,5 @@
             });
         });
     </script>
+
 @endsection

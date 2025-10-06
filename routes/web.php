@@ -49,6 +49,10 @@ Route::middleware(['customer'])->group(function () {
         ->name('Search');
     Route::get('/orders', [CustomerController::class, 'BATCHORDERSPENDING'])
         ->name('Orders');
+    Route::get('/shippedordersc', [CustomerController::class, 'BATCHORDERSSHIPPED'])
+        ->name('ShippedOrdersc');
+    Route::get('/deliveredorders', [CustomerController::class, 'BATCHORDERSDONE'])
+        ->name('deliveredOrders');
     Route::get('/pdf/{id}', [CustomerController::class, 'GETPDF'])
         ->name('Pdf');
     Route::get('/transactions', [CustomerController::class, 'TOTALTRANSACTION'])
@@ -77,8 +81,8 @@ Route::middleware(['customer'])->group(function () {
         ->name('OvenC');
     Route::get('/BlenderC', [CustomerController::class, 'GETBLENDER'])
         ->name('BlenderC');
-    Route::get('/DishWasherC', [CustomerController::class, 'GETDISHWASHER']
-        )->name('DishWasherC');
+    Route::get('/DishWasherC', [CustomerController::class, 'GETDISHWASHER'])
+        ->name('DishWasherC');
     Route::get('/ChimneyC', [CustomerController::class, 'GETCHIMNEY'])
         ->name('ChimneyC');
     Route::get('/ElectricStoveC', [CustomerController::class, 'GETELECTRICSTOVE'])
@@ -91,15 +95,13 @@ Route::middleware(['customer'])->group(function () {
         ->name('ToasterC');
     Route::get('/VacuumCleanerC', [CustomerController::class, 'GETVACUUMCLEANER'])
         ->name('VacuumCleanerC');
-    Route::get('/WaterHeaterC', [CustomerController::class, 'GETWATERHEATER'])->
-        name('WaterHeaterC');
+    Route::get('/WaterHeaterC', [CustomerController::class, 'GETWATERHEATER'])->name('WaterHeaterC');
     Route::get('/BulbC', [CustomerController::class, 'GETBULB'])
         ->name('BulbC');
     Route::get('/IronC', [CustomerController::class, 'GETIRON'])
         ->name('IronC');
     Route::get('/AirPurifierC', [CustomerController::class, 'GETAIRPURIFIER'])
         ->name('AirPurifierC');
-
 });
 
 
@@ -175,8 +177,8 @@ Route::middleware(['vendor'])->group(function () {
         ->name('ShippedOrders');
     Route::get('/delivereddorders', [VendorController::class, 'BATCHORDERSSHIPPEDDONE'])
         ->name('DeliveredOrders');
-    Route::get('/AC', [VendorController::class, 'GETACV'])
-        ->name('AC');
+    Route::get('/ACV', [VendorController::class, 'GETACV'])
+        ->name('ACV');
     Route::get('/AirCooler', [VendorController::class, 'GETAirCoolerV'])
         ->name('AirCooler');
     Route::get('/TV', [VendorController::class, 'GETTVV'])
@@ -211,5 +213,10 @@ Route::middleware(['vendor'])->group(function () {
         ->name('Iron');
     Route::get('/AirPurifier', [VendorController::class, 'GETAirPurifierV'])
         ->name('AirPurifier');
-
+    Route::post('/restockproduct/{id}', [VendorController::class, 'RESTOCK'])
+        ->name('restocked');
+    Route::get('/updateproductpage/{id}', [VendorController::class, 'VIEWUPDATEPRODUCTPAGE'])
+        ->name('viewupdatepage');
+    Route::post('/updateproduct/{id}', [VendorController::class, 'UPDATEPRODUCTINFO'])
+        ->name('Updateproduct');
 });
