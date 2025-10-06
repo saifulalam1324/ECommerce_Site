@@ -86,9 +86,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6 d-flex flex-column">
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                        <a href="{{ route('ACC') }}" class="text-decoration-none mb-2" style="color: black;"><i
                                 class="fa-solid fa-square"></i>Ac</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
+                        <a href="" class="text-decoration-none mb-2" style="color: black;"><i
                                 class="fa-solid fa-square"></i>Air Cooler</a>
                         <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
                                 class="fa-solid fa-square"></i>TV</a>

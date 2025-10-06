@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="card-body">
-            @if(session('success'))
+            @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -17,7 +17,7 @@
                 </div>
             @endif
 
-            @if(session('error'))
+            @if (session('error'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ session('error') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -33,7 +33,9 @@
                         <input type="text" name="product_name" id="product_name" class="form-control"
                             value="{{ old('product_name') }}">
                         <span class="text-danger">
-                            @error('product_name') {{ $message }} @enderror
+                            @error('product_name')
+                                {{ $message }}
+                            @enderror
                         </span>
                     </div>
                     <div class="form-group col-md-6">
@@ -41,7 +43,9 @@
                         <input type="number" step="0.01" name="price" id="price" class="form-control"
                             value="{{ old('price') }}">
                         <span class="text-danger">
-                            @error('price') {{ $message }} @enderror
+                            @error('price')
+                                {{ $message }}
+                            @enderror
                         </span>
                     </div>
                 </div>
@@ -50,23 +54,31 @@
                     <textarea name="description" id="description" rows="3" class="form-control"
                         style="block-size: 100px; resize: none;"></textarea>
                     <span class="text-danger">
-                        @error('description') {{ $message }} @enderror
+                        @error('description')
+                            {{ $message }}
+                        @enderror
                     </span>
                 </div>
 
                 <div class="form-group">
                     <label for="product_model">Model</label>
-                    <input type="text" name="model" id="product_model" class="form-control" value="{{ old('model') }}">
+                    <input type="text" name="model" id="product_model" class="form-control"
+                        value="{{ old('model') }}">
                     <span class="text-danger">
-                        @error('model') {{ $message }} @enderror
+                        @error('model')
+                            {{ $message }}
+                        @enderror
                     </span>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="stock">Quantity</label>
-                        <input type="number" name="stock" id="stock" class="form-control" value="{{ old('stock') }}">
+                        <input type="number" name="stock" id="stock" class="form-control"
+                            value="{{ old('stock') }}">
                         <span class="text-danger">
-                            @error('stock') {{ $message }} @enderror
+                            @error('stock')
+                                {{ $message }}
+                            @enderror
                         </span>
                     </div>
                     <div class="form-group col-md-4">
@@ -74,7 +86,9 @@
                         <input type="number" name="discount" id="discount" class="form-control"
                             value="{{ old('discount') }}">
                         <span class="text-danger">
-                            @error('discount') {{ $message }} @enderror
+                            @error('discount')
+                                {{ $message }}
+                            @enderror
                         </span>
                     </div>
                     <div class="form-group col-md-4">
@@ -86,9 +100,24 @@
                             <option value="Tv">TV</option>
                             <option value="Fridge">Fridge</option>
                             <option value="Washing Machine">Washing Machine</option>
+                            <option value="Oven">Oven</option>
+                            <option value="Blender">Blender</option>
+                            <option value="Dish Washer">Dish Washer</option>
+                            <option value="Chimney">Chimney</option>
+                            <option value="Electric Stove">Electric Stove</option>
+                            <option value="Rice Cooker">Rice Cooker</option>
+                            <option value="Ceiling Fan">Ceiling Fan</option>
+                            <option value="Toaster">Toaster</option>
+                            <option value="Vacuum Cleaner">Vacuum Cleaner</option>
+                            <option value="Water Heater">Water Heater</option>
+                            <option value="Bulb">Bulb</option>
+                            <option value="Iron">Iron</option>
+                            <option value="Air Purifier">Air Purifier</option>
                         </select>
                         <span class="text-danger">
-                            @error('category') {{ $message }} @enderror
+                            @error('category')
+                                {{ $message }}
+                            @enderror
                         </span>
                     </div>
                 </div>
@@ -97,7 +126,9 @@
                     <input type="file" name="image" id="image" class="form-control-file" accept="image/*"
                         value="{{ old('image') }}">
                     <span class="text-danger">
-                        @error('image') {{ $message }} @enderror
+                        @error('image')
+                            {{ $message }}
+                        @enderror
                     </span>
                 </div>
 

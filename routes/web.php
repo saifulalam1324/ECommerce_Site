@@ -63,6 +63,43 @@ Route::middleware(['customer'])->group(function () {
         ->name('Updateprofile');
     Route::get('/ordercount', [CustomerController::class, 'COUNTORDERS'])
         ->name('ordercount');
+    Route::get('/ACC', [CustomerController::class, 'GETAC'])
+        ->name('ACC');
+    Route::get('/TVC', [CustomerController::class, 'GETTV'])
+        ->name('TVC');
+    Route::get('/AirCoolerC', [CustomerController::class, 'GETAIRCOOLER'])
+        ->name('AirCoolerC');
+    Route::get('/FridgeC', [CustomerController::class, 'GETFRIDGE'])
+        ->name('FridgeC');
+    Route::get('/WashingMachineC', [CustomerController::class, 'GETWASHINGMACHINE'])
+        ->name('WashingMachineC');
+    Route::get('/OvenC', [CustomerController::class, 'GETOVEN'])
+        ->name('OvenC');
+    Route::get('/BlenderC', [CustomerController::class, 'GETBLENDER'])
+        ->name('BlenderC');
+    Route::get('/DishWasherC', [CustomerController::class, 'GETDISHWASHER']
+        )->name('DishWasherC');
+    Route::get('/ChimneyC', [CustomerController::class, 'GETCHIMNEY'])
+        ->name('ChimneyC');
+    Route::get('/ElectricStoveC', [CustomerController::class, 'GETELECTRICSTOVE'])
+        ->name('ElectricStoveC');
+    Route::get('/RiceCookerC', [CustomerController::class, 'GETRICECOOKER'])
+        ->name('RiceCookerC');
+    Route::get('/CeilingFanC', [CustomerController::class, 'GETCEILINGFAN'])
+        ->name('CeilingFanC');
+    Route::get('/ToasterC', [CustomerController::class, 'GETTOASTER'])
+        ->name('ToasterC');
+    Route::get('/VacuumCleanerC', [CustomerController::class, 'GETVACUUMCLEANER'])
+        ->name('VacuumCleanerC');
+    Route::get('/WaterHeaterC', [CustomerController::class, 'GETWATERHEATER'])->
+        name('WaterHeaterC');
+    Route::get('/BulbC', [CustomerController::class, 'GETBULB'])
+        ->name('BulbC');
+    Route::get('/IronC', [CustomerController::class, 'GETIRON'])
+        ->name('IronC');
+    Route::get('/AirPurifierC', [CustomerController::class, 'GETAIRPURIFIER'])
+        ->name('AirPurifierC');
+
 });
 
 
@@ -136,6 +173,43 @@ Route::middleware(['vendor'])->group(function () {
         ->name('Stockoutproduct');
     Route::get('/shippedorders', [VendorController::class, 'BATCHORDERSSHIPPED'])
         ->name('ShippedOrders');
-     Route::get('/delivereddorders', [VendorController::class, 'BATCHORDERSSHIPPEDDONE'])
+    Route::get('/delivereddorders', [VendorController::class, 'BATCHORDERSSHIPPEDDONE'])
         ->name('DeliveredOrders');
+    Route::get('/AC', [VendorController::class, 'GETACV'])
+        ->name('AC');
+    Route::get('/AirCooler', [VendorController::class, 'GETAirCoolerV'])
+        ->name('AirCooler');
+    Route::get('/TV', [VendorController::class, 'GETTVV'])
+        ->name('TV');
+    Route::get('/Fridge', [VendorController::class, 'GETFridgeV'])
+        ->name('Fridge');
+    Route::get('/WashingMachine', [VendorController::class, 'GETWashingMachineV'])
+        ->name('WashingMachine');
+    Route::get('/Oven', [VendorController::class, 'GETOvenV'])
+        ->name('Oven');
+    Route::get('/Blender', [VendorController::class, 'GETBlenderV'])
+        ->name('Blender');
+    Route::get('/DishWasher', [VendorController::class, 'GETDishWasherV'])
+        ->name('DishWasher');
+    Route::get('/Chimney', [VendorController::class, 'GETChimneyV'])
+        ->name('Chimney');
+    Route::get('/ElectricStove', [VendorController::class, 'GETElectricStoveV'])
+        ->name('ElectricStove');
+    Route::get('/RiceCooker', [VendorController::class, 'GETRiceCookerV'])
+        ->name('RiceCooker');
+    Route::get('/CeilingFan', [VendorController::class, 'GETCeilingFanV'])
+        ->name('CeilingFan');
+    Route::get('/Toaster', [VendorController::class, 'GETToasterV'])
+        ->name('Toaster');
+    Route::get('/VacuumCleaner', [VendorController::class, 'GETVacuumCleanerV'])
+        ->name('VacuumCleaner');
+    Route::get('/WaterHeater', [VendorController::class, 'GETWaterHeaterV'])
+        ->name('WaterHeater');
+    Route::get('/Bulb', [VendorController::class, 'GETBulbV'])
+        ->name('Bulb');
+    Route::get('/Iron', [VendorController::class, 'GETIronV'])
+        ->name('Iron');
+    Route::get('/AirPurifier', [VendorController::class, 'GETAirPurifierV'])
+        ->name('AirPurifier');
+
 });

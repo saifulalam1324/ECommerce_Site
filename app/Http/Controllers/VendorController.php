@@ -284,6 +284,127 @@ class VendorController extends Controller
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
         $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Ac')->get();
-        return view('VENDORPANEL.HOME', ['products' => $data]);
+        return view('VENDORPANEL.AC', ['products' => $data]);
     }
+
+    public function GETAirCoolerV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Air Cooler')->get();
+        return view('VENDORPANEL.AIRCOOLER', ['products' => $data]);
+    }
+
+    public function GETTVV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Tv')->get();
+        return view('VENDORPANEL.TV', ['products' => $data]);
+    }
+
+    public function GETFridgeV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Fridge')->get();
+        return view('VENDORPANEL.FRIDGE', ['products' => $data]);
+    }
+
+    public function GETWashingMachineV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Washing Machine')->get();
+        return view('VENDORPANEL.WASHINGMACHINE', ['products' => $data]);
+    }
+
+    public function GETOvenV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Oven')->get();
+        return view('VENDORPANEL.OVEN', ['products' => $data]);
+    }
+
+    public function GETBlenderV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Blender')->get();
+        return view('VENDORPANEL.BLENDER', ['products' => $data]);
+    }
+
+    public function GETDishWasherV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Dish Washer')->get();
+        return view('VENDORPANEL.DISHWASHER', ['products' => $data]);
+    }
+
+    public function GETChimneyV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Chimney')->get();
+        return view('VENDORPANEL.CHYMNI', ['products' => $data]);
+    }
+
+    public function GETElectricStoveV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Electric Stove')->get();
+        return view('VENDORPANEL.ELECTRICSTOVE', ['products' => $data]);
+    }
+
+    public function GETRiceCookerV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Rice Cooker')->get();
+        return view('VENDORPANEL.RICECOOKER', ['products' => $data]);
+    }
+
+    public function GETCeilingFanV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Celling Fan')->get();
+        return view('VENDORPANEL.CELLINGFAN', ['products' => $data]);
+    }
+
+    public function GETToasterV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Toaster')->get();
+        return view('VENDORPANEL.TOASTER', ['products' => $data]);
+    }
+
+    public function GETVacuumCleanerV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Vacuum Cleaner')->get();
+        return view('VENDORPANEL.VACUUMCLEANER', ['products' => $data]);
+    }
+
+    public function GETWaterHeaterV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Water Heater')->get();
+        return view('VENDORPANEL.WATERHEATER', ['products' => $data]);
+    }
+
+    public function GETBulbV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Bulb')->get();
+        return view('VENDORPANEL.BULB', ['products' => $data]);
+    }
+
+    public function GETIronV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Iron')->get();
+        return view('VENDORPANEL.IRON', ['products' => $data]);
+    }
+
+    public function GETAirPurifierV()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Air Purifier')->get();
+        return view('VENDORPANEL.AIRPURIFIER', ['products' => $data]);
+    }
+
+
 }
