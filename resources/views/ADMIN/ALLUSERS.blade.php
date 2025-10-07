@@ -28,9 +28,41 @@
                         <li class="list-group-item"><strong>Phone:</strong> {{ $user->phone_number }}</li>
                     </ul>
                     <div class="text-end mt-3">
-                        <a href="#" class="btn text-white" style="background-color:#081621">
+                        <a href="javascript:void(0)" class="btn text-white" style="background-color:#081621" data-toggle="modal"
+                            data-target="#userModal{{ $user->customer_id }}">
                             More..
                         </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade m-5" id="userModal{{ $user->customer_id }}" tabindex="-1" role="dialog"
+                aria-labelledby="userModalLabel{{ $user->customer_id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color:#081621;">
+                            <h5 class="modal-title text-white" id="userModalLabel{{ $user->customer_id }}">
+                                User Details (ID: {{ $user->customer_id }})
+                            </h5>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Full Name:</strong> {{ $user->full_name }}</li>
+                                <li class="list-group-item"><strong>Email:</strong> {{ $user->email }}</li>
+                                <li class="list-group-item"><strong>Phone:</strong> {{ $user->phone_number }}</li>
+                                <li class="list-group-item"><strong>Address:</strong> {{ $user->address ?? 'N/A' }}</li>
+                                <li class="list-group-item"><strong>Joined On:</strong> {{ $user->created_at ?? 'N/A' }}</li>
+                            </ul>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
