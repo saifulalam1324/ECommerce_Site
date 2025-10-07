@@ -155,8 +155,6 @@ Route::post('/vendorregister', [VendorController::class, 'VENDORSIGNUP'])
 Route::post('/vendorlogin', [VendorController::class, 'VENDORLOGIN'])
     ->name('VendorLogin');
 Route::middleware(['vendor'])->group(function () {
-    Route::get('/vendor', [VendorController::class, 'VENDORHOME'])
-        ->name('Vendor home');
     Route::get('/addproduct', [VendorController::class, 'ADDPRODUCT'])
         ->name('Add product');
     Route::post('/storeproduct', [VendorController::class, 'STOREPRODUCT'])
@@ -219,4 +217,6 @@ Route::middleware(['vendor'])->group(function () {
         ->name('viewupdatepage');
     Route::post('/updateproduct/{id}', [VendorController::class, 'UPDATEPRODUCTINFO'])
         ->name('Updateproduct');
+    Route::get('/vendor', [VendorController::class, 'COUNTITEMSALE'])
+        ->name('Vendor home');
 });
