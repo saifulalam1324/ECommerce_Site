@@ -2,44 +2,46 @@
 @section('title', 'Vendor Home')
 @section('content')
 
-    <div class="container mt-3 pt-5 mb-5 justify-content-center d-flex">
-        <div class="row container">
-            <div class="col-8 justify-content-center align-items-center d-flex">
-                <div class="container">
-                    <canvas id="myChart" width="700" height="500"></canvas>
+    <div class="container justify-content-center">
+        <div class="container mt-3 pt-5 mb-5 justify-content-center d-flex">
+            <div class="row container">
+                <div class="col-8 justify-content-center align-items-center d-flex">
+                    <div class="container">
+                        <canvas id="myChart" width="700" height="500"></canvas>
+                    </div>
                 </div>
-            </div>
-            <div class="col-4 justify-content-center align-items-center d-flex">
-                <div class="container">
+                <div class="col-4 justify-content-center align-items-center d-flex">
+                    <div class="container">
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container mt-3 pt-5 mb-5 justify-content-center d-flex">
-        <div class="row container">
-            <div class="col-4 ">
-                <div class="container">
+        <div class="container mt-3 ml-2 pt-5 mb-5 justify-content-center d-flex">
+            <div class="row container">
+                <div class="col-4 ">
+                    <div class="container">
 
+                    </div>
                 </div>
-            </div>
-            <div class="col-8 justify-content-center align-items-center d-flex">
-                <div class="container">
-                    <canvas id="myDoughnut" width="700" height="500"></canvas>
+                <div class="col-8 justify-content-center align-items-center d-flex">
+                    <div class="container">
+                        <canvas id="myDoughnut" width="700" height="500"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container mt-3 pt-5 mb-5 justify-content-center d-flex">
-        <div class="row container">
-            <div class="col-8 justify-content-center align-items-center d-flex">
-                <div class="container">
-                    <canvas id="myLineChart" width="700" height="500"></canvas>
+        <div class="container mt-3 pt-5 mb-5 justify-content-center d-flex">
+            <div class="row container">
+                <div class="col-8 justify-content-center align-items-center d-flex">
+                    <div class="container">
+                        <canvas id="myLineChart" width="700" height="500"></canvas>
+                    </div>
                 </div>
-            </div>
-            <div class="col-4 justify-content-center align-items-center d-flex">
-                <div class="container">
+                <div class="col-4 justify-content-center align-items-center d-flex">
+                    <div class="container">
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -54,10 +56,20 @@
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Tv', 'Fridge', 'Ac', 'Green', 'Purple', 'Orange', 'Tv', 'Fridge', 'Ac', 'Green', 'Purple', 'Orange', 'Tv', 'Fridge', 'Ac', 'Green', 'Purple', 'Orange'],
+                labels: [
+                    'Ac', 'AirCooler', 'Tv', 'Fridge', 'WashingMachine', 'Oven',
+                    'Blender', 'DishWasher', 'Chimney', 'ElectricStove', 'RiceCooker',
+                    'CeilingFan', 'Toaster', 'VacuumCleaner', 'WaterHeater', 'Bulb',
+                    'Iron', 'AirPurifier'
+                ],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
+                    label: '# of Orders',
+                    data: [
+                                {{ $Ac }}, {{ $Aicooler }}, {{ $Tv }}, {{ $Fridge }}, {{ $Washingmachine }}, {{ $Oven }},
+                                {{ $Blender }}, {{ $Dishwasher }}, {{ $Chimney }}, {{ $Electricstove }}, {{ $Ricecooker }},
+                                {{ $Ceillingfan }}, {{ $Toaster }}, {{ $Vacuumcleaner }}, {{ $waterheater }}, {{ $Bulb }},
+                                {{ $Iron }}, {{ $Airpurifier }}
+                    ],
                     backgroundColor: Array(18).fill('#081621')
                 }]
             },
@@ -72,19 +84,31 @@
             }
         });
 
+
         const ctx2 = document.getElementById('myDoughnut').getContext('2d');
+
 
         new Chart(ctx2, {
             type: 'doughnut',
             data: {
-                labels: ['Red', 'Blue', 'Yellow'],
+                labels: [
+                    'Ac', 'AirCooler', 'Tv', 'Fridge', 'WashingMachine', 'Oven',
+                    'Blender', 'DishWasher', 'Chimney', 'ElectricStove', 'RiceCooker',
+                    'CeilingFan', 'Toaster', 'VacuumCleaner', 'WaterHeater', 'Bulb',
+                    'Iron', 'AirPurifier'
+                ],
                 datasets: [{
-                    label: 'My First Dataset',
-                    data: [300, 50, 100],
+                    label: 'Orders per Category',
+                    data: [
+                            {{ $Ac }}, {{ $Aicooler }}, {{ $Tv }}, {{ $Fridge }}, {{ $Washingmachine }}, {{ $Oven }},
+                            {{ $Blender }}, {{ $Dishwasher }}, {{ $Chimney }}, {{ $Electricstove }}, {{ $Ricecooker }},
+                            {{ $Ceillingfan }}, {{ $Toaster }}, {{ $Vacuumcleaner }}, {{ $waterheater }}, {{ $Bulb }},
+                            {{ $Iron }}, {{ $Airpurifier }}
+                    ],
                     backgroundColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 205, 86)'
+                        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40',
+                        '#C9CBCF', '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+                        '#FF9F40', '#C9CBCF', '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'
                     ],
                     hoverOffset: 4
                 }]
@@ -99,23 +123,37 @@
 
         const ctx3 = document.getElementById('myLineChart').getContext('2d');
 
-        const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']; // or Utils.months({count: 7})
-
         new Chart(ctx3, {
             type: 'line',
             data: {
-                labels: labels,
+                labels: [
+                    'Ac', 'AirCooler', 'Tv', 'Fridge', 'WashingMachine', 'Oven',
+                    'Blender', 'DishWasher', 'Chimney', 'ElectricStove', 'RiceCooker',
+                    'CeilingFan', 'Toaster', 'VacuumCleaner', 'WaterHeater', 'Bulb',
+                    'Iron', 'AirPurifier'
+                ],
                 datasets: [{
-                    label: 'My First Dataset',
-                    data: [65, 59, 80, 81, 56, 55, 40],
+                    label: 'Orders per Category',
+                    data: [
+                        {{ $Ac }}, {{ $Aicooler }}, {{ $Tv }}, {{ $Fridge }}, {{ $Washingmachine }}, {{ $Oven }},
+                        {{ $Blender }}, {{ $Dishwasher }}, {{ $Chimney }}, {{ $Electricstove }}, {{ $Ricecooker }},
+                        {{ $Ceillingfan }}, {{ $Toaster }}, {{ $Vacuumcleaner }}, {{ $waterheater }}, {{ $Bulb }},
+                        {{ $Iron }}, {{ $Airpurifier }}
+                    ],
                     fill: false,
                     borderColor: 'rgb(75, 192, 192)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     tension: 0.1
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         });
 

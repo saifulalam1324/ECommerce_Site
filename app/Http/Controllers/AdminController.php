@@ -27,19 +27,34 @@ class AdminController extends Controller
     }
     public function READUSERS()
     {
-        $data = DB::table('customers')->orderBy('customer_id')->cursorPaginate(8);
+        $data = DB::table('customers')->orderBy('customer_id')->cursorPaginate(20);
         return view('ADMIN.ALLUSERS', ['customers' => $data]);
     }
     public function READVENDORS()
     {
-        $data = DB::table('vendors')->orderBy('vendor_id')->cursorPaginate(8);
-        return view('ADMIN.ALLVENDORS', ['vendors' => $data]);
+        $vendors = DB::table('vendors')->where('approve_status',1)
+            ->leftJoin('orders', 'vendors.vendor_id', '=', 'orders.vendor_id')
+            ->select(
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email',
+                'vendors.created_at',
+                'vendors.updated_at',
+                DB::raw('COALESCE(SUM(orders.discounted_tota), 0) AS total_sale')
+            )
+            ->groupBy(
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email',
+                'vendors.created_at',
+                'vendors.updated_at'
+            )
+            ->orderBy('vendors.vendor_id', 'asc')
+            ->paginate(20);
+
+        return view('ADMIN.ALLVENDORS', ['vendors' => $vendors]);
     }
-    public function READVENDORS1(int $id)
-    {
-        $data = DB::table('vendors')->where('vendor_id', $id)->get();
-        return view('ADMIN.VENDORDETAILS', ['vendors' => $data]);
-    }
+
     public function ADMINPROFILE()
     {
         return view('ADMIN.PROFILE');
@@ -123,7 +138,7 @@ class AdminController extends Controller
                 'orders.order_batch_id',
                 'orders.created_at',
                 'orders.total',
-                'orders.discounted_tota', // <--- add discounted total
+                'orders.discounted_tota',
                 'products.product_id',
                 'products.product_name',
                 'products.image_url',
@@ -202,9 +217,9 @@ class AdminController extends Controller
             )
             ->orderBy('orders.created_at', 'desc')
             ->get();
-        $customername=$orderdetails->first()->Name;
+        $customername = $orderdetails->first()->Name;
         $customerMail = $orderdetails->first()->customer_email;
-        Mail::to($customerMail)->send(new AttachmentEmail($orderdetails,$customername));
+        Mail::to($customerMail)->send(new AttachmentEmail($orderdetails, $customername));
         $updateStatus = DB::table('orders')
             ->where('order_batch_id', $order_batch_id)
             ->update(['delivery_status' => 'Shipped', 'updated_at' => now()]);
