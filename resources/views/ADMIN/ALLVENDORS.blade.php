@@ -27,9 +27,42 @@
                         <li class="list-group-item"><strong>Email:</strong> {{ $vendor->email }}</li>
                     </ul>
                     <div class="text-end mt-3">
-                        <a href="{{ route('Each vendors', $vendor->vendor_id) }}" class="btn text-white" style="background-color:#081621">
+                        <!-- ✅ Modal Trigger -->
+                        <a href="javascript:void(0)" class="btn text-white" style="background-color:#081621" data-toggle="modal"
+                            data-target="#productModal{{ $vendor->vendor_id }}">
                             More..
                         </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ✅ Vendor Modal -->
+            <div class="modal fade m-5" id="productModal{{ $vendor->vendor_id }}" tabindex="-1" role="dialog"
+                aria-labelledby="productModalLabel{{ $vendor->vendor_id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color:#081621;">
+                            <h5 class="modal-title text-white" id="productModalLabel{{ $vendor->vendor_id }}">
+                                Vendor Details (ID: {{ $vendor->vendor_id }})
+                            </h5>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Company Name:</strong> {{ $vendor->company_name }}</li>
+                                <li class="list-group-item"><strong>Email:</strong> {{ $vendor->email }}</li>
+                                <li class="list-group-item"><strong>Phone:</strong> {{ $vendor->phone ?? 'N/A' }}</li>
+                                <li class="list-group-item"><strong>Address:</strong> {{ $vendor->address ?? 'N/A' }}</li>
+                                <li class="list-group-item"><strong>Joined:</strong> {{ $vendor->created_at ?? 'N/A' }}</li>
+                            </ul>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
