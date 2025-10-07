@@ -269,17 +269,6 @@ class VendorController extends Controller
         $data = DB::table('products')->where('vendor_id', $vendorID)->where('stock_quantity', '<=', '0')->orderBy('product_id')->cursorPaginate(10);
         return view('VENDORPANEL.STOCKOUTPRODUCTS', ['Products' => $data]);
     }
-
-    public function COUNTITEMSALE()
-    {
-        $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('orders')->where('vendor_id', $vendorID)->where('payment_status', 1)->where('category', 'Tv')->count();
-        $data1 = DB::table('orders')->where('vendor_id', $vendorID)->where('payment_status', 1)->where('category', 'Tv')->count();
-        $data2 = DB::table('orders')->where('vendor_id', $vendorID)->where('payment_status', 1)->where('category', 'Tv')->count();
-        $data3 = DB::table('orders')->where('vendor_id', $vendorID)->where('payment_status', 1)->where('category', 'Tv')->count();
-        $data4 = DB::table('orders')->where('vendor_id', $vendorID)->where('payment_status', 1)->where('category', 'Tv')->count();
-        return view('VENDORPANEL.HOME', compact('data', 'data1'));
-    }
     public function GETACV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
@@ -413,7 +402,7 @@ class VendorController extends Controller
             'stock'     => 'required|integer|min:0',
         ]);
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $restock = DB::table('products')->where('vendor_id', $vendorID)->where('product_id',$id)->update(['stock_quantity' => $request->stock]);
+        $restock = DB::table('products')->where('vendor_id', $vendorID)->where('product_id', $id)->update(['stock_quantity' => $request->stock]);
         return back()->with('success', 'Restocked Successfully');
     }
 
@@ -444,5 +433,161 @@ class VendorController extends Controller
         ]);
 
         return back()->with('success', 'Updated Successfully');
+    }
+
+
+
+
+
+    public function COUNTITEMSALE()
+    {
+        $vendorID = Auth::guard('vendor')->user()->vendor_id;
+
+        $Ac = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Ac')
+            ->count();
+
+        $Aicooler = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Air Cooler')
+            ->count();
+
+        $Tv = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Tv')
+            ->count();
+
+        $Fridge = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Fridge')
+            ->count();
+
+        $Washingmachine = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Washing Machine')
+            ->count();
+
+        $Oven = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Oven')
+            ->count();
+
+        $Blender = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Blender')
+            ->count();
+
+        $Dishwasher = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Dish Washer')
+            ->count();
+
+        $Chimney = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Chimney')
+            ->count();
+
+        $Electricstove = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Electric Stove')
+            ->count();
+
+        $Ricecooker = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Rice Cooker')
+            ->count();
+
+        $Ceillingfan = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Ceiling Fan')
+            ->count();
+
+        $Toaster = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Toaster')
+            ->count();
+
+        $Vacuumcleaner = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Vacuum Cleaner')
+            ->count();
+
+        $waterheater = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Water Heater')
+            ->count();
+
+        $Bulb = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Bulb')
+            ->count();
+
+        $Iron = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Iron')
+            ->count();
+
+        $Airpurifier = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Air Purifier')
+            ->count();
+
+        return view('VENDORPANEL.HOME', compact(
+            'Ac',
+            'Aicooler',
+            'Tv',
+            'Fridge',
+            'Washingmachine',
+            'Oven',
+            'Blender',
+            'Dishwasher',
+            'Chimney',
+            'Electricstove',
+            'Ricecooker',
+            'Ceillingfan',
+            'Toaster',
+            'Vacuumcleaner',
+            'waterheater',
+            'Bulb',
+            'Iron',
+            'Airpurifier'
+        ));
     }
 }

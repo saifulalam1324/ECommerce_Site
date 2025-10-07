@@ -27,7 +27,6 @@
                         <li class="list-group-item"><strong>Email:</strong> {{ $vendor->email }}</li>
                     </ul>
                     <div class="text-end mt-3">
-                        <!-- ✅ Modal Trigger -->
                         <a href="javascript:void(0)" class="btn text-white" style="background-color:#081621" data-toggle="modal"
                             data-target="#productModal{{ $vendor->vendor_id }}">
                             More..
@@ -35,8 +34,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- ✅ Vendor Modal -->
             <div class="modal fade m-5" id="productModal{{ $vendor->vendor_id }}" tabindex="-1" role="dialog"
                 aria-labelledby="productModalLabel{{ $vendor->vendor_id }}" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
@@ -54,9 +51,8 @@
                             <ul class="list-group">
                                 <li class="list-group-item"><strong>Company Name:</strong> {{ $vendor->company_name }}</li>
                                 <li class="list-group-item"><strong>Email:</strong> {{ $vendor->email }}</li>
-                                <li class="list-group-item"><strong>Phone:</strong> {{ $vendor->phone ?? 'N/A' }}</li>
-                                <li class="list-group-item"><strong>Address:</strong> {{ $vendor->address ?? 'N/A' }}</li>
-                                <li class="list-group-item"><strong>Joined:</strong> {{ $vendor->created_at ?? 'N/A' }}</li>
+                                <li class="list-group-item"><strong>Joined:</strong> {{ $vendor->created_at}}</li>
+                                <li class="list-group-item"><strong>Totale Sale:</strong> {{ $vendor->total_sale }}</li>
                             </ul>
                         </div>
 
