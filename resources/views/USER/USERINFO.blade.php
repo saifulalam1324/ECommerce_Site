@@ -33,7 +33,7 @@
                         </div>
 
                         <div class="col-md-3 col-sm-6 mb-3">
-                            <a href="{{ route('Passpage') }}" class=" text-decoration-none">
+                            <a href="{{ route('Passpagec') }}" class=" text-decoration-none">
                                 <div class="card shadow-lg h-100 btn">
                                     <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
                                         <h6 class="fw-bold">Change Password</h6>

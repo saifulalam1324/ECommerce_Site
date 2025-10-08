@@ -272,126 +272,198 @@ class VendorController extends Controller
     public function GETACV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Ac')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Ac')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.AC', ['products' => $data]);
     }
 
     public function GETAirCoolerV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Air Cooler')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Air Cooler')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.AIRCOOLER', ['products' => $data]);
     }
 
     public function GETTVV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Tv')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Tv')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.TV', ['products' => $data]);
     }
 
     public function GETFridgeV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Fridge')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Fridge')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.FRIDGE', ['products' => $data]);
     }
 
     public function GETWashingMachineV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Washing Machine')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Washing Machine')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.WASHINGMACHINE', ['products' => $data]);
     }
 
     public function GETOvenV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Oven')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Oven')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.OVEN', ['products' => $data]);
     }
 
     public function GETBlenderV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Blender')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Blender')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.BLENDER', ['products' => $data]);
     }
 
     public function GETDishWasherV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Dish Washer')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Dish Washer')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.DISHWASHER', ['products' => $data]);
     }
 
     public function GETChimneyV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Chimney')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Chimney')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.CHYMNI', ['products' => $data]);
     }
 
     public function GETElectricStoveV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Electric Stove')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Electric Stove')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.ELECTRICSTOVE', ['products' => $data]);
     }
 
     public function GETRiceCookerV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Rice Cooker')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Rice Cooker')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.RICECOOKER', ['products' => $data]);
     }
 
     public function GETCeilingFanV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Celling Fan')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Celling Fan')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.CELLINGFAN', ['products' => $data]);
     }
 
     public function GETToasterV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Toaster')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Toaster')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.TOASTER', ['products' => $data]);
     }
 
     public function GETVacuumCleanerV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Vacuum Cleaner')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Vacuum Cleaner')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.VACUUMCLEANER', ['products' => $data]);
     }
 
     public function GETWaterHeaterV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Water Heater')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Water Heater')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.WATERHEATER', ['products' => $data]);
     }
 
     public function GETBulbV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Bulb')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Bulb')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.BULB', ['products' => $data]);
     }
 
     public function GETIronV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Iron')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Iron')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.IRON', ['products' => $data]);
     }
 
     public function GETAirPurifierV()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-        $data = DB::table('products')->where('vendor_id', $vendorID)->where('category', 'Air Purifier')->get();
+        $data = DB::table('products')
+            ->where('vendor_id', $vendorID)
+            ->where('category', 'Air Purifier')
+            ->orderBy('product_id', 'desc')
+            ->cursorPaginate(30);
         return view('VENDORPANEL.AIRPURIFIER', ['products' => $data]);
     }
 
@@ -434,10 +506,6 @@ class VendorController extends Controller
 
         return back()->with('success', 'Updated Successfully');
     }
-
-
-
-
 
     public function COUNTITEMSALE()
     {
@@ -569,6 +637,134 @@ class VendorController extends Controller
             ->where('products.category', 'Air Purifier')
             ->count();
 
+        $Acc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Ac')
+            ->sum('orders.discounted_tota');
+
+        $Aicoolerc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Air Cooler')
+            ->sum('orders.discounted_tota');
+
+        $Tvc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Tv')
+            ->sum('orders.discounted_tota');
+
+        $Fridgec = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Fridge')
+            ->sum('orders.discounted_tota');
+
+        $Washingmachinec = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Washing Machine')
+            ->sum('orders.discounted_tota');
+
+        $Ovenc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Oven')
+            ->sum('orders.discounted_tota');
+
+        $Blenderc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Blender')
+            ->sum('orders.discounted_tota');
+
+        $Dishwasherc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Dish Washer')
+            ->sum('orders.discounted_tota');
+
+        $Chimneyc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Chimney')
+            ->sum('orders.discounted_tota');
+
+        $Electricstovec = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Electric Stove')
+            ->sum('orders.discounted_tota');
+
+        $Ricecookerc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Rice Cooker')
+            ->sum('orders.discounted_tota');
+
+        $Ceillingfanc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Ceiling Fan')
+            ->sum('orders.discounted_tota');
+
+        $Toasterc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Toaster')
+            ->sum('orders.discounted_tota');
+
+        $Vacuumcleanerc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Vacuum Cleaner')
+            ->sum('orders.discounted_tota');
+
+        $waterheaterc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Water Heater')
+            ->sum('orders.discounted_tota');
+
+        $Bulbc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Bulb')
+            ->sum('orders.discounted_tota');
+
+        $Ironc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Iron')
+            ->sum('orders.discounted_tota');
+
+        $Airpurifierc = DB::table('orders')
+            ->join('products', 'orders.product_id', '=', 'products.product_id')
+            ->where('orders.vendor_id', $vendorID)
+            ->where('orders.status', 1)
+            ->where('products.category', 'Air Purifier')
+            ->sum('orders.discounted_tota');
+
+        $sumc = $Acc + $Aicoolerc + $Tvc + $Fridgec + $Washingmachinec + $Ovenc + $Blenderc + $Dishwasherc + $Chimneyc + $Electricstovec + $Ricecookerc + $Ceillingfanc + $Toasterc + $Vacuumcleanerc + $waterheaterc + $Bulbc + $Ironc + $Airpurifierc;
+        $total = $Ac + $Aicooler + $Tv + $Fridge + $Washingmachine + $Oven + $Blender + $Dishwasher + $Chimney + $Electricstove + $Ricecooker + $Ceillingfan + $Toaster + $Vacuumcleaner + $waterheater + $Bulb + $Iron + $Airpurifier;
         return view('VENDORPANEL.HOME', compact(
             'Ac',
             'Aicooler',
@@ -587,9 +783,30 @@ class VendorController extends Controller
             'waterheater',
             'Bulb',
             'Iron',
-            'Airpurifier'
+            'Airpurifier',
+            'total',
+            'Acc',
+            'Aicoolerc',
+            'Tvc',
+            'Fridgec',
+            'Washingmachinec',
+            'Ovenc',
+            'Blenderc',
+            'Dishwasherc',
+            'Chimneyc',
+            'Electricstovec',
+            'Ricecookerc',
+            'Ceillingfanc',
+            'Toasterc',
+            'Vacuumcleanerc',
+            'waterheaterc',
+            'Bulbc',
+            'Ironc',
+            'Airpurifierc',
+            'sumc'
         ));
     }
+
 
     public function SHOWCHANGEPASSV()
     {

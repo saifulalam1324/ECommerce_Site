@@ -57,10 +57,10 @@ Route::middleware(['customer'])->group(function () {
         ->name('Pdf');
     Route::get('/transactions', [CustomerController::class, 'TOTALTRANSACTION'])
         ->name('Trans');
-    Route::get('/changepassword', [CustomerController::class, 'SHOWCHANGEPASS'])
-        ->name('Passpage');
-    Route::post('/changepassword', [CustomerController::class, 'CHANGEPASS'])
-        ->name('Passchange');
+    Route::get('/changepasswordc', [CustomerController::class, 'SHOWCHANGEPASS'])
+        ->name('Passpagec');
+    Route::post('/changepasswordc', [CustomerController::class, 'CHANGEPASS'])
+        ->name('Passchangec');
     Route::get('/updateprofile', [CustomerController::class, 'SHOWUPDATEPAGE'])
         ->name('Showupdateprofile');
     Route::post('/updateprofile', [CustomerController::class, 'UPDATEPROFILE'])
@@ -95,7 +95,8 @@ Route::middleware(['customer'])->group(function () {
         ->name('ToasterC');
     Route::get('/VacuumCleanerC', [CustomerController::class, 'GETVACUUMCLEANER'])
         ->name('VacuumCleanerC');
-    Route::get('/WaterHeaterC', [CustomerController::class, 'GETWATERHEATER'])->name('WaterHeaterC');
+    Route::get('/WaterHeaterC', [CustomerController::class, 'GETWATERHEATER'])
+        ->name('WaterHeaterC');
     Route::get('/BulbC', [CustomerController::class, 'GETBULB'])
         ->name('BulbC');
     Route::get('/IronC', [CustomerController::class, 'GETIRON'])
@@ -219,7 +220,9 @@ Route::middleware(['vendor'])->group(function () {
         ->name('Updateproduct');
     Route::get('/vendor', [VendorController::class, 'COUNTITEMSALE'])
         ->name('Vendor home');
-     Route::get('/changepassword', [VendorController::class, 'SHOWCHANGEPASSV'])
+    Route::get('/vendorc', [VendorController::class, 'COUNTSALE'])
+        ->name('Vendor homec');
+    Route::get('/changepassword', [VendorController::class, 'SHOWCHANGEPASSV'])
         ->name('Passpagev');
     Route::post('/changepassword', [VendorController::class, 'CHANGEPASSV'])
         ->name('Passchangev');
