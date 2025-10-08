@@ -32,7 +32,7 @@ class AdminController extends Controller
     }
     public function READVENDORS()
     {
-        $vendors = DB::table('vendors')->where('approve_status',1)
+        $vendors = DB::table('vendors')->where('approve_status', 1)
             ->leftJoin('orders', 'vendors.vendor_id', '=', 'orders.vendor_id')
             ->select(
                 'vendors.vendor_id',

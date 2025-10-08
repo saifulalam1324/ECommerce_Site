@@ -219,4 +219,8 @@ Route::middleware(['vendor'])->group(function () {
         ->name('Updateproduct');
     Route::get('/vendor', [VendorController::class, 'COUNTITEMSALE'])
         ->name('Vendor home');
+     Route::get('/changepassword', [VendorController::class, 'SHOWCHANGEPASSV'])
+        ->name('Passpagev');
+    Route::post('/changepassword', [VendorController::class, 'CHANGEPASSV'])
+        ->name('Passchangev');
 });
