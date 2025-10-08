@@ -1,27 +1,30 @@
 @extends('VENDORPANEL.Vendor')
-@section('title', 'Admin Home')
-
+@section('title', 'profile')
 @section('content')
-    <div class="container-fluid pl-5 pt-4 ml-3 justify-content-center align-items-center">
-        <div class="card card-body">
-            <div class="container d-flex justify-content-between" style="border:2px solid border-radius: 15px;">
-                <div class="">
-                    <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::guard('vendor')->user()->admin_name) }}&background=7a4eb0&color=fff&size=100"
-                        class="rounded-circle mb-3" alt="Profile Picture">
-
-                    <h4 class="">{{ Auth::guard('vendor')->user()->company_name }}</h4>
-                    <p class="text">{{ Auth::guard('vendor')->user()->email }}</p>
+    <div class="container">
+        <div class="container d-flex justify-content-center align-items-center mt-lg-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="justify-content-start"><i
+                                class="fa-solid fa-circle-user"></i>{{Auth::guard('vendor')->user()->company_name}}</h1>
+                    </div>
                 </div>
-                <div>
-                    <form action="{{ route('VendorLogout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-danger btn-block mt-3"><i class="fa-solid fa-right-from-bracket"></i>
-                            Logout
-                        </button>
-                    </form>
+                <div class="container my-4">
+
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <a href="{{ route('Passpagev') }}" class=" text-decoration-none">
+                            <div class="card shadow-lg h-100 btn">
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+                                    <h6 class="fw-bold">Change Password</h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    </div>
 @endsection
-
