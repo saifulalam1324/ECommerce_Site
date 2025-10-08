@@ -51,19 +51,34 @@
                                 <a class="text-center btn w-100 ml-1 mr-1  mb-1 {{ request()->routeIs('CompletedOrders') ? 'btn-light text-dark' : 'btn-outline-light' }}"
                                     href="{{ route('CompletedOrders') }}">Completed Orders</a>
                             </li>
+                            <li class="nav-item mb-2">
+                                <div class="dropdown ml-1" style="inline-size: 170px;">
+                                    <button class="btn btn-outline-light w-100 text-start dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                                        <p>Your Market</p>
+                                        {{ Auth::guard('admin')->user()->admin_name }}
+                                    </button>
+                                    <div class="w-100 dropdown-menu dropdown-menu-center custom-dropdown bg-transparent"
+                                        style="max-block-size: 200px; overflow-y: auto;"
+                                        aria-labelledby="dropdownMenuButton">
+                                        <form id="logoutForm" action="{{ route('AdminLogout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa-solid fa-right-from-bracket"></i>
+                                            </button>
+                                            <script>
+                                                document.getElementById('logoutForm').addEventListener('submit', function (event) {
+                                                    event.preventDefault();
+                                                    if (confirm("Are you sure you want to logout?")) {
+                                                        this.submit();
+                                                    }
+                                                });
+                                            </script>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
-
-                        <div class="mt-auto w-100 bg-dark">
-                            <ul class="navbar-nav flex-column w-100 p-2">
-                                <li class="nav-item">
-                                    <h4 class="text-white">Your Market</h4>
-                                </li>
-                                <li class="nav-item"><a class="nav-link NAV" href="{{ route('AdminProfile') }}">
-                                        <p><i class="fa-solid fa-user" style="color:white;"></i>
-                                            {{Auth::guard('admin')->user()->admin_name}}</p>
-                                    </a></li>
-                            </ul>
-                        </div>
                     </div>
                 </nav>
 

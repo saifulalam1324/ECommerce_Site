@@ -6,16 +6,19 @@
     font-size: 18px;
     font-weight: bold; /* Force white text */
 }
-.NAV1{
+.NAV1 {
     color: white !important;
 }
 .btn-outline-light.active,
 .btn-outline-light.active:hover,
 .btn-outline-light.active:focus {
     background-color: #fff;
-    color:#081621;
+    color: #081621;
     border-color: #fff;
-
 }
 
-
+.custom-dropdown {
+    min-inline-size: 120px;
+    text-align: center;
+    border: none;
+}

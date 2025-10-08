@@ -590,4 +590,25 @@ class VendorController extends Controller
             'Airpurifier'
         ));
     }
+
+    public function SHOWCHANGEPASSV()
+    {
+        return view('VENDORPANEL.CHANGEPASSWORD');
+    }
+    public function CHANGEPASSV(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required|min:6',
+            'new_password' => 'required|min:6|confirmed',
+        ]);
+
+        $vendor = Auth::guard('vendor')->user();
+        if (!Hash::check($request->current_password, $vendor->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        }
+        $vendor->password = Hash::make($request->new_password);
+        $vendor->save();
+
+        return back()->with('success', 'Password changed successfully!');
+    }
 }

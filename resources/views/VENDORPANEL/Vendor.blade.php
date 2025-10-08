@@ -54,9 +54,8 @@
                             </li>
                             <li class="nav-item mb-2">
                                 <div class="dropdown ml-1" style="inline-size: 170px;">
-                                    <button class="btn btn-outline-light w-100 text-start dropdown-toggle"
-                                        type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                        aria-expanded="false">
+                                    <button class="btn btn-outline-light w-100 text-start dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                                         Your Products
                                     </button>
                                     <div class="dropdown-menu w-100" style="max-block-size: 200px; overflow-y: auto;"
@@ -65,7 +64,8 @@
                                         <a class="dropdown-item" href="{{ route('AirCooler') }}">Air Cooler</a>
                                         <a class="dropdown-item" href="{{ route('TV') }}">TV</a>
                                         <a class="dropdown-item" href="{{ route('Fridge') }}">Fridge</a>
-                                        <a class="dropdown-item" href="{{ route('WashingMachine') }}">Washing Machine</a>
+                                        <a class="dropdown-item" href="{{ route('WashingMachine') }}">Washing
+                                            Machine</a>
                                         <a class="dropdown-item" href="{{ route('Oven') }}">Oven</a>
                                         <a class="dropdown-item" href="{{ route('Blender') }}">Blender</a>
                                         <a class="dropdown-item" href="{{ route('DishWasher') }}">Dish Washer</a>
@@ -83,20 +83,36 @@
                                     </div>
                                 </div>
                             </li>
-
-
+                            <li class="nav-item mb-2">
+                                <div class="dropdown ml-1" style="inline-size: 170px;">
+                                    <button class="btn btn-outline-light w-100 text-start dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                                        <p>Your Market</p>
+                                        {{ Auth::guard('vendor')->user()->company_name }}
+                                    </button>
+                                    <div class="w-100 dropdown-menu dropdown-menu-center custom-dropdown bg-transparent"
+                                        style="max-block-size: 200px; overflow-y: auto;"
+                                        aria-labelledby="dropdownMenuButton">
+                                        <form id="logoutForm" action="{{ route('VendorLogout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa-solid fa-right-from-bracket"></i>
+                                            </button>
+                                            <script>
+                                                document.getElementById('logoutForm').addEventListener('submit', function (event) {
+                                                    event.preventDefault();
+                                                    if (confirm("Are you sure you want to logout?")) {
+                                                        this.submit();
+                                                    }
+                                                });
+                                            </script>
+                                            <a class="btn btn-success ml-1" href="{{ route('VendorProfile') }}">
+                                                <i class="fa-solid fa-circle-info"></i></a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
-                        <div class="mt-auto w-100 bg-dark">
-                            <ul class="navbar-nav flex-column w-100 p-2">
-                                <li class="nav-item">
-                                    <h4 class="text-white">Your Market</h4>
-                                </li>
-                                <li class="nav-item"><a class="nav-link NAV" href="{{ route('VendorProfile') }}">
-                                        <p><i class="fa-solid fa-user" style="color:white;"></i>
-                                            {{ Auth::guard('vendor')->user()->company_name }}</p>
-                                    </a></li>
-                            </ul>
-                        </div>
                     </div>
                 </nav>
             </div>
