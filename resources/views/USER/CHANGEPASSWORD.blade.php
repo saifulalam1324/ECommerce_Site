@@ -9,7 +9,7 @@
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
-            <form action="{{ route('Passchange') }}" method="POST">
+            <form action="{{ route('Passchangec') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="current_password" class="form-label">Current Password</label>
