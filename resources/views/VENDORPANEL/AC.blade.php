@@ -14,9 +14,8 @@
                 {{ session('info') }}
             </div>
         @endif
-
         @if ($products->isEmpty())
-            <div class="alert alert-danger mt-5">
+            <div class="alert alert-danger mt-5 container">
                 No Product found. Add Some!
             </div>
         @endif
