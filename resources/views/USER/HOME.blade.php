@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container mt-lg-5" style="border-radius: 10px">
+    <div class="container mt-lg-5">
         <div class="row">
             <div class="col-9">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -28,8 +28,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 bg-dark align-content-center">
-                <h5 class="text-white text-center">Your Market</h5>
+            <div class="col-3 align-content-center"  style="background-color:#081621 ;border-radius: 10px;">
+                <h5 class="text-white text-center typing">Your Market</h5>
+                <p class="text-center text-white typing" style="animation-delay: 1s; font-size: 14px;">Your Trusted Online
+                    Marketplace</p>
             </div>
         </div>
     </div>
@@ -451,9 +453,9 @@
                         let count = parseInt(countEl.text()) || 0;
                         countEl.text(count + 1);
                         form.replaceWith(`
-                            <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
-                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
-                        `);
+                                        <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
+                                    `);
                     },
                     error: function (xhr) {
                         if (xhr.status === 401 && xhr.responseJSON?.login === false) {

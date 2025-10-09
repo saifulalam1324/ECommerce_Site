@@ -2,7 +2,7 @@
 @section('title', 'Iron List')
 @section('content')
     <div class="container text-center">
-        <h2>Ac</h2>
+        <h2>Iron</h2>
     </div>
     <div class="container-fluid ml-3 justify-content-center align-items-center">
         <div class="container-fluid fixed-top border-0 p-2 mb-5" style="background-color:#081621;">
@@ -44,9 +44,9 @@
                 </div>
             </div>
         @endforeach
-        {{-- <div class="d-flex justify-content-center mt-4">
+        <div class="d-flex justify-content-center mt-4">
             {{ $products->links() }}
-        </div> --}}
+        </div>
     </div>
 
 @endsection

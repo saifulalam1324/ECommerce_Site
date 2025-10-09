@@ -182,7 +182,7 @@ body {
 }
 .btn-box {
     position: relative;
-    background-color:#081621;
+    background-color: #081621;
     inline-size: 60px; /* fixed width for both */
     block-size: 60px; /* fixed height */
     border-radius: 10px;
@@ -194,7 +194,29 @@ body {
     font-size: 8px;
 }
 body {
-     padding-block-start: 70px;
+    padding-block-start: 70px;
 }
 
+.typing {
+    overflow: hidden; /* Ensures text is hidden beyond the typing area */
+    border-inline-end: 1px solid white; /* Cursor effect */
+    white-space: nowrap;
+    animation: typing 2s steps(20) forwards,
+        blink 0.75s step-end infinite alternate;
+    font-family: monospace;
+}
 
+@keyframes typing {
+    from {
+        inline-size: 0;
+    }
+    to {
+        inline-size: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}

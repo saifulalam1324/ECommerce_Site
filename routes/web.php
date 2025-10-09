@@ -103,6 +103,8 @@ Route::middleware(['customer'])->group(function () {
         ->name('IronC');
     Route::get('/AirPurifierC', [CustomerController::class, 'GETAIRPURIFIER'])
         ->name('AirPurifierC');
+    Route::get('/search1', [CustomerController::class, 'SSS'])
+        ->name('Search');
 });
 
 
@@ -144,6 +146,8 @@ Route::middleware(['admin'])->group(function () {
         ->name('ShippedOrdersadmin');
     Route::post('/update-delivery-status-shipted/{order_batch_id}', [AdminController::class, 'UPDATEDELIVERYSTATUSDONE'])
         ->name('UpdateDeliveryStatusDone');
+    Route::get('/admin', [AdminController::class, 'COUNTSALEPERMONTH'])
+        ->name('Admin home');
 });
 
 // Vendor

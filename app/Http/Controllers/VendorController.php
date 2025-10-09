@@ -510,7 +510,6 @@ class VendorController extends Controller
     public function COUNTITEMSALE()
     {
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
-
         $Ac = DB::table('orders')
             ->join('products', 'orders.product_id', '=', 'products.product_id')
             ->where('orders.vendor_id', $vendorID)
@@ -763,6 +762,20 @@ class VendorController extends Controller
             ->where('products.category', 'Air Purifier')
             ->sum('orders.discounted_tota');
 
+        $year = date('Y');
+        $monthlySales = [];
+        for ($month = 1; $month <= 12; $month++) {
+            $total = DB::table('orders')
+                ->join('products', 'orders.product_id', '=', 'products.product_id')
+                ->where('orders.vendor_id', $vendorID)
+                ->where('orders.status', 1)
+                ->whereYear('orders.created_at', $year)
+                ->whereMonth('orders.created_at', $month)
+                ->sum('orders.discounted_tota');
+            $monthlySales[] = $total;
+        }
+
+
         $sumc = $Acc + $Aicoolerc + $Tvc + $Fridgec + $Washingmachinec + $Ovenc + $Blenderc + $Dishwasherc + $Chimneyc + $Electricstovec + $Ricecookerc + $Ceillingfanc + $Toasterc + $Vacuumcleanerc + $waterheaterc + $Bulbc + $Ironc + $Airpurifierc;
         $total = $Ac + $Aicooler + $Tv + $Fridge + $Washingmachine + $Oven + $Blender + $Dishwasher + $Chimney + $Electricstove + $Ricecooker + $Ceillingfan + $Toaster + $Vacuumcleaner + $waterheater + $Bulb + $Iron + $Airpurifier;
         return view('VENDORPANEL.HOME', compact(
@@ -803,7 +816,8 @@ class VendorController extends Controller
             'Bulbc',
             'Ironc',
             'Airpurifierc',
-            'sumc'
+            'sumc',
+            'monthlySales'
         ));
     }
 

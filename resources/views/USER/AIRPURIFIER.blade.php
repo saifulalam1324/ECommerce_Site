@@ -142,6 +142,9 @@
                     </div>
                 </div>
             @endforeach
+            <div class="d-flex justify-content-center mt-4">
+                {{ $products->links() }}
+            </div>
         </div>
     </div>
 
@@ -163,9 +166,9 @@
                         let count = parseInt(countEl.text()) || 0;
                         countEl.text(count + 1);
                         form.replaceWith(`
-                            <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
-                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
-                        `);
+                                <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                                <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
+                            `);
                     },
                     error: function (xhr) {
                         if (xhr.status === 401 && xhr.responseJSON?.login === false) {

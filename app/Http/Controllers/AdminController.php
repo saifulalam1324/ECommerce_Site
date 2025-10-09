@@ -365,9 +365,26 @@ class AdminController extends Controller
             ->where('order_batch_id', $order_batch_id)
             ->update(['delivery_status' => 'Delivered', 'updated_at' => now()]);
         if ($updateStatus) {
-            return redirect()->route('ShippedOrdersadmin')->with('success', 'Delivery status updated successfully!');
+            return redirect()->route('ShippedOrdersadmin')->with('success', 'Delivery Done Successfully!');
         } else {
             return redirect()->route('ShippedOrdersadmin')->with('error', 'Failed to update delivery status. Please try again.');
         }
+    }
+
+
+    public function COUNTSALEPERMONTH()
+    {
+        $year = date('Y');
+        $monthlySales = [];
+        for ($month = 1; $month <= 12; $month++) {
+            $total = DB::table('orders')
+                ->join('products', 'orders.product_id', '=', 'products.product_id')
+                ->where('orders.status', 1)
+                ->whereYear('orders.created_at', $year)
+                ->whereMonth('orders.created_at', $month)
+                ->sum('orders.discounted_tota');
+            $monthlySales[] = $total;
+        }
+        return view('ADMIN.HOME', compact('monthlySales'));
     }
 }

@@ -46,9 +46,6 @@
                         <p>or..</p>
                         <a href="{{ route('VendorSignupPage') }}" id="showSignup">Create
                             Account</a>
-                        <p class="small">
-                            <a href="#">Have you forgotten your account details?</a>
-                        </p>
                     </div>
                 </div>
             </div>
