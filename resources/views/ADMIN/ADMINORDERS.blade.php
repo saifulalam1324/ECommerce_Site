@@ -67,11 +67,19 @@
                         @endif
                     </h5>
 
-                    <form action="{{ route('UpdateDeliveryStatus', $batchId)}}" method="POST">
+                    <form id="shippedForm" action="{{ route('UpdateDeliveryStatus', $batchId)}}" method="POST">
                         @csrf
                         <input type="hidden" name="vendor_email" value="{{ $item['vendor_email'] }}">
                         <button type="submit" class="btn text-white" style="background-color: #081621;">Mark as Shipped</button>
                     </form>
+                    <script>
+                        document.getElementById('shippedForm').addEventListener('submit', function (event) {
+                            event.preventDefault();
+                            if (confirm("Are you sure you want to mark this order as shipped?")) {
+                                this.submit();
+                            }
+                        });
+                    </script>
                 </div>
             </div>
         @endforeach

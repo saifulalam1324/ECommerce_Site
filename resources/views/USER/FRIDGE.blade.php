@@ -4,7 +4,7 @@
     <div class="container text-center">
         <h1>Fridge</h1>
     </div>
-<div class="container-fluid mt-lg-4">
+    <div class="container-fluid mt-lg-4">
         <div class="row">
             @if ($products->isEmpty())
                 <div class="alert alert-danger mt-5 w-100 text-center">
@@ -95,8 +95,8 @@
                                     </div>
                                     <div class="col-md-7">
                                         <h4>${{ $data->price }}</h4>
-                                        @if ($data->discount>0)
-                                        <p><strong>Discount:</strong> {{ $data->discount }}%</p>
+                                        @if ($data->discount > 0)
+                                            <p><strong>Discount:</strong> {{ $data->discount }}%</p>
                                         @endif
                                         <p><strong>Stock:</strong>
                                             @if($data->stock_quantity > 0)
@@ -142,9 +142,12 @@
                     </div>
                 </div>
             @endforeach
+            <div class="d-flex justify-content-center mt-4">
+                {{ $products->links() }}
+            </div>
         </div>
     </div>
-     <script>
+    <script>
         $(document).ready(function () {
             $(".ajaxAddToCartForm").on("submit", function (e) {
                 e.preventDefault();
@@ -162,9 +165,9 @@
                         let count = parseInt(countEl.text()) || 0;
                         countEl.text(count + 1);
                         form.replaceWith(`
-                        <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
-                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
-                    `);
+                            <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
+                        `);
                     },
                     error: function (xhr) {
                         if (xhr.status === 401 && xhr.responseJSON?.login === false) {
