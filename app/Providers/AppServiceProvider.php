@@ -24,16 +24,20 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFour();
-         View::composer('*', function ($view) {
-        $counts = 0;
-        if (Auth::guard('customer')->check()) {
-            $userId = Auth::guard('customer')->user()->customer_id;
-            $counts = DB::table('orders')
-                ->where('customer_id', $userId)
-                ->where('status', 1)
-                ->count();
-        }
-        $view->with('counts', $counts);
-    });
+        View::composer('*', function ($view) {
+            $counts = 0;
+            if (Auth::guard('customer')->check()) {
+                $userId = Auth::guard('customer')->user()->customer_id;
+                $counts = DB::table('orders')
+                    ->where('customer_id', $userId)
+                    ->where('status', 1)
+                    ->count();
+            }
+            $company = DB::table('vendors')->get();
+            $view->with([
+                'counts' => $counts,
+                'company' => $company
+            ]);
+        });
     }
 }

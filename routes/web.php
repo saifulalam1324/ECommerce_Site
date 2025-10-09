@@ -18,6 +18,44 @@ Route::get('/login', [CustomerController::class, 'LOGINSIGNUP'])
     ->name('LoginSignup');
 Route::get('/', [CustomerController::class, 'HOME'])
     ->name('User home');
+Route::get('/ACC', [CustomerController::class, 'GETAC'])
+    ->name('ACC');
+Route::get('/TVC', [CustomerController::class, 'GETTV'])
+    ->name('TVC');
+Route::get('/AirCoolerC', [CustomerController::class, 'GETAIRCOOLER'])
+    ->name('AirCoolerC');
+Route::get('/FridgeC', [CustomerController::class, 'GETFRIDGE'])
+    ->name('FridgeC');
+Route::get('/WashingMachineC', [CustomerController::class, 'GETWASHINGMACHINE'])
+    ->name('WashingMachineC');
+Route::get('/OvenC', [CustomerController::class, 'GETOVEN'])
+    ->name('OvenC');
+Route::get('/BlenderC', [CustomerController::class, 'GETBLENDER'])
+    ->name('BlenderC');
+Route::get('/DishWasherC', [CustomerController::class, 'GETDISHWASHER'])
+    ->name('DishWasherC');
+Route::get('/ChimneyC', [CustomerController::class, 'GETCHIMNEY'])
+    ->name('ChimneyC');
+Route::get('/ElectricStoveC', [CustomerController::class, 'GETELECTRICSTOVE'])
+    ->name('ElectricStoveC');
+Route::get('/RiceCookerC', [CustomerController::class, 'GETRICECOOKER'])
+    ->name('RiceCookerC');
+Route::get('/CeilingFanC', [CustomerController::class, 'GETCEILINGFAN'])
+    ->name('CeilingFanC');
+Route::get('/ToasterC', [CustomerController::class, 'GETTOASTER'])
+    ->name('ToasterC');
+Route::get('/VacuumCleanerC', [CustomerController::class, 'GETVACUUMCLEANER'])
+    ->name('VacuumCleanerC');
+Route::get('/WaterHeaterC', [CustomerController::class, 'GETWATERHEATER'])
+    ->name('WaterHeaterC');
+Route::get('/BulbC', [CustomerController::class, 'GETBULB'])
+    ->name('BulbC');
+Route::get('/IronC', [CustomerController::class, 'GETIRON'])
+    ->name('IronC');
+Route::get('/AirPurifierC', [CustomerController::class, 'GETAIRPURIFIER'])
+    ->name('AirPurifierC');
+Route::get('/search', [CustomerController::class, 'SEARCH'])
+    ->name('Search');
 Route::get('/product/{id}', [CustomerController::class,  'SHOWEACHPRODUCT'])
     ->name('Each Product');
 Route::middleware(['customer'])->group(function () {
@@ -45,8 +83,6 @@ Route::middleware(['customer'])->group(function () {
         ->name('Processpayment');
     Route::post('/ppayment', [CustomerController::class, 'payment'])
         ->name('payment');
-    Route::get('/search', [CustomerController::class, 'SEARCH'])
-        ->name('Search');
     Route::get('/orders', [CustomerController::class, 'BATCHORDERSPENDING'])
         ->name('Orders');
     Route::get('/shippedordersc', [CustomerController::class, 'BATCHORDERSSHIPPED'])
@@ -67,44 +103,6 @@ Route::middleware(['customer'])->group(function () {
         ->name('Updateprofile');
     Route::get('/ordercount', [CustomerController::class, 'COUNTORDERS'])
         ->name('ordercount');
-    Route::get('/ACC', [CustomerController::class, 'GETAC'])
-        ->name('ACC');
-    Route::get('/TVC', [CustomerController::class, 'GETTV'])
-        ->name('TVC');
-    Route::get('/AirCoolerC', [CustomerController::class, 'GETAIRCOOLER'])
-        ->name('AirCoolerC');
-    Route::get('/FridgeC', [CustomerController::class, 'GETFRIDGE'])
-        ->name('FridgeC');
-    Route::get('/WashingMachineC', [CustomerController::class, 'GETWASHINGMACHINE'])
-        ->name('WashingMachineC');
-    Route::get('/OvenC', [CustomerController::class, 'GETOVEN'])
-        ->name('OvenC');
-    Route::get('/BlenderC', [CustomerController::class, 'GETBLENDER'])
-        ->name('BlenderC');
-    Route::get('/DishWasherC', [CustomerController::class, 'GETDISHWASHER'])
-        ->name('DishWasherC');
-    Route::get('/ChimneyC', [CustomerController::class, 'GETCHIMNEY'])
-        ->name('ChimneyC');
-    Route::get('/ElectricStoveC', [CustomerController::class, 'GETELECTRICSTOVE'])
-        ->name('ElectricStoveC');
-    Route::get('/RiceCookerC', [CustomerController::class, 'GETRICECOOKER'])
-        ->name('RiceCookerC');
-    Route::get('/CeilingFanC', [CustomerController::class, 'GETCEILINGFAN'])
-        ->name('CeilingFanC');
-    Route::get('/ToasterC', [CustomerController::class, 'GETTOASTER'])
-        ->name('ToasterC');
-    Route::get('/VacuumCleanerC', [CustomerController::class, 'GETVACUUMCLEANER'])
-        ->name('VacuumCleanerC');
-    Route::get('/WaterHeaterC', [CustomerController::class, 'GETWATERHEATER'])
-        ->name('WaterHeaterC');
-    Route::get('/BulbC', [CustomerController::class, 'GETBULB'])
-        ->name('BulbC');
-    Route::get('/IronC', [CustomerController::class, 'GETIRON'])
-        ->name('IronC');
-    Route::get('/AirPurifierC', [CustomerController::class, 'GETAIRPURIFIER'])
-        ->name('AirPurifierC');
-    Route::get('/search1', [CustomerController::class, 'SSS'])
-        ->name('Search');
 });
 
 

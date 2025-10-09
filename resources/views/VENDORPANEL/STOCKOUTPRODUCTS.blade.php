@@ -29,7 +29,8 @@
                             <form action="{{ route('restocked', $product->product_id)}}" class="d-flex" method="Post">
                                 @csrf
                                 <input type="number" name="stock" id="stock" class="form-control" placeholder="Enter Quantity">
-                                <button class="btn btn-success w-100 text-white ml-2" type="submit">re stock</button>
+                                <button class="btn w-100 text-white ml-2" type="submit" style="background-color: #081621">Re
+                                    Stock</button>
                             </form>
                         </div>
                     </li>

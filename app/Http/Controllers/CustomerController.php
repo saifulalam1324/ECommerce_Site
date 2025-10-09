@@ -13,6 +13,7 @@ class CustomerController extends Controller
 {
     public function HOME()
     {
+        // $company = DB::table('vendors')->get();
         $data = DB::table('products')->whereNotNull('discount')->orderBy('product_id')
             ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
             ->select(
@@ -29,15 +30,34 @@ class CustomerController extends Controller
                 'vendors.company_name',
                 'vendors.email'
             )
-            ->cursorPaginate(30);
-        return view('USER.HOME', ['products' => $data]);
+            ->paginate(30);
+        return view('USER.HOME', compact('data'));
     }
 
     public function SHOWEACHPRODUCT(int $id)
     {
-        $data1 = DB::table('products')->where('product_id', '=', $id)->get();
-        return view('USER.EACHPRODUCT', ['product1s' => $data1]);
+        $data1 = DB::table('products')
+            ->where('products.product_id', $id)
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->first();
+
+        return view('USER.EACHPRODUCT', ['product1' => $data1]);
     }
+
     public function LOGINSIGNUP()
     {
         return view('USER.LOGINSIGNUP');
@@ -906,19 +926,29 @@ class CustomerController extends Controller
         return view('USER.AIRPURIFIER', ['products' => $data]);
     }
 
+    public function COMPANYS() {}
+
     public function SEARCH(Request $request)
     {
-        $q = $request->get('query');
-        $products = DB::table('products')
-            ->where('category', 'like', "%{$q}%")
-            ->orWhere('model', 'like', "%{$q}%")
+        $search = $request->get('term');
+
+        $data = DB::table('products')
+            ->where('product_name', 'like', "%{$search}%")
+            ->orWhere('category', 'like', "%{$search}%")
+            ->orWhere('model', 'like', "%{$search}%")
+            ->take(10)
             ->get();
 
-        return response()->json($products);
-    }
+        $results = [];
 
-    public function sss()
-    {
-        return view('USER.SEARCH');
+        foreach ($data as $row) {
+            $results[] = [
+                'label' => $row->product_name . ' (' . $row->model . ')',
+                'value' => $row->product_name,
+                'id' => $row->product_id
+            ];
+        }
+
+        return response()->json($results);
     }
 }
