@@ -1,17 +1,192 @@
 @extends('USER.User')
-@section('title', 'product Details')
+@section('title', 'Product Details')
+
 @section('content')
-    <div class="container-fluid pl-5 pt-4 ml-3 justify-content-center align-items-center">
-        <div class="card text-left">
-            <div class="card-body">
-                @foreach ($product1s as $id => $data1)
-                    <h4 class="card-title">Title</h4>
-                    <p class="card-text">{{$data1->product_name}}</p>
-                    <p class="card-text">{{$data1->description}}</p>
-                    <p class="card-text">{{$data1->price}}</p>
-                    <p class="card-text">{{$data1->stock_quantity}}</p>
-                @endforeach
+    <div class="container-fluid mt-lg-4">
+        @if (!$product1)
+            <div class="alert alert-danger mt-5 w-100 text-center">
+                No Product Details Available.
             </div>
-        </div>
+        @else
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <div class="card product-card shadow-sm h-100">
+                        <div class="position-relative">
+                            @if ($product1->discount > 0)
+                                <span class="badge position-absolute text-white"
+                                    style="inset-block-start: 10px; inset-inline-start: 10px; font-size: 0.8rem; background-color: #081621;">
+                                    -{{ $product1->discount }}%
+                                </span>
+                            @endif
+                            <div class="text-center">
+                                <img src="{{ asset('storage/' . $product1->image_url) }}"
+                                    class="product-img card-img-top img-fluid"
+                                    alt="{{ $product1->product_name ?? 'Product image' }}"
+                                    style="object-fit: contain; max-block-size: 180px;">
+                            </div>
+                            <div class="d-flex justify-content-end card-img-overlay">
+                                <a href="javascript:void(0)" data-toggle="modal"
+                                    data-target="#productModal{{ $product1->product_id }}">
+                                    <i class="fa-solid fa-eye fs-5" style="color: #081621"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div class="mb-2">
+                                <span class="d-block fw-bold text-truncate">{{ $product1->product_name }}</span>
+                                <span>Model: <small>{{ $product1->model }}</small></span><br>
+                                <span>Company: <strong>{{ $product1->company_name }}</strong></span><br>
+                                <span>Price: $<strong>{{ $product1->price }}</strong></span>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                @if (Auth::guard('customer')->check())
+                                    @if ($product1->stock_quantity <= 0)
+                                        <button class="btn border-0 disabled" title="Out of stock">
+                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                        </button>
+                                    @elseif (session('cart') && array_key_exists($product1->product_id, session('cart')))
+                                        <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                        </a>
+                                    @else
+                                        <form action="{{ route('Addtocart', $product1->product_id) }}" method="POST"
+                                            class="ajaxAddToCartForm d-inline">
+                                            @csrf
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" class="btn add-to-cart-btn border-0 bg-transparent"
+                                                title="Add to cart">
+                                                <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                @else
+                                    <button class="btn border-0 disabled" title="Login To Buy">
+                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                    </button>
+                                @endif
+
+                                @if ($product1->stock_quantity <= 0)
+                                    <span class="badge badge-danger">Stock Out</span>
+                                @else
+                                    <span class="badge badge-success">Available</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Product Modal --}}
+                <div class="modal fade m-5" id="productModal{{ $product1->product_id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="productModalLabel{{ $product1->product_id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color:#081621;">
+                                <h5 class="modal-title text-white" id="productModalLabel{{ $product1->product_id }}">
+                                    {{ $product1->product_name }}
+                                </h5>
+                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-5 text-center">
+                                        <img src="{{ asset('storage/' . $product1->image_url) }}" class="img-fluid"
+                                            alt="{{ $product1->product_name }}">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <h4>${{ $product1->price }}</h4>
+                                        <p><strong>Discount:</strong> {{ $product1->discount }}%</p>
+                                        <p><strong>Stock:</strong>
+                                            @if ($product1->stock_quantity > 0)
+                                                <span class="text-success">Available</span>
+                                            @else
+                                                <span class="text-danger">Out of stock</span>
+                                            @endif
+                                        </p>
+                                        <p><strong>Description:</strong> {{ $product1->description }}</p>
+                                        <p><strong>Model:</strong> {{ $product1->model }}</p>
+                                        <p><strong>Company:</strong> {{ $product1->company_name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                @if (Auth::guard('customer')->check())
+                                    @if ($product1->stock_quantity <= 0)
+                                        <button class="btn border-0 disabled" title="Out of stock">
+                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                        </button>
+                                    @elseif (session('cart') && array_key_exists($product1->product_id, session('cart')))
+                                        <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                        </a>
+                                    @else
+                                        <form action="{{ route('Addtocart', $product1->product_id) }}" method="POST"
+                                            class="ajaxAddToCartForm d-inline">
+                                            @csrf
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" class="btn add-to-cart-btn border-0 bg-transparent"
+                                                title="Add to cart">
+                                                <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                @else
+                                    <button class="btn border-0 disabled" title="Login To Buy">
+                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                                    </button>
+                                @endif
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> {{-- end row --}}
+        @endif
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $(".ajaxAddToCartForm").on("submit", function (e) {
+                e.preventDefault();
+                let form = $(this);
+                let button = form.find("button");
+                let url = form.attr("action");
+
+                button.prop("disabled", true);
+
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    data: form.serialize(),
+                    success: function (response) {
+                        alert("Product added to cart!");
+                        let countEl = $("#cartCount");
+                        let count = parseInt(countEl.text()) || 0;
+                        countEl.text(count + 1);
+                        form.replaceWith(`
+                        <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+                        </a>
+                    `);
+                    },
+                    error: function (xhr) {
+                        if (xhr.status === 401 && xhr.responseJSON?.login === false) {
+                            window.location.href = xhr.responseJSON.redirect;
+                        } else if (xhr.status === 404) {
+                            alert("Product not found!");
+                        } else {
+                            alert("Something went wrong!");
+                        }
+                    },
+                    complete: function () {
+                        button.prop("disabled", false);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

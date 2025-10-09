@@ -56,10 +56,6 @@
                         @endif
                     </h5>
                 </div>
-                <div>
-                    <a href="{{ route('Pdf', ['id' => $batchId]) }}" class="btn"
-                        style="background-color: #081621; color: white;">Download Pdf</a>
-                </div>
             </div>
         @endforeach
     </div>
