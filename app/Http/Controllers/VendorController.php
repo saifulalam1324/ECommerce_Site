@@ -395,7 +395,7 @@ class VendorController extends Controller
         $vendorID = Auth::guard('vendor')->user()->vendor_id;
         $data = DB::table('products')
             ->where('vendor_id', $vendorID)
-            ->where('category', 'Celling Fan')
+            ->where('category', 'Ceiling Fan')
             ->orderBy('product_id', 'desc')
             ->cursorPaginate(30);
         return view('VENDORPANEL.CELLINGFAN', ['products' => $data]);

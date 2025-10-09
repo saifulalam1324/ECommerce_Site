@@ -13,7 +13,23 @@ class CustomerController extends Controller
 {
     public function HOME()
     {
-        $data = DB::table('products')->whereNotNull('discount')->get();
+        $data = DB::table('products')->whereNotNull('discount')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.HOME', ['products' => $data]);
     }
 
@@ -496,109 +512,397 @@ class CustomerController extends Controller
 
     public function GETAC()
     {
-        $data = DB::table('products')->where('category', 'Ac')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Ac')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.AC', ['products' => $data]);
     }
 
     public function GETTV()
     {
-        $data = DB::table('products')->where('category', 'Tv')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Tv')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.TV', ['products' => $data]);
     }
 
     public function GETAIRCOOLER()
     {
-        $data = DB::table('products')->where('category', 'Air Cooler')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Air Cooler')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.AIRCOOLER', ['products' => $data]);
     }
 
     public function GETFRIDGE()
     {
-        $data = DB::table('products')->where('category', 'Fridge')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Fridge')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.FRIDGE', ['products' => $data]);
     }
 
     public function GETWASHINGMACHINE()
     {
-        $data = DB::table('products')->where('category', 'Washing Machine')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Washing Machine')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.WASHINGMACHINE', ['products' => $data]);
     }
 
     public function GETOVEN()
     {
-        $data = DB::table('products')->where('category', 'Oven')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Oven')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.OVEN', ['products' => $data]);
     }
 
     public function GETBLENDER()
     {
-        $data = DB::table('products')->where('category', 'Blender')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Blender')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.BLENDER', ['products' => $data]);
     }
 
     public function GETDISHWASHER()
     {
-        $data = DB::table('products')->where('category', 'Dish Washer')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Dish Washer')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.DISHWASHER', ['products' => $data]);
     }
 
     public function GETCHIMNEY()
     {
-        $data = DB::table('products')->where('category', 'Chimney')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Chimney')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.CHYMNI', ['products' => $data]);
     }
 
     public function GETELECTRICSTOVE()
     {
-        $data = DB::table('products')->where('category', 'Electric Stove')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Electric Stove')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.ELECTRICSTOVE', ['products' => $data]);
     }
 
     public function GETRICECOOKER()
     {
-        $data = DB::table('products')->where('category', 'Rice Cooker')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Rice Cooker')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.RICECOOKER', ['products' => $data]);
     }
 
     public function GETCEILINGFAN()
     {
-        $data = DB::table('products')->where('category', 'Ceiling Fan')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Ceiling Fan')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.CELLINGFAN', ['products' => $data]);
     }
 
     public function GETTOASTER()
     {
-        $data = DB::table('products')->where('category', 'Toaster')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Toaster')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.TOASTER', ['products' => $data]);
     }
 
     public function GETVACUUMCLEANER()
     {
-        $data = DB::table('products')->where('category', 'Vacuum Cleaner')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Vacuum Cleaner')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.VACUUMCLEANER', ['products' => $data]);
     }
 
     public function GETWATERHEATER()
     {
-        $data = DB::table('products')->where('category', 'Water Heater')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Water Heater')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.WATERHEATER', ['products' => $data]);
     }
 
     public function GETBULB()
     {
-        $data = DB::table('products')->where('category', 'Bulb')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Bulb')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.BULB', ['products' => $data]);
     }
 
     public function GETIRON()
     {
-        $data = DB::table('products')->where('category', 'Iron')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Iron')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.IRON', ['products' => $data]);
     }
 
     public function GETAIRPURIFIER()
     {
-        $data = DB::table('products')->where('category', 'Air Purifier')->orderBy('product_id')->cursorPaginate(30);
+        $data = DB::table('products')->where('category', 'Air Purifier')->orderBy('product_id')
+            ->join('vendors', 'products.vendor_id', '=', 'vendors.vendor_id')
+            ->select(
+                'products.product_name',
+                'products.product_id',
+                'products.image_url',
+                'products.description',
+                'products.discount',
+                'products.category',
+                'products.stock_quantity',
+                'products.price',
+                'products.model',
+                'vendors.vendor_id',
+                'vendors.company_name',
+                'vendors.email'
+            )
+            ->cursorPaginate(30);
         return view('USER.AIRPURIFIER', ['products' => $data]);
     }
 

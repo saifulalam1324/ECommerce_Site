@@ -22,11 +22,11 @@
                     <div class="text-end mt-3">
                         <form action="{{ route('ApproveRequest', $vendor->vendor_id) }}" method="POST" style="display:inline;">
                             @csrf
-                            <button type="submit" class="btn btn-success text-white">Accept</button>
+                            <button type="submit" class="btn text-white" style="background-color: #081621">Accept</button>
                         </form>
                         <form action="{{ route('DeleteRequest', $vendor->vendor_id) }}" method="POST" style="display:inline;">
                             @csrf
-                            <button type="submit" class="btn btn-danger text-white">Delete</button>
+                            <button type="submit" class="btn text-white" style="background-color: #081621">Delete</button>
                         </form>
                     </div>
                 </div>
