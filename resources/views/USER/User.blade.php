@@ -8,12 +8,26 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('ASSATS/CSS/STYLE.css') }}">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+    <style>
+        .ui-autocomplete {
+            z-index: 2000;
+            background: white;
+            border-radius: 8px;
+            padding: 5px;
+        }
+
+        .ui-menu-item-wrapper:hover {
+            background: #081621;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -36,7 +50,9 @@
                         <i class="fa fa-search"></i>
                     </button>
                 </form>
+
             </div>
+            <div id="content" class="mt-4"></div>
             <div class="d-flex align-items-center">
                 @if (Auth::guard('customer')->check())
                     <div class="dropdown text-center">
@@ -79,7 +95,13 @@
             <a onclick="closeSidebar()"><i class="fa-solid fa-circle-xmark fa-2x"></i></a>
         </div>
         <div class="sidebar-content">
-
+            <h2>Companys</h2>
+            @php
+                $i = 1;
+            @endphp
+            @foreach ($company as $item)
+                <p><strong>{{ $i++ }}: {{$item->company_name}}</strong></p>
+            @endforeach
         </div>
     </div>
 
@@ -127,7 +149,6 @@
     <footer class="text-white pt-4 pb-3 mt-5" style="background-color:#081621;">
         <div class="container">
             <div class="row text-center text-md-left">
-                <!-- About -->
                 <div class="col-md-4 mb-3">
                     <h5 class="fw-bold">Your Market</h5>
                     <p>Your trusted online marketplace for electronics, home appliances, and more.
@@ -165,7 +186,27 @@
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#search").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "{{ route('Search') }}",
+                        data: { term: request.term },
+                        dataType: "json",
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 1,
+                select: function (event, ui) {
+                    window.location.href = "/product/" + ui.item.id;
+                }
+            });
+        });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="{{ asset('ASSATS/JS/LOGINSIGNUP.js') }}"></script>

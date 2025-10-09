@@ -43,12 +43,12 @@
                                     href="{{ route('ShippedOrders') }}">Shipped Orders</a>
                             </li>
                             <li class="nav-item d-flex justify-content-center">
-                                <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('CompletedOrders') ? 'active' : '' }}"
+                                <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('DeliveredOrders') ? 'active' : '' }}"
                                     href="{{ route('DeliveredOrders') }}">Completed Orders</a>
                             </li>
 
                             <li class="nav-item d-flex justify-content-center">
-                                <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('StockoutProducts') ? 'active' : '' }}"
+                                <a class="btn w-100 ml-1 mr-1 mb-1 text-center btn-outline-light {{ request()->routeIs('Stockoutproduct') ? 'active' : '' }}"
                                     href="{{ route('Stockoutproduct') }}">Stock Out Items</a>
 
                             </li>
