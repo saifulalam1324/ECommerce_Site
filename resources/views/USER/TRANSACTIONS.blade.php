@@ -22,10 +22,10 @@
             </div>
         </div>
     @endforeach
-    <div class="container fixed-bottom bg-white border-top shadow-lg py-3">
+    <div class="container bg-white border-top shadow-lg py-3">
         <div class="container d-flex justify-content-center">
             <h5 class="mb-0">
-                Total Paid: <strong>{{ number_format($total_to_show, 2) }}</strong>
+                Total Paid: $<strong>{{ number_format($total_to_show, 2) }}</strong>
             </h5>
         </div>
     </div>

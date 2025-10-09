@@ -220,3 +220,8 @@ body {
         border-color: transparent;
     }
 }
+
+footer a:hover {
+    color: #00aced !important;
+    text-decoration: underline;
+}

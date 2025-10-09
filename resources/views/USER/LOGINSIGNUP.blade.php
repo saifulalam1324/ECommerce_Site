@@ -4,7 +4,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('ASSATS/CSS/LOGINSIGNUP.css') }}">
     @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show div container" role="alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -19,8 +19,8 @@
             </button>
         </div>
     @endif
-    <div class="container-fluid mt-lg-1 my-5 p-5">
-        <div class="container overflow-hidden" id="container">
+    <div class="container-fluid mt-lg-1 my-5 p-5 d-flex justify-content-center align-items-center">
+        <div class="containers overflow-hidden" id="container">
 
             <div class="form-container sign-up">
                 <form action="{{ route('UserSignup') }}" method="POST">

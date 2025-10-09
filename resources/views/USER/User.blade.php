@@ -17,159 +17,70 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="" onclick="openSidebar()">
-            <i class="fa-solid fa-bars" style="color: white"></i>
-        </a>
-        <div class="container-fluid">
-            <a class="navbar-brand mr-5" href="{{ route('User home') }}">YOUR MARKET</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="container-fluid collapse navbar-collapse mt-1 mb-1 justify-content-center" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item mx-2 d-flex nav-item justify-content-center align-items-center">
-                        <div class="search-container w-75">
-                            <form class="search-form d-flex" action="#" method="get">
-                                @csrf
-                                <input type="search" id="search" class="form-control search-input"
-                                    placeholder="Search products..." aria-label="Search" aria-describedby="search"
-                                    name="search">
-                                <button type="submit" class="btn btn-outline-light ml-1" style="border-radius: 10%">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </li>
-                </ul>
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #081621;">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center justify-content-start">
+                <button class="btn text-white mr-3" onclick="openSidebar()" style="border: none;">
+                    <i class="fa-solid fa-bars fa-lg"></i>
+                </button>
+                <a class="navbar-brand text-white font-weight-bold" href="{{ route('User home') }}">
+                    YOUR MARKET
+                </a>
             </div>
-            <div class="container-fluid collapse navbar-collapse mt-1 mb-1 justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item justify-content-center align-items-center">
-                        @if (Auth::guard('customer')->check())
-                            <div class="dropdown justifyF-content-center text-center">
-                                <a class="btn btn-outline-light dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-user"></i> {{Auth::guard('customer')->user()->full_name}}
+            <div class="d-none d-lg-block w-50 text-center">
+                <form class="search-form d-flex justify-content-center" action="#" method="get">
+                    @csrf
+                    <input type="search" id="search" class="form-control search-input w-75"
+                        placeholder="Search products..." aria-label="Search" aria-describedby="search" name="search">
+                    <button type="submit" class="btn btn-outline-light ml-1" style="border-radius: 10%;">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="d-flex align-items-center">
+                @if (Auth::guard('customer')->check())
+                    <div class="dropdown text-center">
+                        <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-user"></i> {{ Auth::guard('customer')->user()->full_name }}
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right bg-transparent border-0">
+                            <div class="d-flex justify-content-center">
+                                <form id="logoutForm" action="{{ route('UserLogout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger" title="Logout">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                    </button>
+                                </form>
+                                <script>
+                                    document.getElementById('logoutForm').addEventListener('submit', function (event) {
+                                        event.preventDefault();
+                                        if (confirm("Are you sure you want to logout?")) {
+                                            this.submit();
+                                        }
+                                    });
+                                </script>
+                                <a class="btn btn-success ml-2" href="{{ route('UserInfo') }}" title="Profile Info">
+                                    <i class="fa-solid fa-circle-info"></i>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-center custom-dropdown bg-transparent">
-                                    <div class="d-flex justify-content-center">
-                                        <form id="logoutForm" action="{{ route('UserLogout') }}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa-solid fa-right-from-bracket"></i>
-                                            </button>
-                                        </form>
-                                        <script>
-                                            document.getElementById('logoutForm').addEventListener('submit', function (event) {
-                                                event.preventDefault();
-                                                if (confirm("Are you sure you want to logout?")) {
-                                                    this.submit();
-                                                }
-                                            });
-                                        </script>
-                                        <a class="btn btn-success ml-1" href="{{ route('UserInfo') }}"><i
-                                                class="fa-solid fa-circle-info"></i></a>
-                                    </div>
-                                </div>
                             </div>
-                        @else
-                            <a class="btn btn-outline-light" href="{{ route('LoginSignup') }}">Sign In</a>
-                        @endif
-                    </li>
-                </ul>
+                        </div>
+                    </div>
+                @else
+                    <a class="btn btn-outline-light ml-2" href="{{ route('LoginSignup') }}">Sign In</a>
+                @endif
             </div>
         </div>
     </nav>
+
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header d-flex justify-content-between align-items-center">
             <a onclick="closeSidebar()"><i class="fa-solid fa-circle-xmark fa-2x"></i></a>
         </div>
         <div class="sidebar-content">
-            <h5>Category</h5>
-            <div class="container">
-                <div class="row">
-                    <div class="col-6 d-flex flex-column">
-                        <a href="{{ route('ACC') }}" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Ac</a>
-                        <a href="" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Air Cooler</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>TV</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Fridge</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Washing Machine</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Rice Cooker</a>
-                    </div>
-                    <div class="col-6 d-flex flex-column">
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Oven</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Blender</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Dish Washer</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Chimney</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Electric Stove</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Ceiling Fan</a>
-                    </div>
-                </div>
-            </div>
+
         </div>
-        <div class="sidebar-content mt-3">
-            <h5>Company</h5>
-            <div class="container">
-                <div class="row">
-                    <div class="col-6 d-flex flex-column">
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Ac</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Air Cooler</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>TV</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Fridge</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Washing Machine</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Rice Cooker</a>
-                    </div>
-                    <div class="col-6 d-flex flex-column">
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Oven</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Blender</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Dish Washer</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Chimney</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Electric Stove</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Ceiling Fan</a>
-                    </div>
-                    <div class="col-6 d-flex flex-column">
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Toaster</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Blender</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Dish Washer</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Chimney</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Electric Stove</a>
-                        <a href="#" class="text-decoration-none mb-2" style="color: black;"><i
-                                class="fa-solid fa-square"></i>Ceiling Fan</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
 
 
@@ -213,6 +124,47 @@
     <div class="container-fluid mt-5">
         @yield('content')
     </div>
+    <footer class="text-white pt-4 pb-3 mt-5" style="background-color:#081621;">
+        <div class="container">
+            <div class="row text-center text-md-left">
+                <!-- About -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold">Your Market</h5>
+                    <p>Your trusted online marketplace for electronics, home appliances, and more.
+                        Fast delivery and quality products—every time.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route('User home') }}" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="{{ route('Cart') }}" class="text-white text-decoration-none">Cart</a></li>
+                        <li><a href="{{ route('Orders') }}" class="text-white text-decoration-none">Orders</a></li>
+                        <li><a href="{{ route('LoginSignup') }}" class="text-white text-decoration-none">Sign In</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold">Contact Us</h5>
+                    <p><i class="fa-solid fa-location-dot"></i> Chittagong, Bangladesh</p>
+                    <p><i class="fa-solid fa-envelope"></i> support@yourmarket.com</p>
+                    <p><i class="fa-solid fa-phone"></i> +880 1625 933020</p>
+                    <div class="mt-2">
+                        <a href="#" class="text-white mr-2"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white mr-2"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white mr-2"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="bg-light">
+
+            <div class="text-center">
+                <p class="mb-0">&copy; {{ date('Y') }} Your Market. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
