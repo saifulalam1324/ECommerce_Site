@@ -77,7 +77,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="container fixed-bottom bg-white border-top shadow-lg py-3">
+            <div class="container bg-white border-top shadow-lg py-3">
                 <div class="container d-flex justify-content-between align-items-center">
                     <h6 class="mb-0">
                         Grand Total: <strong>{{ number_format($grand, 2) }}</strong>

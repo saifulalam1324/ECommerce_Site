@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 align-content-center"  style="background-color:#081621 ;border-radius: 10px;">
+            <div class="col-3 align-content-center" style="background-color:#081621 ;border-radius: 10px;">
                 <h5 class="text-white text-center typing">Your Market</h5>
                 <p class="text-center text-white typing" style="animation-delay: 1s; font-size: 14px;">Your Trusted Online
                     Marketplace</p>
@@ -329,7 +329,9 @@
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div class="mb-2">
                                 <span class="d-block fw-bold text-truncate">{{ $data->product_name }}</span>
-                                <small>Price: $<strong>{{ $data->price }}</strong></small>
+                                <span>Model: <small>{{ $data->model }}</small></span>
+                                <span>Company: <strong>{{ $data->company_name }}</strong></span>
+                                <span>Price:$<strong>{{ $data->price }}</strong></span>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center">
@@ -395,8 +397,9 @@
                                                 <span class="text-danger">Out of stock</span>
                                             @endif
                                         </p>
-                                        <p><strong>Description:</strong></p>
-                                        <p>{{ $data->description ?? 'No description available.' }}</p>
+                                        <p><strong>Description:</strong> {{ $data->description}}</p>
+                                        <p><strong>Model:</strong> {{$data->model}}</p>
+                                        <p><strong>Company:</strong> {{$data->company_name}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -432,6 +435,9 @@
                     </div>
                 </div>
             @endforeach
+            <div class="d-flex justify-content-center mt-4">
+                {{ $products->links() }}
+            </div>
         </div>
     </div>
 
@@ -453,9 +459,9 @@
                         let count = parseInt(countEl.text()) || 0;
                         countEl.text(count + 1);
                         form.replaceWith(`
-                                        <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
-                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
-                                    `);
+                                            <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
+                                        `);
                     },
                     error: function (xhr) {
                         if (xhr.status === 401 && xhr.responseJSON?.login === false) {
