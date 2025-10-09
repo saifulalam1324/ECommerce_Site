@@ -37,7 +37,9 @@
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div class="mb-2">
                                 <span class="d-block fw-bold text-truncate">{{ $data->product_name }}</span>
-                                <small>Price: $<strong>{{ $data->price }}</strong></small>
+                                <span>Model: <small>{{ $data->model }}</small></span>
+                                <span>Company: <strong>{{ $data->company_name }}</strong></span>
+                                <span>Price:$<strong>{{ $data->price }}</strong></span>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center">
@@ -95,9 +97,7 @@
                                     </div>
                                     <div class="col-md-7">
                                         <h4>${{ $data->price }}</h4>
-                                        @if ($data->discount > 0)
-                                            <p><strong>Discount:</strong> {{ $data->discount }}%</p>
-                                        @endif
+                                        <p><strong>Discount:</strong> {{ $data->discount }}%</p>
                                         <p><strong>Stock:</strong>
                                             @if($data->stock_quantity > 0)
                                                 <span class="text-success">Available</span>
@@ -105,14 +105,15 @@
                                                 <span class="text-danger">Out of stock</span>
                                             @endif
                                         </p>
-                                        <p><strong>Description:</strong></p>
-                                        <p>{{ $data->description ?? 'No description available.' }}</p>
+                                        <p><strong>Description:</strong> {{ $data->description}}</p>
+                                        <p><strong>Model:</strong> {{$data->model}}</p>
+                                        <p><strong>Company:</strong> {{$data->company_name}}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 @if (Auth::guard('customer')->check())
-                                    @if ($data->stock_quantity <= 0)
+                                    @if ($data->stock_quantity <= 0 || count(session('cart', [])))
                                         <button class="btn border-0 disabled" title="Add to cart">
                                             <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
                                         </button>
@@ -147,6 +148,7 @@
             </div>
         </div>
     </div>
+
     <script>
         $(document).ready(function () {
             $(".ajaxAddToCartForm").on("submit", function (e) {
@@ -165,9 +167,9 @@
                         let count = parseInt(countEl.text()) || 0;
                         countEl.text(count + 1);
                         form.replaceWith(`
-                            <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
-                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
-                        `);
+                                                <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+                                                <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
+                                            `);
                     },
                     error: function (xhr) {
                         if (xhr.status === 401 && xhr.responseJSON?.login === false) {
