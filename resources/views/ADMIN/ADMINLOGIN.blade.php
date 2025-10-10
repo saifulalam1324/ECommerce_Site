@@ -45,11 +45,11 @@
                             Login
                         </button>
                     </form>
-                    <div class="text-center">
+                    {{-- <div class="text-center">
                         <p>or..</p>
                         <a href="{{ route('AdminSignupPage') }}" id="showSignup">Create
                             Account</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
