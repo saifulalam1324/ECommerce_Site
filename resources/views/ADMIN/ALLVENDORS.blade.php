@@ -14,7 +14,9 @@
                 No vendors found.
             </div>
         @endif
-
+         <div class="container">
+            <h3>Total: {{ count($vendors) }}</h3>
+        </div>
         @foreach ($vendors as $vendor)
             <div class="container mt-4 card p-3">
                 <div class="card-header text-white" style="background-color: #081621;">

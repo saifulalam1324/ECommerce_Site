@@ -10,8 +10,8 @@
                     </div>
                     <div class="card-body">
                         <p class="fs-5 text-center mb-4">
-                            <strong>Grand Total: </strong>
-                            <span class="text-success h4">{{ number_format($grand, 2) }}</span>
+                            <strong>Total: </strong>
+                            <span class="text-success h4">${{ number_format($grand, 2) }}</span>
                         </p>
                         <form id="stripe-form" method="POST" action="{{ route('payment') }}">
                             @csrf

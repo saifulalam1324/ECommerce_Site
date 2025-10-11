@@ -153,6 +153,8 @@
                     <h5 class="fw-bold">Your Market</h5>
                     <p>Your trusted online marketplace for electronics, home appliances, and more.
                         Fast delivery and quality products—every time.</p>
+                    <h3>Over <strong>{{ count($users) }}</strong>+ Users</h3>
+                    <p>Over {{ count($company ) }}+ Companys</p>
                 </div>
                 <div class="col-md-4 mb-3">
                     <h5 class="fw-bold">Quick Links</h5>

@@ -13,7 +13,9 @@
                 No pending orders available.
             </div>
         @endif
-
+        <div class="container">
+            <h3>Total: {{ count($batches) }}</h3>
+        </div>
         @foreach ($batches as $batchId => $batch)
             <div class="container mt-4 card p-3">
                 <div class="card-header text-white" style="background-color: #081621;">

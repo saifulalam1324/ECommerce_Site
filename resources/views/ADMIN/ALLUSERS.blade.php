@@ -14,7 +14,9 @@
                 No users found.
             </div>
         @endif
-
+         <div class="container">
+            <h3>Total: {{ count($customers) }}</h3>
+        </div>
         @foreach ($customers as $user)
             <div class="container mt-4 card p-3">
                 <div class="card-header text-white" style="background-color: #081621;">

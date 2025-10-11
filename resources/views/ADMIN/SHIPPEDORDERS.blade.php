@@ -15,7 +15,9 @@
                 </button>
             </div>
         @endif
-
+        <div class="container">
+            <h3>Total: {{ count($batches) }}</h3>
+        </div>
         @if (count($batches) == 0)
             <div class="alert alert-danger alert-info mt-5">
                 No pending orders available.

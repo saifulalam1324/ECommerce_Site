@@ -34,9 +34,11 @@ class AppServiceProvider extends ServiceProvider
                     ->count();
             }
             $company = DB::table('vendors')->get();
+            $users=DB::table('customers')->get();
             $view->with([
                 'counts' => $counts,
-                'company' => $company
+                'company' => $company,
+                'users'=>$users
             ]);
         });
     }

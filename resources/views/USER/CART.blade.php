@@ -48,7 +48,7 @@
                                     style="inline-size:100px; block-size:100px; object-fit:cover;">
                             </td>
                             <td>{{ $item['name'] }}</td>
-                            <td>{{ number_format($item['price'], 2) }}</td>
+                            <td>${{ number_format($item['price'], 2) }}</td>
                             <td>
                                 <div class="d-flex align-items-center justify-content-center">
                                     <form action="{{ route('DEC', $pid) }}" method="POST" class="me-1">
@@ -80,9 +80,9 @@
             <div class="container bg-white border-top shadow-lg py-3">
                 <div class="container d-flex justify-content-between align-items-center">
                     <h6 class="mb-0">
-                        Grand Total: <strong>{{ number_format($grand, 2) }}</strong>
+                        Grand Total: $<strong>{{ number_format($grand, 2) }}</strong>
                         @if ($grandDiscounted < $grand) <br>
-                            Discounted Total: <strong class="text-success">{{ number_format($grandDiscounted, 2) }}</strong>
+                            Discounted Total: $<strong class="text-success">{{ number_format($grandDiscounted, 2) }}</strong>
                         @endif
                     </h6>
                     <form action="{{ route('Placeorder') }}" method="POST">
