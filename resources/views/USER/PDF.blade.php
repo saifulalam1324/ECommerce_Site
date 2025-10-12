@@ -9,7 +9,7 @@
   <body>
      @foreach($batches as $batchId => $items)
         @php
-            $createdAt  = optional($items->first())->created_at;
+            $createdAt  = $items->first()->created_at;
             $batchTotal = $items->sum(function ($i) {
                 return $i->price * $i->quantity;
             });
