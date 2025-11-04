@@ -37,7 +37,7 @@
                                     ? $item['line_total']
                                     : $item['discounted_total'];
                             @endphp
-                            <li class="list-group  item d-flex justify-content-between">
+                            <li class="list-group item d-flex justify-content-between">
                                 <span>
                                     <img src="{{ asset('storage/' . $item['image_url']) }}" width="60" class="me-2">
                                     {{ $item['product_name'] }} (x{{ $item['quantity'] }})

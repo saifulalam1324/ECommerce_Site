@@ -16,7 +16,7 @@
         </div>
         @php
             $grandtotal = $orderdetails->sum('total');
-            $discountedtotal = $orderdetails->sum('discounted_tota')
+            $discountedtotal = $orderdetails->sum('discounted_tota');
         @endphp
         <div class="container card">
             @foreach ($orderdetails as $order)
