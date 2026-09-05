@@ -303,7 +303,7 @@ public function DECREASE($id)
                 'orders.order_batch_id',
                 'orders.created_at',
                 'orders.total',
-                'orders.discounted_tota',
+                'orders.discounted_total',
                 'products.product_id',
                 'products.product_name',
                 'products.image_url',
@@ -316,7 +316,7 @@ public function DECREASE($id)
             ->get()
             ->groupBy('order_batch_id')
             ->map(function ($batch) {
-                $batch_discounted_total = $batch->sum('discounted_tota');
+                $batch_discounted_total = $batch->sum('discounted_total');
                 return [
                     'created_at' => $batch->first()->created_at,
                     'batch_total' => $batch->sum('total'),
