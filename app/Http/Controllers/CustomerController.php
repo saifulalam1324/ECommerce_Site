@@ -303,7 +303,7 @@ public function DECREASE($id)
                 'orders.order_batch_id',
                 'orders.created_at',
                 'orders.total',
-                'orders.discounted_total',
+                'orders.discounted_tota',
                 'products.product_id',
                 'products.product_name',
                 'products.image_url',
@@ -316,7 +316,7 @@ public function DECREASE($id)
             ->get()
             ->groupBy('order_batch_id')
             ->map(function ($batch) {
-                $batch_discounted_total = $batch->sum('discounted_total');
+                $batch_discounted_total = $batch->sum('discounted_tota');
                 return [
                     'created_at' => $batch->first()->created_at,
                     'batch_total' => $batch->sum('total'),
@@ -329,7 +329,7 @@ public function DECREASE($id)
                             'quantity'        => $row->quantity,
                             'price'           => $row->price,
                             'line_total'      => $row->total,
-                            'discounted_total' => $row->discounted_tota,
+                            'discounted_tota' => $row->discounted_tota,
                             'delivery_status' => $row->delivery_status,
                             'vendor_name'     => $row->company_name,
                         ];
@@ -380,7 +380,7 @@ public function DECREASE($id)
                             'quantity'        => $row->quantity,
                             'price'           => $row->price,
                             'line_total'      => $row->total,
-                            'discounted_total' => $row->discounted_tota,
+                            'discounted_tota' => $row->discounted_tota,
                             'delivery_status' => $row->delivery_status,
                             'vendor_name'     => $row->company_name,
                         ];

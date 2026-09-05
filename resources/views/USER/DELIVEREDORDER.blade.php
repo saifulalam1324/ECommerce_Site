@@ -19,9 +19,9 @@
                     <ul class="list-group mb-2">
                         @foreach($batch['items'] as $item)
                             @php
-                                $display_price = ($item['line_total'] == $item['discounted_total'])
+                                $display_price = ($item['line_total'] == $item['discounted_tota'])
                                     ? $item['line_total']
-                                    : $item['discounted_total'];
+                                    : $item['discounted_tota'];
                             @endphp
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <span>
@@ -33,7 +33,7 @@
                                 <span class="text-secondary">Sold by: {{ $item['vendor_name'] }}</span>
                                 <span>
                                     ${{ number_format($display_price, 2) }}
-                                    @if($item['line_total'] != $item['discounted_total'])
+                                    @if($item['line_total'] != $item['discounted_tota'])
                                         <small
                                             class="text-muted text-decoration-line-through">${{ number_format($item['line_total'], 2) }}</small>
                                     @endif

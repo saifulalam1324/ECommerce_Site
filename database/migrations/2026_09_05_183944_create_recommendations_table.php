@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+public function up(): void
+    {
+        Schema::create('recommendations', function (Blueprint $table) {
+            $table->id();
+
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('product_id');
+
+            $table->float('score');
+            $table->timestamp('generated_at')->useCurrent();
+
+            // Foreign keys
+            $table->foreign('customer_id')
+                ->references('customer_id')
+                ->on('customers')
+                ->onDelete('cascade');
+
+            $table->foreign('product_id')
+                ->references('product_id')
+                ->on('products')
+                ->onDelete('cascade');
+
+            // Faster recommendation lookup
+            $table->index(['customer_id', 'score']);
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('recommendations');
+    }
+};
