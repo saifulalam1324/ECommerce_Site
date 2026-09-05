@@ -115,58 +115,67 @@ class CustomerController extends Controller
         $cart = session()->get('cart', []);
         return view('USER.CART', compact('cart'));
     }
-    public function ADDTOCART(Request $request, $id)
-    {
-        $product = DB::table('products')->where('product_id', $id)->first();
+    private const MIN_ORDER_QTY = 20;
 
-        if (! $product) {
-            return redirect()->back()->with('error', 'Product not found.');
-        }
-        $cart = session()->get('cart', []);
-        $quantity = max(1, (int)$request->input('quantity', 1));
+public function ADDTOCART(Request $request, $id)
+{
+    $product = DB::table('products')->where('product_id', $id)->first();
 
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity'] += $quantity;
+    if (! $product) {
+        return redirect()->back()->with('error', 'Product not found.');
+    }
+
+    $cart = session()->get('cart', []);
+    $requestedQty = (int) $request->input('quantity', self::MIN_ORDER_QTY);
+    $quantity = max(self::MIN_ORDER_QTY, $requestedQty);
+
+    if (isset($cart[$id])) {
+        $cart[$id]['quantity'] += $quantity;
+    } else {
+        $cart[$id] = [
+            'id'       => $product->product_id,
+            'name'     => $product->product_name,
+            'price'    => $product->price,
+            'quantity' => $quantity,
+            'image'    => $product->image_url,
+            'discount' => $product->discount ?? 0,
+        ];
+    }
+
+    session()->put('cart', $cart);
+
+    return redirect()->back()->with('success', 'Product added to cart! Minimum order is ' . self::MIN_ORDER_QTY . ' pieces.');
+}
+
+public function INCREASE($id)
+{
+    $cart = session()->get('cart', []);
+
+    if (isset($cart[$id])) {
+        $cart[$id]['quantity']++;
+        session()->put('cart', $cart);
+    }
+
+    return back();
+}
+
+public function DECREASE($id)
+{
+    $cart = session()->get('cart', []);
+
+    if (isset($cart[$id])) {
+        if ($cart[$id]['quantity'] > self::MIN_ORDER_QTY) {
+            $cart[$id]['quantity']--;
         } else {
-            $cart[$id] = [
-                'id'       => $product->product_id,
-                'name'     => $product->product_name,
-                'price'    => $product->price,
-                'quantity' => $quantity,
-                'image'    => $product->image_url,
-                'discount' => $product->discount ?? 0,
-            ];
+            // Already at minimum — don't drop below it.
+            session()->put('cart', $cart);
+            return redirect()->back()->with('error', 'Minimum order quantity is ' . self::MIN_ORDER_QTY . ' pieces. Use the trash icon to remove this item instead.');
         }
         session()->put('cart', $cart);
-
-        return redirect()->back()->with('success', 'Product added to cart!');
     }
-    public function INCREASE($id)
-    {
-        $cart = session()->get('cart', []);
 
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-            session()->put('cart', $cart);
-        }
-
-        return back();
-    }
-    public function DECREASE($id)
-    {
-        $cart = session()->get('cart', []);
-
-        if (isset($cart[$id])) {
-            if ($cart[$id]['quantity'] > 1) {
-                $cart[$id]['quantity']--;
-            } else {
-                unset($cart[$id]);
-            }
-            session()->put('cart', $cart);
-        }
-
-        return back();
-    }
+    return back();
+}
     public function REMOVECART(Request $request, $id)
     {
         $cart = session()->get('cart', []);

@@ -50,11 +50,14 @@
                             <td>{{ $item['name'] }}</td>
                             <td>${{ number_format($item['price'], 2) }}</td>
                             <td>
+                                {{-- MOQ CHANGE: minus button disables once quantity hits 20 --}}
                                 <div class="d-flex align-items-center justify-content-center">
                                     <form action="{{ route('DEC', $pid) }}" method="POST" class="me-1">
                                         @csrf
-                                        <button type="submit" class="btn btn-sm btn-outline-secondary"><i
-                                                class="fa-solid fa-minus"></i></button>
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary"
+                                            {{ $item['quantity'] <= 20 ? 'disabled' : '' }}>
+                                            <i class="fa-solid fa-minus"></i>
+                                        </button>
                                     </form>
                                     <span class="mx-2">{{ $item['quantity'] }}</span>
                                     <form action="{{ route('INC', $pid) }}" method="POST" class="ms-1">
@@ -63,6 +66,10 @@
                                                 class="fa-solid fa-plus"></i></button>
                                     </form>
                                 </div>
+                                {{-- MOQ CHANGE: small note shown when at the minimum --}}
+                                @if($item['quantity'] <= 20)
+                                    <small class="text-muted d-block">Min. order reached</small>
+                                @endif
                             </td>
                             <td>{{ number_format($total, 2) }}</td>
                             <td>
