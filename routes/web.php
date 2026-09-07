@@ -103,6 +103,10 @@ Route::middleware(['customer'])->group(function () {
         ->name('Updateprofile');
     Route::get('/ordercount', [CustomerController::class, 'COUNTORDERS'])
         ->name('ordercount');
+    Route::get('/recommended', [CustomerController::class, 'RECOMMENDED'])
+        ->name('Recommended');
+    Route::get('/recommentations', [CustomerController::class, 'RECOMMENTATIONS'])
+        ->name('Recommentations');
 });
 
 

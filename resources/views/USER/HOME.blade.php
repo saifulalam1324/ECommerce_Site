@@ -1,483 +1,1494 @@
 @extends('USER.User')
+
 @section('title', 'HOME')
 
 @section('content')
 
     <div class="container mt-lg-5">
+
         <div class="row">
+
             <div class="col-9">
+
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
                     <ol class="carousel-indicators">
+
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"
-                            style="background-color:#081621; inline-size: 60px;"></li>
+                            style="background-color:#081621; inline-size:60px;">
+                        </li>
+
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"
-                            style="background-color:#081621 ;inline-size: 60px;"></li>
+                            style="background-color:#081621; inline-size:60px;">
+                        </li>
+
                         <li data-target="#carouselExampleIndicators" data-slide-to="2"
-                            style="background-color:#081621 ;inline-size: 60px;"></li>
+                            style="background-color:#081621; inline-size:60px;">
+                        </li>
+
                     </ol>
+
+
                     <div class="carousel-inner">
+
                         <div class="carousel-item active">
-                            <img src="{{ asset('ASSATS/PICTURE/banner2.png') }}" class="d-block w-100" alt="...">
+
+                            <img src="{{ asset('ASSATS/PICTURE/banner2.png') }}" class="d-block w-100" alt="Banner">
+
                         </div>
+
+
                         <div class="carousel-item">
-                            <img src="{{ asset('ASSATS/PICTURE/banner3.png') }}" class="d-block w-100" alt="...">
+
+                            <img src="{{ asset('ASSATS/PICTURE/banner3.png') }}" class="d-block w-100" alt="Banner">
+
                         </div>
+
+
                         <div class="carousel-item">
-                            <img src="{{ asset('ASSATS/PICTURE/banner5.png') }}" class="d-block w-100" alt="...">
+
+                            <img src="{{ asset('ASSATS/PICTURE/banner5.png') }}" class="d-block w-100" alt="Banner">
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
-            <div class="col-3 align-content-center" style="background-color:#081621 ;border-radius: 10px;">
-                <h5 class="text-white text-center typing">Your Market</h5>
-                <p class="text-center text-white typing" style="animation-delay: 1s; font-size: 14px;">Your Trusted Online
-                    Marketplace</p>
+
+
+            <div class="col-3 align-content-center" style="background-color:#081621; border-radius:10px;">
+
+                <h5 class="text-white text-center typing">
+                    Your Market
+                </h5>
+
+                <p class="text-center text-white typing" style="animation-delay:1s; font-size:14px;">
+
+                    Your Trusted Online Marketplace
+
+                </p>
+
             </div>
+
         </div>
+
     </div>
+
+
+    {{-- ========================================================= --}}
+    {{-- FEATURED CATEGORY --}}
+    {{-- ========================================================= --}}
+
     <div class="container my-4">
+
         <div class="row g-4 text-center">
+
             <div class="container justify-content-center">
+
                 <h1>Featured Category</h1>
-                <p>Get Your Desired Product from Featured Category</p>
+
+                <p>
+                    Get Your Desired Product from Featured Category
+                </p>
+
             </div>
+
+
+            {{-- AC --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('ACC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('ACC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/ac_11036490.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Ac</h6>
+
+                            <h6 class="fw-bold">
+                                Ac
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
 
+
+            {{-- AIR COOLER --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('AirCoolerC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('AirCoolerC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/air-cooler_17844831.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Air Cooler</h6>
+
+                            <h6 class="fw-bold">
+                                Air Cooler
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
 
+
+            {{-- TV --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('TVC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('TVC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/television_2593966.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Tv</h6>
+
+                            <h6 class="fw-bold">
+                                Tv
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
+
+
+            {{-- FRIDGE --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('FridgeC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('FridgeC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/fridge_5909568.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Fridge</h6>
+
+                            <h6 class="fw-bold">
+                                Fridge
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
+
+
+            {{-- WASHING MACHINE --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('WashingMachineC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('WashingMachineC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/washing-machine_1104590.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Wasing Machine</h6>
+
+                            <h6 class="fw-bold">
+                                Wasing Machine
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
+
+
+            {{-- OVEN --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('OvenC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('OvenC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/oven_18766209.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Oven</h6>
+
+                            <h6 class="fw-bold">
+                                Oven
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
+
         </div>
+
     </div>
+
+
+    {{-- ========================================================= --}}
+    {{-- SECOND CATEGORY ROW --}}
+    {{-- ========================================================= --}}
+
     <div class="container my-4">
+
         <div class="row g-4 text-center">
+
+
+            {{-- BLENDER --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('BlenderC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('BlenderC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/blender_15447781.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Blender</h6>
+
+                            <h6 class="fw-bold">
+                                Blender
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
 
+
+            {{-- DISHWASHER --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('DishWasherC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('DishWasherC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/dishwasher_3095436.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Dish Washer</h6>
+
+                            <h6 class="fw-bold">
+                                Dish Washer
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
+            </div>
+
+
+            {{-- CHIMNEY --}}
+            <div class="col-md-2 col-sm-4">
+
+                <a href="{{ route('ChimneyC') }}" class="text-decoration-none">
+
+                    <div class="card shadow-lg h-100 btn">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
+                            <div class="mb-2">
+
+                                <img src="{{ asset('ASSATS/PICTURE/extractor_1098332.png') }}" alt=""
+                                    style="inline-size:40px; block-size:40px;">
+
+                            </div>
+
+                            <h6 class="fw-bold">
+                                Chymni
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            {{-- ELECTRIC STOVE --}}
+            <div class="col-md-2 col-sm-4">
+
+                <a href="{{ route('ElectricStoveC') }}" class="text-decoration-none">
+
+                    <div class="card shadow-lg h-100 btn">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
+                            <div class="mb-2">
+
+                                <img src="{{ asset('ASSATS/PICTURE/electric-stove_8426510.png') }}" alt=""
+                                    style="inline-size:40px; block-size:40px;">
+
+                            </div>
+
+                            <h6 class="fw-bold">
+                                Electric Stove
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <div class="col-md-2 col-sm-4">
+
+                <a href="{{ route('RiceCookerC') }}" class="text-decoration-none">
+
+                    <div class="card shadow-lg h-100 btn">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
+                            <div class="mb-2">
+
+                                <img src="{{ asset('ASSATS/PICTURE/rice-cooker_8354616.png') }}" alt=""
+                                    style="inline-size:40px; block-size:40px;">
+
+                            </div>
+
+                            <h6 class="fw-bold">
+                                Rice Cooker
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
             </div>
 
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('ChimneyC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('CeilingFanC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
-                                <img src="{{ asset('ASSATS/PICTURE/extractor_1098332.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
-                            </div>
-                            <h6 class="fw-bold">Chymni</h6>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2 col-sm-4">
-                <a href="{{ route('ElectricStoveC') }}" class=" text-decoration-none">
-                    <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
-                            <div class="mb-2">
-                                <img src="{{ asset('ASSATS/PICTURE/electric-stove_8426510.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
-                            </div>
-                            <h6 class="fw-bold">Electric Stove</h6>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2 col-sm-4">
-                <a href="{{ route('RiceCookerC') }}" class=" text-decoration-none">
-                    <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
-                            <div class="mb-2">
-                                <img src="{{ asset('ASSATS/PICTURE/rice-cooker_8354616.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
-                            </div>
-                            <h6 class="fw-bold">Rice Cooker</h6>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-2 col-sm-4">
-                <a href="{{ route('CeilingFanC') }}" class=" text-decoration-none">
-                    <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
-                            <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/ceiling_16431236.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Celling Fan</h6>
+
+                            <h6 class="fw-bold">
+                                Celling Fan
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
+
         </div>
+
     </div>
 
     <div class="container my-4">
+
         <div class="row g-4 text-center">
+
+
+            {{-- TOASTER --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('ToasterC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('ToasterC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/food_13645721.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Toaster</h6>
+
+                            <h6 class="fw-bold">
+                                Toaster
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
 
+
+            {{-- VACUUM CLEANER --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('VacuumCleanerC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('VacuumCleanerC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/vacuum_17954620.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Vacuum Cleaner</h6>
+
+                            <h6 class="fw-bold">
+                                Vacuum Cleaner
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
 
+
+            {{-- WATER HEATER --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('WaterHeaterC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('WaterHeaterC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/kitchen_13638980.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Water Heater</h6>
+
+                            <h6 class="fw-bold">
+                                Water Heater
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
+
+
+            {{-- BULB --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('BulbC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('BulbC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/light-bulb_148561.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Bulb</h6>
+
+                            <h6 class="fw-bold">
+                                Bulb
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
+
+
+            {{-- IRON --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('IronC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('IronC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/iron_6524411.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Iron</h6>
+
+                            <h6 class="fw-bold">
+                                Iron
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
+
+
+            {{-- AIR PURIFIER --}}
             <div class="col-md-2 col-sm-4">
-                <a href="{{ route('AirPurifierC') }}" class=" text-decoration-none">
+
+                <a href="{{ route('AirPurifierC') }}" class="text-decoration-none">
+
                     <div class="card shadow-lg h-100 btn">
-                        <div class="card-body d-flex flex-column align-items-center justify-content-center p-5">
+
+                        <div class="card-body d-flex flex-column
+                                            align-items-center justify-content-center p-5">
+
                             <div class="mb-2">
+
                                 <img src="{{ asset('ASSATS/PICTURE/smart_15730603.png') }}" alt=""
-                                    style="inline-size: 40px; block-size: 40px;">
+                                    style="inline-size:40px; block-size:40px;">
+
                             </div>
-                            <h6 class="fw-bold">Air Purifier</h6>
+
+                            <h6 class="fw-bold">
+                                Air Purifier
+                            </h6>
+
                         </div>
+
                     </div>
+
                 </a>
+
             </div>
+
         </div>
+
     </div>
-    <div class="container text-center mt-5">
-        <h1>Featured Discounts</h1>
-        <p>Get Your Desired Product With Discount</p>
-    </div>
-    <div class="container-fluid mt-lg-4">
-        <div class="row">
-            @if ($data->isEmpty())
-                <div class="alert alert-danger mt-5 w-100 text-center">
-                    No Products Available.
-                </div>
-            @endif
-            @foreach ($data as $id => $data1)
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="card product-card shadow-sm h-100">
-                        <div class="position-relative">
-                            @if ($data1->discount > 0)
-                                <span class="badge position-absolute text-white"
-                                    style="inset-block-start: 10px; inset-inline-start: 10px; font-size: 0.8rem; background-color: #081621;">
-                                    -{{ $data1->discount }}%
-                                </span>
-                            @endif
-                            <div class="text-center">
-                                <img src="{{ asset('storage/' . $data1->image_url) }}" class="product-img card-img-top img-fluid"
-                                    alt="{{ $data1->product_name ?? 'Product image' }}"
-                                    style="object-fit: contain; max-block-size: 180px;">
+
+
+    {{-- ========================================================= --}}
+    {{-- RECOMMENDED PRODUCTS --}}
+    {{-- ========================================================= --}}
+
+    @if (Auth::guard('customer')->check())
+
+        @if (isset($recommendedProducts) && $recommendedProducts->isNotEmpty())
+
+            <div class="container text-center mt-5">
+
+                <h1>
+                    Recommended Products
+                </h1>
+
+                <p>
+                    Products selected for you based on your previous purchases
+                </p>
+
+            </div>
+
+
+            <div class="container-fluid mt-lg-4">
+
+                <div class="row">
+
+                    @foreach ($recommendedProducts as $recommendedProduct)
+
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+
+                            <div class="card product-card shadow-sm h-100">
+
+                                {{-- IMAGE --}}
+
+                                <div class="position-relative">
+
+                                    @if ($recommendedProduct->discount > 0)
+
+                                        <span class="badge position-absolute text-white" style="inset-block-start:10px;
+                                                                                             inset-inline-start:10px;
+                                                                                             font-size:0.8rem;
+                                                                                             background-color:#081621;">
+
+                                            -{{ $recommendedProduct->discount }}%
+
+                                        </span>
+
+                                    @endif
+
+
+                                    <div class="text-center">
+
+                                        <img src="{{ asset('storage/' . $recommendedProduct->image_url) }}"
+                                            class="product-img card-img-top img-fluid"
+                                            alt="{{ $recommendedProduct->product_name ?? 'Product image' }}" style="object-fit:contain;
+                                                                                    max-block-size:180px;">
+
+                                    </div>
+
+
+                                    <div class="d-flex justify-content-end card-img-overlay">
+
+                                        <a href="javascript:void(0)" data-toggle="modal"
+                                            data-target="#recommendedProductModal{{ $recommendedProduct->product_id }}">
+
+                                            <i class="fa-solid fa-eye fs-5" style="color:#081621">
+                                            </i>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+
+                                {{-- INFORMATION --}}
+
+                                <div class="card-body d-flex flex-column justify-content-between">
+
+                                    <div class="mb-2">
+
+                                        <span class="d-block fw-bold text-truncate">
+
+                                            {{ $recommendedProduct->product_name }}
+
+                                        </span>
+
+
+                                        <span>
+                                            Model:
+                                            <small>
+                                                {{ $recommendedProduct->model }}
+                                            </small>
+                                        </span>
+
+
+                                        <span>
+                                            Company:
+                                            <strong>
+                                                {{ $recommendedProduct->company_name }}
+                                            </strong>
+                                        </span>
+
+
+                                        <span>
+                                            Price:
+                                            $<strong>
+                                                {{ $recommendedProduct->price }}
+                                            </strong>
+                                        </span>
+
+                                    </div>
+
+
+                                    {{-- CART --}}
+
+                                    <div class="d-flex justify-content-between align-items-center">
+
+                                        @if ($recommendedProduct->stock_quantity <= 0)
+
+                                            <button class="btn border-0 disabled" title="Add to cart">
+
+                                                <i class="fa-solid fa-cart-shopping" style="color:#081621;">
+                                                </i>
+
+                                            </button>
+
+                                        @elseif (
+                                                session('cart') &&
+                                                array_key_exists(
+                                                    $recommendedProduct->product_id,
+                                                    session('cart')
+                                                )
+                                            )
+
+                                            <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
+
+                                                <i class="fa-solid fa-cart-shopping" style="color:#081621;">
+                                                </i>
+
+                                            </a>
+
+                                        @else
+
+                                            <form action="{{ route('Addtocart', $recommendedProduct->product_id) }}" method="POST"
+                                                class="ajaxAddToCartForm d-inline">
+
+                                                @csrf
+
+                                                <input type="hidden" name="quantity" value="1">
+
+                                                <button type="submit" class="btn add-to-cart-btn border-0 bg-transparent"
+                                                    title="Add to cart">
+
+                                                    <i class="fa-solid fa-cart-shopping" style="color:#081621;">
+                                                    </i>
+
+                                                </button>
+
+                                            </form>
+
+                                        @endif
+
+
+                                        @if ($recommendedProduct->stock_quantity <= 0)
+
+                                            <span class="badge badge-danger">
+                                                Stock Out
+                                            </span>
+
+                                        @else
+
+                                            <span class="badge badge-success">
+                                                Available
+                                            </span>
+
+                                        @endif
+
+                                    </div>
+
+                                </div>
+
                             </div>
+
+                        </div>
+
+
+                        {{-- RECOMMENDED PRODUCT MODAL --}}
+
+                        <div class="modal fade m-5" id="recommendedProductModal{{ $recommendedProduct->product_id }}" tabindex="-1"
+                            role="dialog" aria-hidden="true">
+
+                            <div class="modal-dialog modal-lg" role="document">
+
+                                <div class="modal-content">
+
+                                    <div class="modal-header" style="background-color:#081621;">
+
+                                        <h5 class="modal-title text-white">
+
+                                            {{ $recommendedProduct->product_name }}
+
+                                        </h5>
+
+                                        <button type="button" class="close text-white" data-dismiss="modal">
+
+                                            <span>
+                                                &times;
+                                            </span>
+
+                                        </button>
+
+                                    </div>
+
+
+                                    <div class="modal-body">
+
+                                        <div class="row">
+
+                                            <div class="col-md-5 text-center">
+
+                                                <img src="{{ asset('storage/' . $recommendedProduct->image_url) }}" class="img-fluid"
+                                                    alt="{{ $recommendedProduct->product_name }}">
+
+                                            </div>
+
+
+                                            <div class="col-md-7">
+
+                                                <h4>
+                                                    ${{ $recommendedProduct->price }}
+                                                </h4>
+
+                                                <p>
+                                                    <strong>Discount:</strong>
+                                                    {{ $recommendedProduct->discount }}%
+                                                </p>
+
+
+                                                <p>
+
+                                                    <strong>Stock:</strong>
+
+                                                    @if ($recommendedProduct->stock_quantity > 0)
+
+                                                        <span class="text-success">
+                                                            Available
+                                                        </span>
+
+                                                    @else
+
+                                                        <span class="text-danger">
+                                                            Out of stock
+                                                        </span>
+
+                                                    @endif
+
+                                                </p>
+
+
+                                                <p>
+
+                                                    <strong>Description:</strong>
+
+                                                    {{ $recommendedProduct->description }}
+
+                                                </p>
+
+
+                                                <p>
+
+                                                    <strong>Model:</strong>
+
+                                                    {{ $recommendedProduct->model }}
+
+                                                </p>
+
+
+                                                <p>
+
+                                                    <strong>Company:</strong>
+
+                                                    {{ $recommendedProduct->company_name }}
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="modal-footer">
+
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+
+                                            Close
+
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+
+        @endif
+
+    @endif
+
+
+    {{-- ========================================================= --}}
+    {{-- FEATURED DISCOUNTS --}}
+    {{-- ========================================================= --}}
+
+    <div class="container text-center mt-5">
+
+        <h1>
+            Featured Discounts
+        </h1>
+
+        <p>
+            Get Your Desired Product With Discount
+        </p>
+
+    </div>
+
+
+    <div class="container-fluid mt-lg-4">
+
+        <div class="row">
+
+            @if ($data->isEmpty())
+
+                <div class="alert alert-danger mt-5 w-100 text-center">
+
+                    No Products Available.
+
+                </div>
+
+            @endif
+
+
+            @foreach ($data as $id => $data1)
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+
+                    <div class="card product-card shadow-sm h-100">
+
+                        <div class="position-relative">
+
+                            @if ($data1->discount > 0)
+
+                                <span class="badge position-absolute text-white" style="inset-block-start:10px;
+                                                                     inset-inline-start:10px;
+                                                                     font-size:0.8rem;
+                                                                     background-color:#081621;">
+
+                                    -{{ $data1->discount }}%
+
+                                </span>
+
+                            @endif
+
+
+                            <div class="text-center">
+
+                                <img src="{{ asset('storage/' . $data1->image_url) }}"
+                                    class="product-img card-img-top img-fluid"
+                                    alt="{{ $data1->product_name ?? 'Product image' }}" style="object-fit:contain;
+                                                            max-block-size:180px;">
+
+                            </div>
+
+
                             <div class="d-flex justify-content-end card-img-overlay">
+
                                 <a href="javascript:void(0)" data-toggle="modal"
                                     data-target="#productModal{{ $data1->product_id }}">
-                                    <i class="fa-solid fa-eye fs-5" style="color: #081621"></i>
+
+                                    <i class="fa-solid fa-eye fs-5" style="color:#081621">
+                                    </i>
+
                                 </a>
+
                             </div>
+
                         </div>
+
 
                         <div class="card-body d-flex flex-column justify-content-between">
+
                             <div class="mb-2">
-                                <span class="d-block fw-bold text-truncate">{{ $data1->product_name }}</span>
-                                <span>Model: <small>{{ $data1->model }}</small></span>
-                                <span>Company: <strong>{{ $data1->company_name }}</strong></span>
-                                <span>Price:$<strong>{{ $data1->price }}</strong></span>
+
+                                <span class="d-block fw-bold text-truncate">
+
+                                    {{ $data1->product_name }}
+
+                                </span>
+
+
+                                <span>
+
+                                    Model:
+                                    <small>
+                                        {{ $data1->model }}
+                                    </small>
+
+                                </span>
+
+
+                                <span>
+
+                                    Company:
+                                    <strong>
+                                        {{ $data1->company_name }}
+                                    </strong>
+
+                                </span>
+
+
+                                <span>
+
+                                    Price:
+                                    $<strong>
+                                        {{ $data1->price }}
+                                    </strong>
+
+                                </span>
+
                             </div>
 
+
                             <div class="d-flex justify-content-between align-items-center">
+
                                 @if (Auth::guard('customer')->check())
+
                                     @if ($data1->stock_quantity <= 0)
+
                                         <button class="btn border-0 disabled" title="Add to cart">
-                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+
+                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;">
+                                            </i>
+
                                         </button>
-                                    @elseif (session('cart') && array_key_exists($data1->product_id, session('cart')))
+
+                                    @elseif (
+                                            session('cart') &&
+                                            array_key_exists(
+                                                $data1->product_id,
+                                                session('cart')
+                                            )
+                                        )
+
                                         <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
-                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+
+                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;">
+                                            </i>
+
                                         </a>
+
                                     @else
+
                                         <form action="{{ route('Addtocart', $data1->product_id) }}" method="POST"
                                             class="ajaxAddToCartForm d-inline">
+
                                             @csrf
+
                                             <input type="hidden" name="quantity" value="1">
+
                                             <button type="submit" class="btn add-to-cart-btn border-0 bg-transparent"
                                                 title="Add to cart">
-                                                <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+
+                                                <i class="fa-solid fa-cart-shopping" style="color:#081621;">
+                                                </i>
+
                                             </button>
+
                                         </form>
+
                                     @endif
+
                                 @else
+
                                     <button class="btn border-0 disabled" title="Login To Buy">
-                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+
+                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;">
+                                        </i>
+
                                     </button>
+
                                 @endif
+
+
                                 @if ($data1->stock_quantity <= 0)
-                                    <span class="badge badge-danger">Stock Out</span>
+
+                                    <span class="badge badge-danger">
+                                        Stock Out
+                                    </span>
+
                                 @else
-                                    <span class="badge badge-success">Available</span>
+
+                                    <span class="badge badge-success">
+                                        Available
+                                    </span>
+
                                 @endif
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
+
+                {{-- NORMAL PRODUCT MODAL --}}
+
                 <div class="modal fade m-5" id="productModal{{ $data1->product_id }}" tabindex="-1" role="dialog"
                     aria-labelledby="productModalLabel{{ $data1->product_id }}" aria-hidden="true">
+
                     <div class="modal-dialog modal-lg" role="document">
+
                         <div class="modal-content">
+
                             <div class="modal-header" style="background-color:#081621;">
+
                                 <h5 class="modal-title text-white" id="productModalLabel{{ $data1->product_id }}">
+
                                     {{ $data1->product_name }}
+
                                 </h5>
+
+
                                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+
+                                    <span aria-hidden="true">
+                                        &times;
+                                    </span>
+
                                 </button>
+
                             </div>
+
+
                             <div class="modal-body">
+
                                 <div class="row">
+
                                     <div class="col-md-5 text-center">
+
                                         <img src="{{ asset('storage/' . $data1->image_url) }}" class="img-fluid"
                                             alt="{{ $data1->product_name }}">
+
                                     </div>
+
+
                                     <div class="col-md-7">
-                                        <h4>${{ $data1->price }}</h4>
-                                        <p><strong>Discount:</strong> {{ $data1->discount }}%</p>
-                                        <p><strong>Stock:</strong>
-                                            @if($data1->stock_quantity > 0)
-                                                <span class="text-success">Available</span>
-                                            @else
-                                                <span class="text-danger">Out of stock</span>
-                                            @endif
+
+                                        <h4>
+                                            ${{ $data1->price }}
+                                        </h4>
+
+
+                                        <p>
+
+                                            <strong>
+                                                Discount:
+                                            </strong>
+
+                                            {{ $data1->discount }}%
+
                                         </p>
-                                        <p><strong>Description:</strong> {{ $data1->description}}</p>
-                                        <p><strong>Model:</strong> {{$data1->model}}</p>
-                                        <p><strong>Company:</strong> {{$data1->company_name}}</p>
+
+
+                                        <p>
+
+                                            <strong>
+                                                Stock:
+                                            </strong>
+
+                                            @if ($data1->stock_quantity > 0)
+
+                                                <span class="text-success">
+                                                    Available
+                                                </span>
+
+                                            @else
+
+                                                <span class="text-danger">
+                                                    Out of stock
+                                                </span>
+
+                                            @endif
+
+                                        </p>
+
+
+                                        <p>
+
+                                            <strong>
+                                                Description:
+                                            </strong>
+
+                                            {{ $data1->description }}
+
+                                        </p>
+
+
+                                        <p>
+
+                                            <strong>
+                                                Model:
+                                            </strong>
+
+                                            {{ $data1->model }}
+
+                                        </p>
+
+
+                                        <p>
+
+                                            <strong>
+                                                Company:
+                                            </strong>
+
+                                            {{ $data1->company_name }}
+
+                                        </p>
+
                                     </div>
+
                                 </div>
+
                             </div>
+
+
                             <div class="modal-footer">
+
                                 @if (Auth::guard('customer')->check())
-                                    @if ($data1->stock_quantity <= 0 || count(session('cart', [])))
+
+                                    @if (
+                                            $data1->stock_quantity <= 0 ||
+                                            count(session('cart', []))
+                                        )
+
                                         <button class="btn border-0 disabled" title="Add to cart">
-                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+
+                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;">
+                                            </i>
+
                                         </button>
-                                    @elseif (session('cart') && array_key_exists($data1->product_id, session('cart')))
+
+                                    @elseif (
+                                            session('cart') &&
+                                            array_key_exists(
+                                                $data1->product_id,
+                                                session('cart')
+                                            )
+                                        )
+
                                         <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
-                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+
+                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;">
+                                            </i>
+
                                         </a>
+
                                     @else
+
                                         <form action="{{ route('Addtocart', $data1->product_id) }}" method="POST"
                                             class="ajaxAddToCartForm d-inline">
+
                                             @csrf
+
                                             <input type="hidden" name="quantity" value="1">
+
                                             <button type="submit" class="btn add-to-cart-btn border-0 bg-transparent"
                                                 title="Add to cart">
-                                                <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+
+                                                <i class="fa-solid fa-cart-shopping" style="color:#081621;">
+                                                </i>
+
                                             </button>
+
                                         </form>
+
                                     @endif
+
                                 @else
+
                                     <button class="btn border-0 disabled" title="Login To Buy">
-                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i>
+
+                                        <i class="fa-solid fa-cart-shopping" style="color:#081621;">
+                                        </i>
+
                                     </button>
+
                                 @endif
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+
+                                    Close
+
+                                </button>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             @endforeach
+
+
             <div class="d-flex justify-content-center mt-4">
+
                 {{ $data->links() }}
+
             </div>
+
         </div>
+
     </div>
 
     <script>
+
         $(document).ready(function () {
+
             $(".ajaxAddToCartForm").on("submit", function (e) {
+
                 e.preventDefault();
+
                 let form = $(this);
+
                 let button = form.find("button");
+
                 let url = form.attr("action");
+
                 button.prop("disabled", true);
+
+
                 $.ajax({
+
                     url: url,
+
                     method: "POST",
+
                     data: form.serialize(),
+
+
                     success: function (response) {
+
                         alert("Product added to cart!");
+
+
                         let countEl = $("#cartCount");
+
                         let count = parseInt(countEl.text()) || 0;
+
                         countEl.text(count + 1);
+
+
                         form.replaceWith(`
-                                            <a href="{{ route('Cart') }}" class="btn border-0" title="Go to cart">
-                                            <i class="fa-solid fa-cart-shopping" style="color:#081621;"></i></a>
-                                        `);
+
+                                    <a href="{{ route('Cart') }}"
+                                       class="btn border-0"
+                                       title="Go to cart">
+
+                                        <i class="fa-solid fa-cart-shopping"
+                                           style="color:#081621;">
+                                        </i>
+
+                                    </a>
+
+                                `);
+
                     },
+
+
                     error: function (xhr) {
-                        if (xhr.status === 401 && xhr.responseJSON?.login === false) {
-                            window.location.href = xhr.responseJSON.redirect;
-                        } else if (xhr.status === 404) {
-                            alert("Product not found!");
-                        } else {
-                            alert("Something went wrong!");
+
+                        if (
+                            xhr.status === 401 &&
+                            xhr.responseJSON?.login === false
+                        ) {
+
+                            window.location.href =
+                                xhr.responseJSON.redirect;
+
                         }
+
+                        else if (xhr.status === 404) {
+
+                            alert("Product not found!");
+
+                        }
+
+                        else {
+
+                            alert("Something went wrong!");
+
+                        }
+
                     },
+
+
                     complete: function () {
+
                         button.prop("disabled", false);
+
                     }
+
                 });
+
             });
+
         });
+
     </script>
 
 @endsection

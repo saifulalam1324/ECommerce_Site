@@ -491,6 +491,7 @@ class VendorController extends Controller
             'description'  => 'string',
             'stock'        => 'integer|min:0',
             'model'        => 'string|max:100',
+            'discount'     => 'numeric|min:0',
         ]);
 
         $product = DB::table('products')->where('product_id', $productid)->first();
@@ -502,6 +503,7 @@ class VendorController extends Controller
             'description'    => $request->description,
             'stock_quantity' => $newstock,
             'model'          => $request->model,
+            'discount'       => $request->discount,
         ]);
 
         return back()->with('success', 'Updated Successfully');

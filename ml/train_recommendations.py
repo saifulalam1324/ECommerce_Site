@@ -1,19 +1,21 @@
 import pandas as pd
 import numpy as np
+
 from scipy.sparse import csr_matrix
 from implicit.als import AlternatingLeastSquares
+
 from sqlalchemy import create_engine, text
+
 from datetime import datetime
 
-# ============================================================
-# 1. DATABASE CONFIGURATION
-# ============================================================
+
 
 DB_USER = "root"
 DB_PASSWORD = ""
 DB_HOST = "127.0.0.1"
 DB_PORT = "3306"
-DB_NAME = "ecommerce_site"
+DB_NAME = "ecommerce"
+
 
 DATABASE_URL = (
     f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}"
@@ -23,9 +25,6 @@ DATABASE_URL = (
 engine = create_engine(DATABASE_URL)
 
 
-# ============================================================
-# 2. LOAD CUSTOMER PURCHASE DATA
-# ============================================================
 
 query = """
 SELECT
@@ -42,9 +41,6 @@ orders = pd.read_sql(query, engine)
 print("Orders loaded:", len(orders))
 
 
-# ============================================================
-# 3. CHECK WHETHER THERE IS ENOUGH DATA
-# ============================================================
 
 if orders.empty:
     print("No order data found.")
@@ -59,38 +55,48 @@ if orders["product_id"].nunique() < 2:
     exit()
 
 
-# ============================================================
-# 4. COMBINE DUPLICATE CUSTOMER-PRODUCT PURCHASES
-# ============================================================
+
 
 orders = (
     orders
-    .groupby(["customer_id", "product_id"], as_index=False)["quantity"]
+    .groupby(
+        ["customer_id", "product_id"],
+        as_index=False
+    )["quantity"]
     .sum()
 )
 
 
-# ============================================================
-# 5. CREATE CUSTOMER AND PRODUCT INDEXES
-# ============================================================
 
-customer_categories = orders["customer_id"].astype("category")
+customer_categories = (
+    orders["customer_id"].astype("category")
+)
 
-orders["customer_idx"] = customer_categories.cat.codes
+orders["customer_idx"] = (
+    customer_categories.cat.codes
+)
 
-customer_ids = list(customer_categories.cat.categories)
-
-
-product_categories = orders["product_id"].astype("category")
-
-orders["product_idx"] = product_categories.cat.codes
-
-product_ids = list(product_categories.cat.categories)
+customer_ids = list(
+    customer_categories.cat.categories
+)
 
 
-# ============================================================
-# 6. CREATE USER-ITEM INTERACTION MATRIX
-# ============================================================
+
+
+product_categories = (
+    orders["product_id"].astype("category")
+)
+
+orders["product_idx"] = (
+    product_categories.cat.codes
+)
+
+product_ids = list(
+    product_categories.cat.categories
+)
+
+
+
 
 interaction_matrix = csr_matrix(
     (
@@ -106,35 +112,34 @@ interaction_matrix = csr_matrix(
     )
 )
 
+
 print("Interaction matrix created.")
 print("Customers:", len(customer_ids))
 print("Products:", len(product_ids))
 
 
-# ============================================================
-# 7. TRAIN ALS RECOMMENDATION MODEL
-# ============================================================
 
 model = AlternatingLeastSquares(
-    factors=20,
+    factors=10,
     regularization=0.1,
     iterations=20,
     random_state=42
 )
 
-# implicit expects item-user matrix
-model.fit(interaction_matrix.T.tocsr())
+
+print("Training ALS model...")
+
+# IMPORTANT:
+# Do NOT transpose here.
+model.fit(interaction_matrix)
 
 print("Recommendation model trained.")
 
 
-# ============================================================
-# 8. GENERATE RECOMMENDATIONS
-# ============================================================
-
 recommendation_rows = []
 
-TOP_N = 10
+TOP_N = min(10, len(product_ids) - 1)
+
 
 for customer_idx in range(len(customer_ids)):
 
@@ -145,39 +150,46 @@ for customer_idx in range(len(customer_ids)):
         filter_already_liked_items=True
     )
 
-    for product_idx, score in zip(recommendations, scores):
+    for product_idx, score in zip(
+        recommendations,
+        scores
+    ):
 
         recommendation_rows.append({
-            "customer_id": customer_ids[customer_idx],
-            "product_id": product_ids[product_idx],
+            "customer_id": int(
+                customer_ids[customer_idx]
+            ),
+
+            "product_id": int(
+                product_ids[product_idx]
+            ),
+
             "score": float(score),
+
             "generated_at": datetime.now()
         })
 
 
-# ============================================================
-# 9. CREATE DATAFRAME
-# ============================================================
 
-results = pd.DataFrame(recommendation_rows)
-
-print("Recommendations generated:", len(results))
+results = pd.DataFrame(
+    recommendation_rows
+)
 
 
-# ============================================================
-# 10. DELETE OLD RECOMMENDATIONS
-# ============================================================
+print(
+    "Recommendations generated:",
+    len(results)
+)
+
 
 with engine.begin() as connection:
 
     connection.execute(
-        text("DELETE FROM recommendations")
+        text(
+            "DELETE FROM recommendations"
+        )
     )
 
-
-# ============================================================
-# 11. SAVE NEW RECOMMENDATIONS TO MYSQL
-# ============================================================
 
 if not results.empty:
 
@@ -188,18 +200,15 @@ if not results.empty:
         index=False
     )
 
-
-# ============================================================
-# 12. FINISHED
-# ============================================================
-
-if not results.empty:
-
     print(
-        f"Successfully saved {len(results)} recommendations "
-        f"for {results['customer_id'].nunique()} customers."
+        f"Successfully saved "
+        f"{len(results)} recommendations "
+        f"for "
+        f"{results['customer_id'].nunique()} customers."
     )
 
 else:
 
-    print("No recommendations were generated.")
+    print(
+        "No recommendations were generated."
+    )
